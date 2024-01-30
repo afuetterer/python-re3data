@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   test:
-    name: Python ${{ matrix.python-version }} tests
+    name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -61,7 +61,7 @@ jobs:
 
   dev-setup:
     # Ref: structlog (MIT License) <https://github.com/hynek/structlog/blob/main/.github/workflows/ci.yml>
-    name: Test dev setup on ${{ matrix.os }}
+    name: '[dev] on ${{ matrix.os }}'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -73,7 +73,7 @@ jobs:
         python-version: '3.12'
         cache: pip
     - run: python -Im pip install --editable .[dev]
-    - run: python -Ic 'import re3data.__about__; print(re3data.__about__.__version__)'
+    - run: python -Ic 'import re3data; print(re3data.__version__)'
     - name: Set up pipdeptree
       if: matrix.os == 'ubuntu-latest'
       run: |

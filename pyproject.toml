@@ -39,6 +39,9 @@ dependencies = [
   "httpx>=0.26",
 ]
 [project.optional-dependencies]
+cli = [
+  "typer~=0.9",
+]
 dev = [
   "python-re3data[lint]",
   "python-re3data[test]",
@@ -66,6 +69,8 @@ Changelog = "https://github.com/afuetterer/python-re3data/blob/main/CHANGELOG.md
 Documentation = "https://afuetterer.github.io/python-re3data"
 Issues = "https://github.com/afuetterer/python-re3data/issues"
 Repository = "https://github.com/afuetterer/python-re3data.git"
+[project.scripts]
+re3data = "re3data.__main__:app"
 
 [build-system]
 build-backend = "hatchling.build"

@@ -55,7 +55,7 @@ repos:
     args: [--config-file=pyproject.toml]
     additional_dependencies:
     - httpx==0.26.0
-    - lxml-stubs==0.5.1
+    - typer==0.9.0
     exclude: tests
 
 - repo: https://github.com/scientific-python/cookie
