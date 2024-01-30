@@ -1,0 +1,34 @@
+name: Checks
+
+on:
+  pull_request:
+
+concurrency:
+  group: pr-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUNBUFFERED: 1
+  FORCE_COLOR: 1
+  CLICOLOR_FORCE: 1
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+  docs:
+    permissions:
+      contents: write
+    uses: ./.github/workflows/docs.yml
+  required-checks-pass:
+    if: always()
+    needs:
+    - test
+    - docs
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
+      with:
+        jobs: ${{ toJSON(needs) }}
