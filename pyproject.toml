@@ -62,6 +62,8 @@ test = [
   "pytest-xdist~=3.5",
 ]
 [project.urls]
+Changelog = "https://github.com/afuetterer/python-re3data/blob/main/CHANGELOG.md"
+Documentation = "https://afuetterer.github.io/python-re3data"
 Issues = "https://github.com/afuetterer/python-re3data/issues"
 Repository = "https://github.com/afuetterer/python-re3data.git"
 
