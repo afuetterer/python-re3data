@@ -134,7 +134,6 @@ target-version = "py310"
 
 [tool.ruff.lint]
 # Ref: https://docs.astral.sh/ruff/rules/
-preview = true
 extend-select = [
   "A",    # flake8-builtins
   "B",    # flake8-bugbear
@@ -162,25 +161,18 @@ ignore = [
 unfixable = [
   "F401", # unused-import
 ]
+isort.known-first-party = ["re3data"]
+pydocstyle.convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 "src/re3data/__about__.py" = [
   "D100", # undocumented-public-module
-]
-"src/re3data/client.py" = [
-  "PLR0913", # too-many-arguments
 ]
 "tests/*" = [
   "D100",     # undocumented-public-module
   "D103",     # undocumented-public-function
   "PLR2004",  # magic-value-comparison
 ]
-
-[tool.ruff.lint.isort]
-known-first-party = ["re3data"]
-
-[tool.ruff.lint.pydocstyle]
-convention = "google"
 
 # sp-repo-review
 # Ref: https://github.com/scientific-python/cookie/tree/main#list-of-checks
