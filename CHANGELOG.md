@@ -49,4 +49,3 @@ Fixes: #9 ([`9b69882`](https://github.com/afuetterer/python-re3data/commit/9b698
 ### Unknown
 
 * init ([`b7210d3`](https://github.com/afuetterer/python-re3data/commit/b7210d326b23de7afdb5984770149a578c58d13a))
-
