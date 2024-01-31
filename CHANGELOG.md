@@ -6,7 +6,20 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
 
-## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.0.0...main)
+## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.1.0...main)
+
+
+
+## [0.1.0](https://github.com/afuetterer/python-re3data/compare/0.0.0...0.1.0) (2024-01-31)
+
+
+### Features
+
+- add initial cli (#43) ([`4dd7465`](https://github.com/afuetterer/python-re3data/commit/4dd7465cf22c819a9b4d988108fc3242b64a923f))
+
+### Documentation
+
+- update project urls (#39) ([`d1c2dfd`](https://github.com/afuetterer/python-re3data/commit/d1c2dfd7fd6738cafe1b94df5a6e072ab6e0ffa6))
 
 
 
