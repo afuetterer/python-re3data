@@ -35,5 +35,3 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - set up contributor guide (#28) ([`e943e1d`](https://github.com/afuetterer/python-re3data/commit/e943e1df3cb3338612a55d9b0acb94b959a1bb88))
 - add citation.cff (#14) ([`4ad9c9d`](https://github.com/afuetterer/python-re3data/commit/4ad9c9da9828aec7dc6bfabd6dd0b000f02a5905))
 - set up issue and PR templates (#10) ([`9b69882`](https://github.com/afuetterer/python-re3data/commit/9b6988231959b666780309fd5d14925ef4c17c27))
-
-
