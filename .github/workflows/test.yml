@@ -1,0 +1,100 @@
+name: Test
+
+on:
+  workflow_call:
+
+env:
+  PYTHONUNBUFFERED: 1
+  FORCE_COLOR: 1
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    steps:
+    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: pip
+    - name: Install pre-requisites (e.g. hatch)
+      run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
+    - name: Run test suite
+      run: hatch run cov
+    - name: Generate coverage report
+      run: |
+        export TOTAL_COV=$(hatch run cov-total)
+        echo "TOTAL_COV=$TOTAL_COV" >> $GITHUB_ENV
+        hatch run cov-report-markdown
+        echo "### Total coverage: ${TOTAL_COV}%" >> $GITHUB_STEP_SUMMARY
+        cat coverage.md >> $GITHUB_STEP_SUMMARY
+      if: matrix.python-version == '3.12'
+    - name: Generate coverage badge
+      uses: schneegans/dynamic-badges-action@e9a478b16159b4d31420099ba146cdc50f134483 # v1.7.0
+      with:
+        # GIST_TOKEN is a GitHub personal access token with scope "gist".
+        auth: ${{ secrets.GIST_TOKEN }}
+        gistID: fcb87d45f4d7defdfeffa65eb1d65f63
+        filename: coverage-badge.json
+        label: Coverage
+        namedLogo: python
+        message: ${{ env.TOTAL_COV }}%
+        minColorRange: 50
+        maxColorRange: 90
+        valColorRange: ${{ env.TOTAL_COV }}
+      # only update coverage badge
+      # when push to main branch of the project -> not in forks
+      if: >-
+        env.TOTAL_COV
+        && github.repository == 'afuetterer/python-re3data'
+        && github.ref == 'refs/heads/main'
+
+  dev-setup:
+    # Ref: structlog (MIT License) <https://github.com/hynek/structlog/blob/main/.github/workflows/ci.yml>
+    name: Install [dev] on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+    - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
+      with:
+        python-version: '3.12'
+        cache: pip
+    - run: python -Im pip install --editable .[dev]
+    - run: python -Ic 'import re3data.__about__; print(re3data.__about__.__version__)'
+    - name: Set up pipdeptree
+      if: matrix.os == 'ubuntu-latest'
+      run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
+    - name: Write info to step summary
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        {
+          echo -e "### ✓ All dependencies installed successfully\n\n"
+          echo '<details><summary>Installed Python packages (dependency tree)</summary>'
+          echo -e "\n\`\`\`console"
+          echo "$ python -m pipdeptree --local-only --exclude=pip,pipdeptree"
+          python -m pipdeptree --local-only --exclude=pip,pipdeptree
+          echo -e "\`\`\`\n</details>"
+          echo '<details><summary>Outdated Python packages</summary>'
+          echo -e "\n\`\`\`console"
+          echo "$ python -m pip list --outdated"
+          python -m pip list --outdated
+          echo -e "\`\`\`\n</details>"
+        } >> $GITHUB_STEP_SUMMARY
+
+  build-inspect:
+    name: Build and inspect the package
+    runs-on: ubuntu-24.04
+    steps:
+    - run: sudo apt-get install tree # workaround for "tree: command not found" in baipp
+    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+    - uses: hynek/build-and-inspect-python-package@4aea7de65ba374f49b5f549cd471b61de2ef19d3 # v2.5.0

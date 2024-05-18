@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+- family-names: Fütterer
+  given-names: Heinz-Alexander
+  orcid: https://orcid.org/0000-0003-4397-027X
+title: python-re3data
+license: MIT
+license-url: https://github.com/afuetterer/python-re3data/blob/main/LICENSE
+repository-code: https://github.com/afuetterer/python-re3data
+keywords:
+- api
+- api-client
+- metadata
+- re3data
+- repositories
+- research data
+version: 0.1.0
+date-released: 2024-05-18

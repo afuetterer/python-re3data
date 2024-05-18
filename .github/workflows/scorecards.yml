@@ -1,0 +1,44 @@
+# This CI job is adapted from:
+# Scorecards' GitHub action (2013-09-12), Apache License 2.0
+# Ref: https://github.com/ossf/scorecard-action/blob/8d9d91b01b9389de406141fb47b98726a399e1ea/README.md?plain=1#L198
+
+name: Scorecard analysis
+on:
+  # Only the default branch is supported.
+  branch_protection_rule:
+  schedule:
+    # run once a month at midnight of the first day of the month
+  - cron: 0 0 1 * *
+  push:
+    branches: [main]
+
+# Declare default permissions as read only.
+permissions: read-all
+
+jobs:
+  analysis:
+    name: Scorecard analysis
+    runs-on: ubuntu-24.04
+    permissions:
+      # Needed if using Code scanning alerts
+      security-events: write
+      # Needed for GitHub OIDC token if publish_results is true
+      id-token: write
+    steps:
+    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      with:
+        persist-credentials: false
+    # Ref: https://github.com/ossf/scorecard-action
+    - name: Run scorecard analysis
+      uses: ossf/scorecard-action@dc50aa9510b46c811795eb24b2f1ba02a914e534 # v2.3.3
+      with:
+        results_file: results.sarif
+        results_format: sarif
+        # Ref: https://github.com/ossf/scorecard-action#publishing-results.
+        publish_results: true
+
+    # required for Code scanning alerts
+    - name: Upload SARIF results to code scanning
+      uses: github/codeql-action/upload-sarif@b7cec7526559c32f1616476ff32d17ba4c59b2d6 # v3.25.5
+      with:
+        sarif_file: results.sarif

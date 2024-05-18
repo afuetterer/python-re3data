@@ -1,0 +1,23 @@
+name: Label
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - .github/labels.yml
+    - .github/workflows/label.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  label:
+    permissions:
+      issues: write
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+    - name: Run GitHub Labeler
+      uses: crazy-max/ghaction-github-labeler@de749cf181958193cb7debf1a9c5bb28922f3e1b # v5.0.0
