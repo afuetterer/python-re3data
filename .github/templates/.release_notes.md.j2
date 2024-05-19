@@ -1,0 +1,4 @@
+{%- set releases = context.history.released.items() | list -%}
+{%- set prev_version = releases[1][0] -%}
+{% include ".changes.j2" %}
+{{ "**Full Changelog**: (%s)" | format(prev_version | compare_url(version)) }}

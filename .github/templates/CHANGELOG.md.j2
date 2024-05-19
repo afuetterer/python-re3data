@@ -1,0 +1,21 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
+[conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
+
+{# UNRELEASED -#}
+{% set last_release = context.history.released.items() | first | first -%}
+## {{ "[Unreleased](%s)" | format(last_release.as_tag() | compare_url("main")) }}
+
+{# RELEASED -#}
+{% for version, release in context.history.released.items() -%}
+{%- if loop.nextitem -%}
+{%- set compare_url_ = loop.nextitem[0] | compare_url(version) -%}
+## [{{ version.as_tag() }}]({{ compare_url_ }}) ({{ release.tagged_date.strftime("%Y-%m-%d") }})
+{% else -%}
+## {{ version.as_tag() }} ({{ release.tagged_date.strftime("%Y-%m-%d") }})
+{% endif -%}
+{% include ".changes.j2" %}
+{%- endfor -%}
