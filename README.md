@@ -37,6 +37,15 @@ python -m pip install python-re3data
 The [documentation][docs-url] is made with [Material for MkDocs](https://github.com/squidfunk/mkdocs-material) and is
 hosted by [GitHub Pages](https://docs.github.com/en/pages).
 
+## Similar Projects
+
+There are a couple of similar projects available on GitHub, e.g. via the topic
+[re3data](https://github.com/topics/re3data). Among them are these implementations in Python:
+
+| Project                                       | Description                                                                          | Last commit                                                                |
+| --------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
+| [py3data](https://github.com/J535D165/sickle) | `py3data` is a lightweight and thin Python interface to the beta version of the API. | ![last-commit](https://img.shields.io/github/last-commit/J535D165/py3data) |
+
 ## License
 
 `python-re3data` is distributed under the terms of the [MIT License][license-url].
