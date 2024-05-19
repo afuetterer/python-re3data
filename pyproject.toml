@@ -10,7 +10,7 @@ requires = [
 
 [project]
 name = "python-re3data"
-description = "The pythonic client for the re3data API."
+description = "The Pythonic client for the re3data API."
 readme = "README.md"
 keywords = [
   "api",
