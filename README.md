@@ -42,9 +42,9 @@ hosted by [GitHub Pages](https://docs.github.com/en/pages).
 There are a couple of similar projects available on GitHub, e.g. via the topic
 [re3data](https://github.com/topics/re3data). Among them are these implementations in Python:
 
-| Project                                       | Description                                                                          | Last commit                                                                |
-| --------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
-| [py3data](https://github.com/J535D165/sickle) | `py3data` is a lightweight and thin Python interface to the beta version of the API. | ![last-commit](https://img.shields.io/github/last-commit/J535D165/py3data) |
+| Project                                        | Description                                                                          | Last commit                                                                |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
+| [py3data](https://github.com/J535D165/py3data) | `py3data` is a lightweight and thin Python interface to the beta version of the API. | ![last-commit](https://img.shields.io/github/last-commit/J535D165/py3data) |
 
 ## License
 
