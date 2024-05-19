@@ -22,6 +22,7 @@
 `python-re3data` is built with:
 
 - [httpx](https://github.com/encode/httpx) for issuing HTTP requests
+- [typer](https://github.com/tiangolo/typer) for its CLI
 
 ## Installation
 
