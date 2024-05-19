@@ -5,10 +5,10 @@
 > exercise caution when using this project in production environments. Contributions and feedback are welcome to help
 > move the project towards a more stable release.
 
-| __CI__   | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow]                                         |
-| :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| __Docs__ | [![docs][docs-badge]][docs-workflow]                                                                                                                                                   |
-| __Meta__ | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license-url] |
+| __CI__   | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow] |
+| :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| __Docs__ | [![docs][docs-badge]][docs-workflow]                                                                                                                                                      |
+| __Meta__ | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license-url]    |
 
 **Table of Contents**
 
@@ -44,6 +44,8 @@ hosted by [GitHub Pages](https://docs.github.com/en/pages).
 
 [ci-badge]: https://github.com/afuetterer/python-re3data/actions/workflows/main.yml/badge.svg
 [ci-workflow]: https://github.com/afuetterer/python-re3data/actions/workflows/main.yml
+[codeql-badge]: https://github.com/afuetterer/python-re3data/actions/workflows/codeql.yml/badge.svg
+[codeql-workflow]: https://github.com/afuetterer/python-re3data/actions/workflows/codeql.yml
 [coverage-badge]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/afuetterer/adc66df152c473c1aa136557ee8181ca/raw/coverage-badge.json
 [docs-badge]: https://github.com/afuetterer/python-re3data/actions/workflows/docs.yml/badge.svg
 [docs-url]: https://afuetterer.github.io/python-re3data
