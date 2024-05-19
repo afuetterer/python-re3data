@@ -3,12 +3,16 @@
 > ⚠️ Please note that this project is currently under active development. As such, it is considered a work in progress,
 > and breaking changes may be introduced at any time. We encourage users to frequently check back for updates and to
 > exercise caution when using this project in production environments. Contributions and feedback are welcome to help
-> move the project towards a more stable release.
+> move the project towards a more stable release (v1.0.0).
 
 | __CI__   | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow] |
 | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | __Docs__ | [![docs][docs-badge]][docs-workflow]                                                                                                                                                      |
 | __Meta__ | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license-url]    |
+
+`python-re3data` is a Python library that simplifies interacting with the [re3data](https://www.re3data.org) (Registry
+of Research Data Repositories) [REST API](https://www.re3data.org/api/doc), allowing you to easily retrieve and process
+metadata about research data repositories in a convenient and Pythonic way.
 
 **Table of Contents**
 
