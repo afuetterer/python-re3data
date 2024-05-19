@@ -5,10 +5,11 @@
 > exercise caution when using this project in production environments. Contributions and feedback are welcome to help
 > move the project towards a more stable release (v1.0.0).
 
-| __CI__   | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow] |
-| :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| __Docs__ | [![docs][docs-badge]][docs-workflow]                                                                                                                                                      |
-| __Meta__ | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license-url]    |
+| __CI__      | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow]                                             |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| __Docs__    | [![docs][docs-badge]][docs-workflow]                                                                                                                                                                                                  |
+| __Package__ | [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
+| __Meta__    | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license-url]                                                |
 
 `python-re3data` is a Python library that simplifies interacting with the [re3data](https://www.re3data.org) (Registry
 of Research Data Repositories) [REST API](https://www.re3data.org/api/doc), allowing you to easily retrieve and process
@@ -54,8 +55,9 @@ There are a couple of similar projects available on GitHub, e.g. via the topic
 
 `python-re3data` is distributed under the terms of the [MIT License][license-url].
 
-<!-- Markdown links -->
+<!-- Refs -->
 
+[all-downloads-badge]: https://static.pepy.tech/badge/python-re3data
 [ci-badge]: https://github.com/afuetterer/python-re3data/actions/workflows/main.yml/badge.svg
 [ci-workflow]: https://github.com/afuetterer/python-re3data/actions/workflows/main.yml
 [codeql-badge]: https://github.com/afuetterer/python-re3data/actions/workflows/codeql.yml/badge.svg
@@ -68,11 +70,15 @@ There are a couple of similar projects available on GitHub, e.g. via the topic
 [hatch-badge]: https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: https://spdx.org/licenses/MIT.html
+[monthly-downloads-badge]: https://static.pepy.tech/badge/python-re3data/month
 [mypy]: https://mypy-lang.org
 [mypy-badge]: https://img.shields.io/badge/types-mypy-blue.svg
+[pepy-tech-url]: https://pepy.tech/project/python-re3data
 [pre-commit-ci-badge]: https://results.pre-commit.ci/badge/github/afuetterer/python-re3data/main.svg
 [pre-commit-ci-status]: https://results.pre-commit.ci/latest/github/afuetterer/python-re3data/main
+[pypi-python-versions-badge]: https://img.shields.io/pypi/pyversions/python-re3data.svg?logo=python&label=Python
 [pypi-url]: https://pypi.org/project/python-re3data/
+[pypi-version-badge]: https://img.shields.io/pypi/v/python-re3data.svg?logo=pypi&label=PyPI
 [ruff]: https://github.com/astral-sh/ruff
 [ruff-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json
 [scorecard-badge]: https://api.securityscorecards.dev/projects/github.com/afuetterer/python-re3data/badge
