@@ -27,3 +27,5 @@ jobs:
     - run: python -m build --installer=uv
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@81e9d935c883d0b210363ab89cf05f3894778450 # v1.8.14
+      with:
+        repository-url: https://test.pypi.org/legacy/
