@@ -74,9 +74,8 @@ urls.Repository = "https://github.com/afuetterer/python-re3data.git"
 scripts.re3data = "re3data.__main__:app"
 
 [tool.hatch.build.targets.sdist]
-include = [
-  "src",
-  "CHANGELOG.md",
+only-include = [
+  "src/re3data",
 ]
 
 [tool.hatch.build.targets.wheel]
