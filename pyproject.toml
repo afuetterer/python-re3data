@@ -49,6 +49,7 @@ optional-dependencies.cli = [
 ]
 optional-dependencies.dev = [
   "pre-commit~=3.7",
+  "python-re3data[cli]",
 ]
 optional-dependencies.docs = [
   "mike~=2.1",
@@ -112,10 +113,12 @@ cov-total = """
 
 [tool.hatch.envs.docs]
 features = [
+  "cli",
   "docs",
 ]
 template = "docs"
 [tool.hatch.envs.docs.scripts]
+cli = "typer src/re3data/_cli.py utils docs --name=re3data --title='CLI Reference' --output docs/src/cli.md"
 build = "mkdocs build --config-file=docs/mkdocs.yml"
 serve = "mkdocs serve --verbose --config-file=docs/mkdocs.yml"
 deploy = "mike deploy --push --update-aliases $(hatch version) latest --config-file=docs/mkdocs.yml"
@@ -220,6 +223,7 @@ source = [
 ]
 omit = [
   "__about__.py",
+  "__main__.py",
 ]
 
 [tool.coverage.report]

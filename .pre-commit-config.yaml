@@ -55,7 +55,7 @@ repos:
   hooks:
   - id: mdformat
     args: [--number, --wrap=120, --ignore-missing-references]
-    exclude: CHANGELOG.md|.changelog.md|docs/src/api
+    exclude: CHANGELOG.md|.changelog.md|docs/src/cli.md
     additional_dependencies:
     - mdformat-mkdocs[recommended]>=v2.0.7
 
@@ -73,7 +73,8 @@ repos:
     args: [--config-file=pyproject.toml]
     additional_dependencies:
     - httpx>=0.27
-    - pytest>=8.1
+    - pytest>=8.2
+    - typer>=0.12
 
 - repo: https://github.com/scientific-python/cookie
   rev: 28d1a53da26f9daff6d9a49c50260421ad6d05e0  # frozen: 2024.04.23

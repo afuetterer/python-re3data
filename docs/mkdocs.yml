@@ -15,6 +15,7 @@ watch:
 
 nav:
 - Home: index.md
+- CLI Reference: cli.md
 - Meta:
   - Contributor Guide: contributing.md
   - License: license.md

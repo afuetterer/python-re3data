@@ -2,8 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
-from re3data import __version__
+"""Entry point for python-re3data."""
 
+from re3data._cli import app
 
-def test_version() -> None:
-    assert __version__
+app(prog_name="re3data")
