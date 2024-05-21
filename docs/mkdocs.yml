@@ -18,6 +18,7 @@ nav:
 - CLI Reference: cli.md
 - Meta:
   - Contributor Guide: contributing.md
+  - Changelog: changelog.md
   - License: license.md
 
 theme:
