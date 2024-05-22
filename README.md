@@ -5,11 +5,11 @@
 > exercise caution when using this project in production environments. Contributions and feedback are welcome to help
 > move the project towards a more stable release (v1.0.0).
 
-| __CI__      | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow]                                             |
-| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| __Docs__    | [![docs][docs-badge]][docs-workflow]                                                                                                                                                                                                  |
-| __Package__ | [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
-| __Meta__    | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license-url]                                                |
+| __CI__      | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow]                                                                                      |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| __Docs__    | [![docs][docs-badge]][docs-workflow]                                                                                                                                                                                                                                           |
+| __Package__ | [![pypi-status][status-badge]][pypi-url] [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
+| __Meta__    | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license-url]                                                                                         |
 
 `python-re3data` is a Python library that simplifies interacting with the [re3data](https://www.re3data.org) (Registry
 of Research Data Repositories) [REST API](https://www.re3data.org/api/doc), allowing you to easily retrieve and process
@@ -83,3 +83,4 @@ There are a couple of similar projects available on GitHub, e.g. via the topic
 [ruff-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json
 [scorecard-badge]: https://api.securityscorecards.dev/projects/github.com/afuetterer/python-re3data/badge
 [scorecard-url]: https://securityscorecards.dev/viewer/?uri=github.com/afuetterer/python-re3data
+[status-badge]: https://img.shields.io/pypi/status/python-re3data?logo=pypi
