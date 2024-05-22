@@ -45,13 +45,13 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: e35bf69a6edaf50c4ba83c0316cdfacaf76806b1  # frozen: 0.28.3
+  rev: 42c9da3b3cbac316e81728c3bef37fe1c7457099  # frozen: 0.28.4
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: cd3f07b1c620b288cb9173e257ff3edf1a3b4edb  # frozen: 2.1.1
+  rev: 795e21618889d155bc2f5d50519571419bfecb79  # frozen: 2.1.3
   hooks:
   - id: pyproject-fmt
 
