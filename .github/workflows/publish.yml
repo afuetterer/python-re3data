@@ -5,10 +5,24 @@ on:
     types: [created]
   workflow_dispatch: # run manually from actions tab
 
-permissions:
-  contents: read
+# Set permissions at the job level.
+permissions: {}
 
 jobs:
+  build:
+    name: Build the package
+    # disables this workflow from running in a repository that is not part of the indicated organization/user
+    if: github.repository_owner == 'afuetterer'
+    runs-on: ubuntu-24.04
+    permissions:
+      attestations: write
+      id-token: write
+    steps:
+    - run: sudo apt-get install tree # workaround for "tree: command not found" in baipp
+    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+    - uses: hynek/build-and-inspect-python-package@4aea7de65ba374f49b5f549cd471b61de2ef19d3 # v2.5.0
+      with:
+        attest-build-provenance-github: 'true'
   publish:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
@@ -17,13 +31,10 @@ jobs:
     permissions:
       id-token: write
     steps:
-    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
-    - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
+    - name: Download package built by build job
+      uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
       with:
-        python-version: '3.12'
-        cache: pip
-    - name: Install pre-requisites (e.g. hatch)
-      run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
-    - run: python -m build --installer=uv
+        name: Packages
+        path: dist
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@81e9d935c883d0b210363ab89cf05f3894778450 # v1.8.14
