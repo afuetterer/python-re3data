@@ -86,6 +86,11 @@ packages = [
 [tool.hatch.version]
 path = "src/re3data/__about__.py"
 
+[tool.hatch.env]
+requires = [
+  "hatch-pip-compile",
+]
+
 [tool.hatch.envs.default]
 installer = "uv"
 features = [
@@ -116,6 +121,12 @@ features = [
   "docs",
 ]
 template = "docs"
+type = "pip-compile"
+pip-compile-hashes = true
+pip-compile-installer = "uv"
+pip-compile-resolver = "uv"
+lock-filename = "requirements/{env_name}.txt"
+
 [tool.hatch.envs.docs.scripts]
 cli = "typer src/re3data/_cli.py utils docs --name=re3data --title='CLI Reference' --output docs/src/cli.md"
 build = "mkdocs build --config-file=docs/mkdocs.yml"
