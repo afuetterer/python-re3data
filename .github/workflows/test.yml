@@ -27,7 +27,7 @@ jobs:
     - name: Install pre-requisites (e.g. hatch)
       run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
     - name: Run test suite
-      run: hatch run cov -s
+      run: hatch run cov
     - name: Generate coverage report
       run: |
         export TOTAL_COV=$(hatch run cov-total)
