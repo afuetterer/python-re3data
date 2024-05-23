@@ -15,11 +15,6 @@
 of Research Data Repositories) [REST API](https://www.re3data.org/api/doc), allowing you to easily retrieve and process
 metadata about research data repositories in a convenient and Pythonic way.
 
-**Table of Contents**
-
-- [Installation](#installation)
-- [License](#license)
-
 ## Requirements
 
 [Python](https://www.python.org/downloads/) >= 3.10
