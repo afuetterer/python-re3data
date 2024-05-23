@@ -15,6 +15,43 @@
 of Research Data Repositories) [REST API](https://www.re3data.org/api/doc), allowing you to easily retrieve and process
 metadata about research data repositories in a convenient and Pythonic way.
 
+```pycon
+>>> import re3data
+>>> response = re3data.repositories.list()
+>>> print(response)
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+  <repository>
+    <id>r3d100010468</id>
+    <doi>https://doi.org/10.17616/R3QP53</doi>
+    <name>Zenodo</name>
+    <link href="https://www.re3data.org/api/beta/repository/r3d100010468" rel="self" />
+  </repository>
+... (remaining repositories truncated)
+```
+
+```pycon
+>>> response = re3data.repositories.get("r3d100010468")
+>>> print(response)
+<?xml version="1.0" encoding="utf-8"?>
+<!--re3data.org Schema for the Description of Research Data Repositories. Version 2.2, December 2014. doi:10.2312/re3.006-->
+<r3d:re3data xmlns:r3d="http://www.re3data.org/schema/2-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.re3data.org/schema/2-2 http://schema.re3data.org/2-2/re3dataV2-2.xsd">
+  <r3d:repository>
+    <r3d:re3data.orgIdentifier>r3d100010468</r3d:re3data.orgIdentifier>
+    <r3d:repositoryName language="eng">Zenodo</r3d:repositoryName>
+    <r3d:repositoryURL>https://zenodo.org/</r3d:repositoryURL>
+... (remaining fields truncated)
+```
+
+## Features
+
+- Pythonic API interactions: Interact with the re3data API in a Pythonic way, without having to worry about low-level
+    HTTP requests or XML parsing.
+- Repository metadata retrieval: Easily fetch and process metadata about research data repositories using
+    `re3data.repositories.list()`.
+- Repository details retrieval: Get detailed information about a specific repository using
+    `re3data.repositories.get(repository_id)`.
+
 ## Requirements
 
 [Python](https://www.python.org/downloads/) >= 3.10
