@@ -15,3 +15,9 @@ def vcr_config() -> dict[str, str]:
 @pytest.fixture(scope="session")
 def client() -> Client:
     return Client()
+
+
+@pytest.fixture(scope="session")
+def zenodo_id() -> str:
+    # Ref: https://www.re3data.org/repository/r3d100010468
+    return "r3d100010468"
