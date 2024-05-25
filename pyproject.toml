@@ -56,6 +56,7 @@ optional-dependencies.docs = [
   "mkdocs~=1.6",
   "mkdocs-include-markdown-plugin~=6.0",
   "mkdocs-material~=9.5",
+  "mkdocs-minify-plugin~=0.7",
   "mkdocstrings[python]~=0.25",
 ]
 optional-dependencies.test = [

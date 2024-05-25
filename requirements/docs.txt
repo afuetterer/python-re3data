@@ -6,6 +6,7 @@
 # - mike~=2.1
 # - mkdocs-include-markdown-plugin~=6.0
 # - mkdocs-material~=9.5
+# - mkdocs-minify-plugin~=0.7
 # - mkdocstrings[python]~=0.25
 # - mkdocs~=1.6
 #
@@ -134,6 +135,9 @@ colorama==0.4.6 \
     # via
     #   griffe
     #   mkdocs-material
+csscompressor==0.9.5 \
+    --hash=sha256:afa22badbcf3120a4f392e4d22f9fff485c044a1feda4a950ecc5eba9dd31a05
+    # via mkdocs-minify-plugin
 ghp-import==2.1.0 \
     --hash=sha256:8337dd7b50877f163d4c0289bc1f1c7f127550241988d568c1db512c4324a619 \
     --hash=sha256:9c535c4c61193c2df8871222567d7fd7e5014d835f97dc7b7439069e2413d343
@@ -146,6 +150,9 @@ h11==0.14.0 \
     --hash=sha256:8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d \
     --hash=sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761
     # via httpcore
+htmlmin2==0.1.13 \
+    --hash=sha256:75609f2a42e64f7ce57dbff28a39890363bde9e7e5885db633317efbdf8c79a2
+    # via mkdocs-minify-plugin
 httpcore==1.0.5 \
     --hash=sha256:34a38e2f9291467ee3b44e89dd52615370e152954ba21721378a87b2960f7a61 \
     --hash=sha256:421f18bac248b25d310f3cacd198d55b8e6125c107797b609ff9b7a6ba7991b5
@@ -177,6 +184,9 @@ jinja2==3.1.4 \
     #   mkdocs
     #   mkdocs-material
     #   mkdocstrings
+jsmin==3.0.1 \
+    --hash=sha256:c0959a121ef94542e807a674142606f7e90214a2b3d1eb17300244bbb5cc2bfc
+    # via mkdocs-minify-plugin
 markdown==3.6 \
     --hash=sha256:48f276f4d8cfb8ce6527c8f79e2ee29708508bf4d40aa410fbc3b4ee832c850f \
     --hash=sha256:ed4f41f6daecbeeb96e576ce414c41d2d876daa9a16cb35fa8ed8c2ddfad0224
@@ -279,6 +289,7 @@ mkdocs==1.6.0 \
     #   mkdocs-autorefs
     #   mkdocs-include-markdown-plugin
     #   mkdocs-material
+    #   mkdocs-minify-plugin
     #   mkdocstrings
 mkdocs-autorefs==1.0.1 \
     --hash=sha256:aacdfae1ab197780fb7a2dac92ad8a3d8f7ca8049a9cbe56a4218cd52e8da570 \
@@ -300,6 +311,10 @@ mkdocs-material-extensions==1.3.1 \
     --hash=sha256:10c9511cea88f568257f960358a467d12b970e1f7b2c0e5fb2bb48cab1928443 \
     --hash=sha256:adff8b62700b25cb77b53358dad940f3ef973dd6db797907c49e3c2ef3ab4e31
     # via mkdocs-material
+mkdocs-minify-plugin==0.8.0 \
+    --hash=sha256:5fba1a3f7bd9a2142c9954a6559a57e946587b21f133165ece30ea145c66aee6 \
+    --hash=sha256:bc11b78b8120d79e817308e2b11539d790d21445eb63df831e393f76e52e753d
+    # via hatch.envs.docs
 mkdocstrings==0.25.1 \
     --hash=sha256:c3a2515f31577f311a9ee58d089e4c51fc6046dbd9e9b4c3de4c3194667fe9bf \
     --hash=sha256:da01fcc2670ad61888e8fe5b60afe9fee5781017d67431996832d63e887c2e51
