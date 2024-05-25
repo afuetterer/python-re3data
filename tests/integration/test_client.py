@@ -12,9 +12,6 @@ import pytest
 if TYPE_CHECKING:
     from re3data import Client
 
-# Ref: https://www.re3data.org/repository/r3d100010468
-ZENODO_ID = "r3d100010468"
-
 
 @pytest.mark.default_cassette("repositories.yaml")
 @pytest.mark.vcr()
@@ -53,8 +50,8 @@ def test_client_list_repositories_response(client: Client) -> None:
 
 @pytest.mark.default_cassette("repository.yaml")
 @pytest.mark.vcr()
-def test_client_get_single_repository_default_return_type(client: Client) -> None:
-    response = client.repositories.get(ZENODO_ID)
+def test_client_get_single_repository_default_return_type(client: Client, zenodo_id: str) -> None:
+    response = client.repositories.get(zenodo_id)
     assert isinstance(response, str)
     assert '<?xml version="1.0" encoding="utf-8"?>' in response
     assert "<r3d:repository>" in response
@@ -63,8 +60,8 @@ def test_client_get_single_repository_default_return_type(client: Client) -> Non
 
 @pytest.mark.default_cassette("repository.yaml")
 @pytest.mark.vcr()
-def test_client_get_single_repository_xml(client: Client) -> None:
-    response = client.repositories.get(ZENODO_ID, return_type="xml")
+def test_client_get_single_repository_xml(client: Client, zenodo_id: str) -> None:
+    response = client.repositories.get(zenodo_id, return_type="xml")
     assert isinstance(response, str)
     assert '<?xml version="1.0" encoding="utf-8"?>' in response
     assert "<r3d:repository>" in response
@@ -73,8 +70,8 @@ def test_client_get_single_repository_xml(client: Client) -> None:
 
 @pytest.mark.default_cassette("repository.yaml")
 @pytest.mark.vcr()
-def test_client_get_single_repository_response(client: Client) -> None:
-    response = client.repositories.get(ZENODO_ID, return_type="response")
+def test_client_get_single_repository_response(client: Client, zenodo_id: str) -> None:
+    response = client.repositories.get(zenodo_id, return_type="response")
     assert isinstance(response, httpx.Response)
     assert response.status_code == httpx.codes.OK
 
