@@ -129,7 +129,7 @@ pip-compile-resolver = "uv"
 lock-filename = "requirements/{env_name}.txt"
 
 [tool.hatch.envs.docs.scripts]
-cli = "typer src/re3data/_cli.py utils docs --name=re3data --title='CLI Reference' --output docs/src/cli.md"
+cli = "typer src/re3data/_cli.py utils docs --name=re3data --title='Command Line Interface' --output docs/src/cli.md"
 build = "mkdocs build --config-file=docs/mkdocs.yml"
 serve = "mkdocs serve --verbose --config-file=docs/mkdocs.yml"
 deploy = "mike deploy --push --update-aliases $(hatch version) latest --config-file=docs/mkdocs.yml"
