@@ -17,6 +17,7 @@ nav:
 - Home: index.md
 - Reference:
   - API Reference: api.md
+  - Exceptions: exceptions.md
   - Command Line Interface: cli.md
 - Meta:
   - Contributor Guide: contributing.md
