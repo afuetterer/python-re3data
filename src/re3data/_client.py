@@ -21,6 +21,7 @@ DEFAULT_HEADERS: dict[str, str] = {
     "User-Agent": f"python-re3data/{__version__}",
 }
 DEFAULT_TIMEOUT = httpx.Timeout(timeout=10.0)  # timeout in seconds
+ALLOWED_RETURN_TYPES = {"xml", "response"}
 
 
 def log_response(response: httpx.Response) -> None:
@@ -136,15 +137,13 @@ class Client(BaseClient):
             httpx.RequestError: If the request fails or times out.
             ValueError: If an invalid `return_type` is provided.
         """
+        if return_type not in ALLOWED_RETURN_TYPES:
+            raise ValueError(f"Invalid `return_type`: {return_type}. Expected one of: {ALLOWED_RETURN_TYPES}")
         response = self._client.get(endpoint)
         response.raise_for_status()
-        match return_type:
-            case "xml":
-                return response.text
-            case "response":
-                return response
-            case _:
-                raise ValueError(f"Invalid `return_type`: {return_type}. Expected one of: `xml`, `response`.")
+        if return_type == "xml":
+            return response.text
+        return response
 
     @property
     def repositories(self) -> RepositoryManager:
