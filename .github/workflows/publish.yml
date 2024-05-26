@@ -27,6 +27,7 @@ jobs:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
     runs-on: ubuntu-24.04
+    needs: build
     environment: publish
     permissions:
       id-token: write
