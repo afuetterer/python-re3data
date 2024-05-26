@@ -5,7 +5,22 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
-## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.2.0...main)
+## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.3.0...main)
+
+## [0.3.0](https://github.com/afuetterer/python-re3data/compare/0.2.0...0.3.0) (2024-05-26)
+
+### Features
+
+- **cli:** set up repository list and get commands (#76) ([`44987e6`](https://github.com/afuetterer/python-re3data/commit/44987e6ba20f51181dbea2c2d3794a3a96ddf6a5))
+
+### Testing
+
+- add respx mock route for /repositories endpoint (#75) ([`59f7d58`](https://github.com/afuetterer/python-re3data/commit/59f7d58e65d91575c571e6bbea51957900424fdc))
+- set up zenodo_id fixture for re-use (#72) ([`e926c07`](https://github.com/afuetterer/python-re3data/commit/e926c07419f2720d7d3f9c97f01285e52a52863e))
+
+### Documentation
+
+- add doi to citation.cff and badge to readme (#66) ([`2fde7ee`](https://github.com/afuetterer/python-re3data/commit/2fde7ee3e2afa7c1dbbd44bf26c8e918d6e79396))
 
 ## [0.2.0](https://github.com/afuetterer/python-re3data/compare/0.1.0...0.2.0) (2024-05-23)
 

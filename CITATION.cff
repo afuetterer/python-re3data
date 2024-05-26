@@ -20,5 +20,5 @@ identifiers:
 - description: This is the collection of archived snapshots of all versions of python-re3data
   type: doi
   value: 10.5281/zenodo.11264510
-version: 0.2.0
-date-released: 2024-05-23
+version: 0.3.0
+date-released: 2024-05-26
