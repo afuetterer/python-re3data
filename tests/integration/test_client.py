@@ -10,12 +10,12 @@ import httpx
 import pytest
 
 if TYPE_CHECKING:
+    from respx import Route
+
     from re3data import Client
 
 
-@pytest.mark.default_cassette("repositories.yaml")
-@pytest.mark.vcr()
-def test_client_list_repositories_default_return_type(client: Client) -> None:
+def test_client_list_repositories_default_return_type(client: Client, mock_repository_list_route: Route) -> None:
     response = client.repositories.list()
     assert isinstance(response, str)
     assert '<?xml version="1.0" encoding="UTF-8"?>' in response
@@ -23,16 +23,12 @@ def test_client_list_repositories_default_return_type(client: Client) -> None:
     assert "<repository>" in response
 
 
-@pytest.mark.default_cassette("repositories.yaml")
-@pytest.mark.vcr()
-def test_client_list_repositories_invalid_return_type(client: Client) -> None:
+def test_client_list_repositories_invalid_return_type(client: Client, mock_repository_list_route: Route) -> None:
     with pytest.raises(ValueError, match="Invalid `return_type`"):
         client.repositories.list(return_type="json")
 
 
-@pytest.mark.default_cassette("repositories.yaml")
-@pytest.mark.vcr()
-def test_client_list_repositories_xml(client: Client) -> None:
+def test_client_list_repositories_xml(client: Client, mock_repository_list_route: Route) -> None:
     response = client.repositories.list(return_type="xml")
     assert isinstance(response, str)
     assert '<?xml version="1.0" encoding="UTF-8"?>' in response
@@ -40,9 +36,7 @@ def test_client_list_repositories_xml(client: Client) -> None:
     assert "<repository>" in response
 
 
-@pytest.mark.default_cassette("repositories.yaml")
-@pytest.mark.vcr()
-def test_client_list_repositories_response(client: Client) -> None:
+def test_client_list_repositories_response(client: Client, mock_repository_list_route: Route) -> None:
     response = client.repositories.list(return_type="response")
     assert isinstance(response, httpx.Response)
     assert response.status_code == httpx.codes.OK
@@ -83,9 +77,7 @@ def test_client_get_invalid_repository_id(client: Client) -> None:
         client.repositories.get("XXX")
 
 
-@pytest.mark.default_cassette("repositories.yaml")
-@pytest.mark.vcr()
-def test_client_package_import() -> None:
+def test_client_package_import(mock_repository_list_route: Route) -> None:
     import re3data
 
     response = re3data.repositories.list(return_type="response")
