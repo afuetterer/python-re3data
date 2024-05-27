@@ -37,7 +37,7 @@ jobs:
         # allows for python-semantic-release to push to protected main branch
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
     - name: Publish package to GitHub Release
-      uses: python-semantic-release/upload-to-gh-release@8d1fb62d5d44028f46cae2fd8d22f5dec08a354b # v9.0.2
+      uses: python-semantic-release/upload-to-gh-release@20f89b4f4295bb541e2fa54418e606eefbd0f567 # v9.7.3
       if: ${{ steps.release.outputs.released }} == 'true'
       with:
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
