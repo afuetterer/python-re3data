@@ -66,6 +66,7 @@ markdown_extensions:
 - pymdownx.highlight:
     anchor_linenums: true
     line_spans: __span
+    use_pygments: true
     pygments_lang_class: true
 - pymdownx.inlinehilite
 - pymdownx.snippets
@@ -75,3 +76,6 @@ extra:
   version:
     provider: mike
     alias: true
+
+extra_css:
+- css/extra.css
