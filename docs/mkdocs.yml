@@ -25,6 +25,7 @@ nav:
 
 theme:
   name: material
+  custom_dir: src/overrides
   features:
   - content.action.edit
   - content.action.view
