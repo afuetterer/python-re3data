@@ -5,7 +5,23 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
-## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.3.0...main)
+## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.4.0...main)
+
+## [0.4.0](https://github.com/afuetterer/python-re3data/compare/0.3.0...0.4.0) (2024-05-28)
+
+### Features
+
+- set up dockerfile (#87) ([`75d85b5`](https://github.com/afuetterer/python-re3data/commit/75d85b5ef08b6ffbda6baddd87da005d1f0481d7))
+
+### Code Refactoring
+
+- **client:** move guard clause to top of _request method (#78) ([`f3eef8b`](https://github.com/afuetterer/python-re3data/commit/f3eef8b7b4316c45a56481e68e1683855c116e35))
+
+### Documentation
+
+- add extra css for prompt (#85) ([`16545d7`](https://github.com/afuetterer/python-re3data/commit/16545d74fc7a308a2cb9144465a50b771fabb5a5))
+- add outdated message (#84) ([`7218b47`](https://github.com/afuetterer/python-re3data/commit/7218b47a027d2cc6b043417a59dca7ee458b0fa2))
+- add reference level in navigation (#80) ([`6a41547`](https://github.com/afuetterer/python-re3data/commit/6a415478032210e960d6f7ec7a8c8e840ffb84cf))
 
 ## [0.3.0](https://github.com/afuetterer/python-re3data/compare/0.2.0...0.3.0) (2024-05-26)
 
