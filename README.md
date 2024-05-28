@@ -69,6 +69,12 @@ You can install `python-re3data` via pip from [PyPI][pypi-url]:
 python -m pip install python-re3data
 ```
 
+or pull the Docker image from [ghcr.io](https://github.com/afuetterer/python-re3data/pkgs/container/python-re3data):
+
+```console
+docker pull ghcr.io/afuetterer/python-re3data:latest
+```
+
 ## Documentation
 
 The [documentation][docs-url] is made with [Material for MkDocs](https://github.com/squidfunk/mkdocs-material) and is
