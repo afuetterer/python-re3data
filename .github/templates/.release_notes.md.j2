@@ -3,8 +3,17 @@
 ## Release Notes
 {% include ".changes.j2" %}
 {{ "**Full Changelog**: (%s)" | format(prev_version | compare_url(version)) }}
+
 ## Installation
+
 You can install this version via pip from [PyPI](https://pypi.org/project/python-re3data/{{ version }}/):
+
 ```console
 python -m pip install python-re3data=={{ version }}
+```
+
+or pull the Docker image from [ghcr.io](https://github.com/afuetterer/python-re3data/pkgs/container/python-re3data):
+
+```console
+docker pull ghcr.io/afuetterer/python-re3data:{{ version }}
 ```
