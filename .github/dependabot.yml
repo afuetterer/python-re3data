@@ -3,6 +3,16 @@
 # ------------------------------------------------------------------------------
 version: 2
 updates:
+- package-ecosystem: docker
+  directory: /
+  schedule:
+    interval: monthly
+  commit-message:
+    prefix: build
+    include: scope
+  labels:
+  - 'type: build'
+  - 'deps: docker'
 - package-ecosystem: github-actions
   directory: /
   schedule:
