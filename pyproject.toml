@@ -260,8 +260,6 @@ build_command = """
 sed -i "s/^version: .*/version: $NEW_VERSION/" CITATION.cff
 sed -i "s/^date-released: .*/date-released: $(date "+%Y-%m-%d")/" CITATION.cff
 git add CITATION.cff
-python -m pip install "build[uv]"
-python -m build --installer=uv
 """
 changelog.template_dir = ".github/templates"
 changelog.environment.keep_trailing_newline = true

@@ -22,6 +22,24 @@ jobs:
     - uses: hynek/build-and-inspect-python-package@b4fc3f6ba2b3da04f09659be99e2a29fb6146a61 # v2.6.0
       with:
         attest-build-provenance-github: 'true'
+  upload:
+    name: Upload package distributions to GitHub Releases
+    # disables this workflow from running in a repository that is not part of the indicated organization/user
+    if: github.repository_owner == 'afuetterer'
+    runs-on: ubuntu-24.04
+    needs: build
+    permissions:
+      contents: write
+    steps:
+    - name: Download package built by build job
+      uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: Packages
+        path: dist
+    - name: Publish package distributions to GitHub Releases
+      uses: softprops/action-gh-release@69320dbe05506a9a39fc8ae11030b214ec2d1f87 # v2.0.5
+      with:
+        files: dist/*
   publish:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
@@ -38,7 +56,6 @@ jobs:
         path: dist
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@81e9d935c883d0b210363ab89cf05f3894778450 # v1.8.14
-
   docker:
     name: Publish Docker image to ghcr.io
     # disables this workflow from running in a repository that is not part of the indicated organization/user
