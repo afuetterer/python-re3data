@@ -81,6 +81,9 @@
   color: e11d21
 
 # Dependencies
+- name: 'deps: docker'
+  description: Pull requests that update Docker code
+  color: 2b67c6
 - name: 'deps: python'
   description: Pull requests that update Python code
   color: 2b67c6
