@@ -126,7 +126,7 @@ type = "pip-compile"
 pip-compile-hashes = true
 pip-compile-installer = "uv"
 pip-compile-resolver = "uv"
-lock-filename = "requirements/{env_name}.txt"
+lock-filename = "requirements/{env_name}" # no .txt suffix, otherwise Dependabot will update this file as well
 
 [tool.hatch.envs.docs.scripts]
 cli = "typer src/re3data/_cli.py utils docs --name=re3data --title='Command Line Interface' --output docs/src/cli.md"
