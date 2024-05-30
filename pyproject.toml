@@ -43,6 +43,7 @@ dynamic = [
 ]
 dependencies = [
   "httpx>=0.27",
+  "xsdata>=24.5",
 ]
 optional-dependencies.cli = [
   "typer>=0.12",
@@ -78,8 +79,13 @@ scripts.re3data = "re3data.__main__:app"
 only-include = [
   "src/re3data",
 ]
+exclude = [
+  "src/re3data/_resources/*.md",
+  "src/re3data/_resources/*.xml",
+]
 
 [tool.hatch.build.targets.wheel]
+only-packages = true
 packages = [
   "src/re3data",
 ]
@@ -172,6 +178,13 @@ lint.ignore = [
 lint.per-file-ignores."src/re3data/__about__.py" = [
   "D100", # undocumented-public-module
 ]
+lint.per-file-ignores."src/re3data/_resources/*" = [
+  "D101",   # undocumented-public-class
+  "D106",   # undocumented-public-nested-class
+  "D205",   # blank-line-after-summary
+  "D415",   # ends-in-punctuation
+  "TCH002", # typing-only-third-party-import
+]
 lint.per-file-ignores."tests/*" = [
   "D100",    # undocumented-public-module
   "D103",    # undocumented-public-function
@@ -225,6 +238,7 @@ omit = [
 exclude_also = [
   "if TYPE_CHECKING:",
   "@abstractmethod",
+  "@overload",
 ]
 fail_under = 90
 show_missing = true

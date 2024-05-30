@@ -18,28 +18,15 @@ metadata about research data repositories in a convenient and Pythonic way.
 ```pycon
 >>> import re3data
 >>> response = re3data.repositories.list()
->>> print(response)
-<?xml version="1.0" encoding="UTF-8"?>
-<list>
-  <repository>
-    <id>r3d100010468</id>
-    <doi>https://doi.org/10.17616/R3QP53</doi>
-    <name>Zenodo</name>
-    <link href="https://www.re3data.org/api/beta/repository/r3d100010468" rel="self" />
-  </repository>
+>>> response
+[RepositorySummary(id='r3d100010468', doi='https://doi.org/10.17616/R3QP53', name='Zenodo', link=Link(href='https://www.re3data.org/api/beta/repository/r3d100010468', rel='self'))]
 ... (remaining repositories truncated)
 ```
 
 ```pycon
 >>> response = re3data.repositories.get("r3d100010468")
->>> print(response)
-<?xml version="1.0" encoding="utf-8"?>
-<!--re3data.org Schema for the Description of Research Data Repositories. Version 2.2, December 2014. doi:10.2312/re3.006-->
-<r3d:re3data xmlns:r3d="http://www.re3data.org/schema/2-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.re3data.org/schema/2-2 http://schema.re3data.org/2-2/re3dataV2-2.xsd">
-  <r3d:repository>
-    <r3d:re3data.orgIdentifier>r3d100010468</r3d:re3data.orgIdentifier>
-    <r3d:repositoryName language="eng">Zenodo</r3d:repositoryName>
-    <r3d:repositoryURL>https://zenodo.org/</r3d:repositoryURL>
+>>> response
+Repository(re3data_org_identifier='r3d100010468', repository_name=RepositoryName(value='Zenodo', language=<Languages.ENG: 'eng'>), additional_name=[], repository_url='https://zenodo.org/', repository_identifier=['FAIRsharing_doi:10.25504/FAIRsharing.wy4egf', 'RRID:SCR_004129', 'RRID:nlx_158614'])
 ... (remaining fields truncated)
 ```
 
@@ -51,6 +38,14 @@ metadata about research data repositories in a convenient and Pythonic way.
     `re3data.repositories.list()`.
 - Repository details retrieval: Get detailed information about a specific repository using
     `re3data.repositories.get(repository_id)`.
+- XML response parsers: API XML responses are parsed into Python dataclasses, providing convenient access to the
+    elements of the [re3data.org Schema 2.2 XML Schema](https://www.re3data.org/schema/2-2). This makes it easy to work
+    with the rich metadata provided by the API.
+- Flexible response options: The response type can be switched between:
+    - dataclass (default): Returns a Python dataclass object, allowing convenient access to the element of the re3data
+        schema
+    - response: Returns a Python object representing the API response
+    - original XML: Returns the raw XML response from the API
 
 ## Requirements
 
@@ -58,8 +53,12 @@ metadata about research data repositories in a convenient and Pythonic way.
 
 `python-re3data` is built with:
 
-- [httpx](https://github.com/encode/httpx) for issuing HTTP requests
-- [typer](https://github.com/tiangolo/typer) for its CLI
+- **HTTP Requests**: [httpx](https://github.com/encode/httpx), a modern and efficient HTTP client library, handles all
+    API interactions.
+- **XML Parsing**: [xsdata](https://github.com/tefra/xsdata), a powerful tool for generating Python dataclasses from XML
+    schemas, simplifies processing of API responses.
+- **Optional CLI**: [typer](https://github.com/tiangolo/typer), a popular library for building command-line interfaces,
+    powers the user-friendly interface.
 
 ## Installation
 

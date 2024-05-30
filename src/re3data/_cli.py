@@ -12,6 +12,7 @@ from rich.console import Console
 
 import re3data
 from re3data._client import ReturnType
+from re3data._exceptions import RepositoryNotFoundError
 
 logger = logging.getLogger(__name__)
 
@@ -69,14 +70,18 @@ def callback(
 
 
 @repositories_app.command("list")
-def list_repositories(return_type: ReturnType = ReturnType.xml) -> None:
+def list_repositories(return_type: ReturnType = ReturnType.DATACLASS) -> None:
     """List the metadata of all repositories in the re3data API."""
-    response = re3data.repositories.list(return_type=return_type.value)
+    response = re3data.repositories.list(return_type)
     console.print(response)
 
 
 @repositories_app.command("get")
-def get_repository(repository_id: str, return_type: ReturnType = ReturnType.xml) -> None:
+def get_repository(repository_id: str, return_type: ReturnType = ReturnType.DATACLASS) -> None:
     """Get the metadata of a specific repository."""
-    response = re3data.repositories.get(repository_id, return_type=return_type.value)
-    console.print(response)
+    try:
+        response = re3data.repositories.get(repository_id, return_type)
+        console.print(response)
+    except RepositoryNotFoundError as error:
+        print_error(str(error))
+        raise typer.Exit(code=1) from error
