@@ -45,6 +45,7 @@ def callback(
             "-V",
             help="Show python-re3data version and exit.",
             callback=_version_callback,
+            is_eager=True,
         ),
     ] = False,
 ) -> None:
