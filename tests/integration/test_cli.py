@@ -64,12 +64,33 @@ def test_repository_no_args_displays_help() -> None:
     assert "Options" in result.output
 
 
-def test_repository_list(mock_repository_list_route: Route) -> None:
+def test_repository_list_default_return_type(mock_repository_list_route: Route) -> None:
     result = runner.invoke(app, ["repository", "list"])
     assert result.exit_code == 0
     assert "<list>" in result.output
     assert "<repository>" in result.output
     assert "<id>" in result.output
+
+
+def test_repository_list_xml(mock_repository_list_route: Route) -> None:
+    result = runner.invoke(app, ["repository", "list", "--return-type", "xml"])
+    assert result.exit_code == 0
+    assert "<list>" in result.output
+    assert "<repository>" in result.output
+    assert "<id>" in result.output
+
+
+def test_repository_list_response(mock_repository_list_route: Route) -> None:
+    result = runner.invoke(app, ["repository", "list", "--return-type", "response"])
+    assert result.exit_code == 0
+    assert "<Response [200 OK]>" in result.output
+
+
+def test_repository_list_invalid_return_type(mock_repository_list_route: Route) -> None:
+    result = runner.invoke(app, ["repository", "list", "--return-type", "json"])
+    assert result.exit_code == 2
+    assert "Error" in result.output
+    assert "Invalid value for '--return-type': 'json'" in result.output
 
 
 def test_repository_get_without_repository_id(mock_repository_list_route: Route) -> None:
@@ -80,11 +101,37 @@ def test_repository_get_without_repository_id(mock_repository_list_route: Route)
 
 @pytest.mark.default_cassette("repository.yaml")
 @pytest.mark.vcr()
-def test_repository_get_with_repository_id(zenodo_id: str) -> None:
+def test_repository_get_with_repository_id_default_return_type(zenodo_id: str) -> None:
     result = runner.invoke(app, ["repository", "get", zenodo_id])
     assert result.exit_code == 0
     assert "<r3d:repository>" in result.output
     assert "<r3d:re3data.orgIdentifier>r3d100010468" in result.output
+
+
+@pytest.mark.default_cassette("repository.yaml")
+@pytest.mark.vcr()
+def test_repository_get_with_repository_id_xml(zenodo_id: str) -> None:
+    result = runner.invoke(app, ["repository", "get", zenodo_id, "--return-type", "xml"])
+    assert result.exit_code == 0
+    assert "<r3d:repository>" in result.output
+    assert "<r3d:re3data.orgIdentifier>r3d100010468" in result.output
+
+
+@pytest.mark.default_cassette("repository.yaml")
+@pytest.mark.vcr()
+def test_repository_get_with_repository_id_response(zenodo_id: str) -> None:
+    result = runner.invoke(app, ["repository", "get", zenodo_id, "--return-type", "response"])
+    assert result.exit_code == 0
+    assert "<Response [200 OK]>" in result.output
+
+
+@pytest.mark.default_cassette("repository.yaml")
+@pytest.mark.vcr()
+def test_repository_get_with_repository_id_invalid_return_type(zenodo_id: str) -> None:
+    result = runner.invoke(app, ["repository", "get", zenodo_id, "--return-type", "json"])
+    assert result.exit_code == 2
+    assert "Error" in result.output
+    assert "Invalid value for '--return-type': 'json'" in result.output
 
 
 @pytest.mark.default_cassette("repository.yaml")
