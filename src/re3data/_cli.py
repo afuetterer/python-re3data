@@ -11,6 +11,7 @@ import typing
 from rich import print
 
 import re3data
+from re3data._client import ReturnType
 
 logger = logging.getLogger(__name__)
 
@@ -53,14 +54,14 @@ def callback(
 
 
 @repositories_app.command("list")
-def list_repositories() -> None:
+def list_repositories(return_type: ReturnType = ReturnType.xml) -> None:
     """List the metadata of all repositories in the re3data API."""
-    response = re3data.repositories.list()
+    response = re3data.repositories.list(return_type=return_type.value)
     print(response)
 
 
 @repositories_app.command("get")
-def get_repository(repository_id: str) -> None:
+def get_repository(repository_id: str, return_type: ReturnType = ReturnType.xml) -> None:
     """Get the metadata of a specific repository."""
-    response = re3data.repositories.get(repository_id)
+    response = re3data.repositories.get(repository_id, return_type=return_type.value)
     print(response)
