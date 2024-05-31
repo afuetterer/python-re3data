@@ -99,34 +99,28 @@ def test_repository_get_without_repository_id(mock_repository_list_route: Route)
     assert "Missing argument" in result.output
 
 
-@pytest.mark.default_cassette("repository.yaml")
-@pytest.mark.vcr()
-def test_repository_get_with_repository_id_default_return_type(zenodo_id: str) -> None:
+def test_repository_get_with_repository_id_default_return_type(
+    mock_repository_get_route: Route, zenodo_id: str
+) -> None:
     result = runner.invoke(app, ["repository", "get", zenodo_id])
     assert result.exit_code == 0
     assert "<r3d:repository>" in result.output
     assert "<r3d:re3data.orgIdentifier>r3d100010468" in result.output
 
 
-@pytest.mark.default_cassette("repository.yaml")
-@pytest.mark.vcr()
-def test_repository_get_with_repository_id_xml(zenodo_id: str) -> None:
+def test_repository_get_with_repository_id_xml(mock_repository_get_route: Route, zenodo_id: str) -> None:
     result = runner.invoke(app, ["repository", "get", zenodo_id, "--return-type", "xml"])
     assert result.exit_code == 0
     assert "<r3d:repository>" in result.output
     assert "<r3d:re3data.orgIdentifier>r3d100010468" in result.output
 
 
-@pytest.mark.default_cassette("repository.yaml")
-@pytest.mark.vcr()
-def test_repository_get_with_repository_id_response(zenodo_id: str) -> None:
+def test_repository_get_with_repository_id_response(mock_repository_get_route: Route, zenodo_id: str) -> None:
     result = runner.invoke(app, ["repository", "get", zenodo_id, "--return-type", "response"])
     assert result.exit_code == 0
     assert "<Response [200 OK]>" in result.output
 
 
-@pytest.mark.default_cassette("repository.yaml")
-@pytest.mark.vcr()
 def test_repository_get_with_repository_id_invalid_return_type(zenodo_id: str) -> None:
     result = runner.invoke(app, ["repository", "get", zenodo_id, "--return-type", "json"])
     assert result.exit_code == 2
