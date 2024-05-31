@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import logging
 from abc import ABC, abstractmethod
+from enum import Enum
 
 import httpx
 
@@ -21,7 +22,14 @@ DEFAULT_HEADERS: dict[str, str] = {
     "User-Agent": f"python-re3data/{__version__}",
 }
 DEFAULT_TIMEOUT = httpx.Timeout(timeout=10.0)  # timeout in seconds
-ALLOWED_RETURN_TYPES = {"xml", "response"}
+
+
+class ReturnType(str, Enum):
+    response = "response"
+    xml = "xml"
+
+
+ALLOWED_RETURN_TYPES = {return_type.value for return_type in ReturnType}
 
 
 def log_response(response: httpx.Response) -> None:
@@ -51,7 +59,7 @@ class RepositoryManager:
     def __init__(self, client: Client) -> None:
         self._client = client
 
-    def list(self, return_type: str = "xml") -> str | httpx.Response:
+    def list(self, return_type: str = ReturnType.xml.value) -> str | httpx.Response:
         """List the metadata of all repositories in the re3data API.
 
         Args:
@@ -62,7 +70,7 @@ class RepositoryManager:
         """
         return self._client._request("repositories", return_type)
 
-    def get(self, repository_id: str, return_type: str = "xml") -> str | httpx.Response:
+    def get(self, repository_id: str, return_type: str = ReturnType.xml.value) -> str | httpx.Response:
         """Get the metadata of a specific repository.
 
         Args:
