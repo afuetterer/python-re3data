@@ -23,6 +23,19 @@ except ImportError:
 
 console = Console()
 
+
+def print_error(message: str) -> None:
+    """Print an error message to the console in bold red.
+
+    Args:
+        message: The error message to be printed.
+
+    Returns:
+        None
+    """
+    console.print(message, style="bold red")
+
+
 CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help"]}
 
 app = typer.Typer(no_args_is_help=True, context_settings=CONTEXT_SETTINGS)
