@@ -103,3 +103,13 @@ repos:
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
+
+- repo: local
+  hooks:
+  - id: check-todos
+    name: check for todos
+    description: Enforce that there are no TODOs left in the code base
+    entry: TODO
+    language: pygrep
+    types: [text]
+    exclude: .pre-commit-config.yaml
