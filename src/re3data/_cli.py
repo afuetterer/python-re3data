@@ -8,7 +8,7 @@ import logging
 import sys
 import typing
 
-from rich import print
+from rich.console import Console
 
 import re3data
 from re3data._client import ReturnType
@@ -20,6 +20,8 @@ try:
 except ImportError:
     logger.error("`typer` is missing. Please run 'pip install python-re3data[cli]' to use the CLI.")
     sys.exit(1)
+
+console = Console()
 
 CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help"]}
 
@@ -33,8 +35,8 @@ def _version_callback(show_version: bool) -> None:
     from re3data import __version__
 
     if show_version:
-        typer.echo(f"{__version__}")
-        raise typer.Exit
+        console.print(__version__)
+        raise typer.Exit(code=0)
 
 
 @app.callback(context_settings=CONTEXT_SETTINGS)
@@ -57,11 +59,11 @@ def callback(
 def list_repositories(return_type: ReturnType = ReturnType.xml) -> None:
     """List the metadata of all repositories in the re3data API."""
     response = re3data.repositories.list(return_type=return_type.value)
-    print(response)
+    console.print(response)
 
 
 @repositories_app.command("get")
 def get_repository(repository_id: str, return_type: ReturnType = ReturnType.xml) -> None:
     """Get the metadata of a specific repository."""
     response = re3data.repositories.get(repository_id, return_type=return_type.value)
-    print(response)
+    console.print(response)
