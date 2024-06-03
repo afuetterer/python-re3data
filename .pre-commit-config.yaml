@@ -65,7 +65,7 @@ repos:
     - mdformat-mkdocs[recommended]>=v2.0.7
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: f8a3f8c471fb698229face5ed7640a64900b781e  # frozen: v0.4.4
+  rev: f42857794802b6a77b0e66f08803575aa80d3c8f  # frozen: v0.4.7
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
@@ -88,7 +88,7 @@ repos:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: ee276ae87cb98d65004ebc0096d2c3a210ba9adc  # frozen: v1.21.0
+  rev: bc15d7754beed1901b9b1ed1413c72af82bcec2e  # frozen: v1.22.0
   hooks:
   - id: typos
     args: [--force-exclude]
