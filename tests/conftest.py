@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2024 Heinz-Alexander Fütterer
 #
 # SPDX-License-Identifier: MIT
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -30,35 +31,36 @@ def zenodo_id() -> str:
     return "r3d100010468"
 
 
-REPOSITORY_LIST_XML: str = """
-<?xml version="1.0" encoding="UTF-8"?>
-<list>
-    <repository>
-        <id>r3d100010371</id>
-        <doi>https://doi.org/10.17616/R3P594</doi>
-        <name>ZACAT</name>
-        <link href="https://www.re3data.org/api/beta/repository/r3d100010371" rel="self"/>
-    </repository>
-    <repository>
-        <id>r3d100010376</id>
-        <doi>https://doi.org/10.17616/R31G7K</doi>
-        <name>Land Processes Distributed Active Archive Center</name>
-        <link href="https://www.re3data.org/api/beta/repository/r3d100010376" rel="self"/>
-    </repository>
-    <repository>
-        <id>r3d100010829</id>
-        <doi>https://doi.org/10.17616/R3TW4Q</doi>
-        <name>India Water Portal</name>
-        <link href="https://www.re3data.org/api/beta/repository/r3d100010829" rel="self"/>
-    </repository>
-</list>
-"""
+@pytest.fixture(scope="session")
+def repository_list_xml() -> str:
+    return """<?xml version="1.0" encoding="UTF-8"?>
+        <list>
+            <repository>
+                <id>r3d100010371</id>
+                <doi>https://doi.org/10.17616/R3P594</doi>
+                <name>ZACAT</name>
+                <link href="https://www.re3data.org/api/beta/repository/r3d100010371" rel="self"/>
+            </repository>
+            <repository>
+                <id>r3d100010376</id>
+                <doi>https://doi.org/10.17616/R31G7K</doi>
+                <name>Land Processes Distributed Active Archive Center</name>
+                <link href="https://www.re3data.org/api/beta/repository/r3d100010376" rel="self"/>
+            </repository>
+            <repository>
+                <id>r3d100010829</id>
+                <doi>https://doi.org/10.17616/R3TW4Q</doi>
+                <name>India Water Portal</name>
+                <link href="https://www.re3data.org/api/beta/repository/r3d100010829" rel="self"/>
+            </repository>
+        </list>
+        """
 
 
 @pytest.fixture()
-def mock_repository_list_route(respx_mock: MockRouter) -> Route:
+def mock_repository_list_route(respx_mock: MockRouter, repository_list_xml: str) -> Route:
     return respx_mock.get("https://www.re3data.org/api/beta/repositories").mock(
-        return_value=httpx.Response(httpx.codes.OK, text=REPOSITORY_LIST_XML)
+        return_value=httpx.Response(httpx.codes.OK, text=repository_list_xml)
     )
 
 
@@ -118,7 +120,8 @@ Data Repositories. Version 2.2, December 2014. doi:10.2312/re3.006-->
       <r3d:responsibilityType>funding</r3d:responsibilityType>
       <r3d:institutionType>non-profit</r3d:institutionType>
       <r3d:institutionURL>
-        https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-2020_en</r3d:institutionURL>
+        https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-2020_en
+      </r3d:institutionURL>
       <r3d:responsibilityStartDate>2014</r3d:responsibilityStartDate>
       <r3d:responsibilityEndDate>2020</r3d:responsibilityEndDate>
       <r3d:institutionContact>https://research-and-innovation.ec.europa.eu/contact-us_en</r3d:institutionContact>
@@ -231,12 +234,23 @@ Data Repositories. Version 2.2, December 2014. doi:10.2312/re3.006-->
       <r3d:metadataStandardName metadataStandardScheme="DCC">Dublin Core</r3d:metadataStandardName>
       <r3d:metadataStandardURL>http://www.dcc.ac.uk/resources/metadata-standards/dublin-core</r3d:metadataStandardURL>
     </r3d:metadataStandard>
-    <r3d:remarks>Zenodo is covered by Thomson Reuters Data Citation Index. Zenodo uses Altmetric metrics and provides impact information in the form of software citations (15.01.2019). Zenodo uses invenio repository software. OpenAIRE Orphan Record Repository got a make-over and was re-branded as ZENODO. Zenodo uses Invenio repository software. ZENODO was launched within the OpenAIREplus project as part of a European-wide research infrastructure.   Easy upload and semi-automatic metadata completion by communication with existing online services such as DropBox for upload, Mendeley/ORCID/CrossRef/OpenAIRE for upload and pre-filling metadata.</r3d:remarks>
+    <r3d:remarks>Zenodo is covered by Thomson Reuters Data Citation Index. Zenodo uses Altmetric metrics and provides
+      impact information in the form of software citations (15.01.2019). Zenodo uses invenio repository software.
+      OpenAIRE Orphan Record Repository got a make-over and was re-branded as ZENODO. Zenodo uses Invenio repository
+      software. ZENODO was launched within the OpenAIREplus project as part of a European-wide research infrastructure.
+      Easy upload and semi-automatic metadata completion by communication with existing online services such as
+      DropBox for upload, Mendeley/ORCID/CrossRef/OpenAIRE for upload and pre-filling metadata.
+    </r3d:remarks>
     <r3d:entryDate>2013-06-13</r3d:entryDate>
     <r3d:lastUpdate>2023-04-26</r3d:lastUpdate>
   </r3d:repository>
 </r3d:re3data>
 """
+
+
+@pytest.fixture(scope="session")
+def repository_get_xml() -> str:
+    return REPOSITORY_GET_XML
 
 
 @pytest.fixture()
