@@ -5,7 +5,28 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
-## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.4.0...main)
+## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.5.0...main)
+
+## [0.5.0](https://github.com/afuetterer/python-re3data/compare/0.4.0...0.5.0) (2024-06-05)
+
+### Breaking Changes
+
+- set up resources (#109) ([`0d766d2`](https://github.com/afuetterer/python-re3data/commit/0d766d24f46d6ec9182ac89a743ed5fa88b6a274))
+
+### Features
+
+- **cli:** add print_error function to highlight errors in console (#123) ([`f242b10`](https://github.com/afuetterer/python-re3data/commit/f242b1050ab4d6c8b34874e10e170463a59cab10))
+- add cli parameters for return_type selection (#113) ([`15668bc`](https://github.com/afuetterer/python-re3data/commit/15668bc833cc147b4c30fc0a096526ef0be8cb46))
+- set up custom exceptions (#108) ([`a2fa099`](https://github.com/afuetterer/python-re3data/commit/a2fa099f41114ed50f8a9a64a7530cbe23d65a79))
+
+### Code Refactoring
+
+- **cli:** use rich.console instead of rich.print (#122) ([`a4efea0`](https://github.com/afuetterer/python-re3data/commit/a4efea0d222779642e440a6b486f17235856e721))
+- add is_eager argument to version_callback (#106) ([`eab6579`](https://github.com/afuetterer/python-re3data/commit/eab6579d3205e98b0bba4a70e3666008ade60795))
+
+### Testing
+
+- add respx mock route for /repository{id} endpoint (#114) ([`070bbf6`](https://github.com/afuetterer/python-re3data/commit/070bbf67f219a5deb04b3fbaf41ac0845553c76e))
 
 ## [0.4.0](https://github.com/afuetterer/python-re3data/compare/0.3.0...0.4.0) (2024-05-28)
 
