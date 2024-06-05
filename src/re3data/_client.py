@@ -9,10 +9,16 @@ from __future__ import annotations
 import logging
 from abc import ABC, abstractmethod
 from enum import Enum
+from typing import TYPE_CHECKING, Any, Literal, overload
 
 import httpx
 
 from re3data import __version__
+from re3data._exceptions import RepositoryNotFoundError
+from re3data._response import Response, _build_response, _parse_repositories_response, _parse_repository_response
+
+if TYPE_CHECKING:
+    from re3data._resources import Repository, RepositorySummary
 
 logger = logging.getLogger(__name__)
 
@@ -24,12 +30,20 @@ DEFAULT_HEADERS: dict[str, str] = {
 DEFAULT_TIMEOUT = httpx.Timeout(timeout=10.0)  # timeout in seconds
 
 
+class Endpoint(str, Enum):
+    REPOSITORY = "repository/{repository_id}"
+    REPOSITORY_LIST = "repositories"
+
+
+class ResourceType(str, Enum):
+    REPOSITORY = "repository"
+    REPOSITORY_LIST = "repositories"
+
+
 class ReturnType(str, Enum):
-    response = "response"
-    xml = "xml"
-
-
-ALLOWED_RETURN_TYPES = {return_type.value for return_type in ReturnType}
+    DATACLASS = "dataclass"
+    RESPONSE = "response"
+    XML = "xml"
 
 
 def log_response(response: httpx.Response) -> None:
@@ -49,6 +63,57 @@ def log_response(response: httpx.Response) -> None:
     )
 
 
+@overload
+def _dispatch_return_type(
+    response: Response, resource_type: Literal[ResourceType.REPOSITORY], return_type: ReturnType
+) -> Repository | Response | str: ...
+@overload
+def _dispatch_return_type(
+    response: Response, resource_type: Literal[ResourceType.REPOSITORY_LIST], return_type: ReturnType
+) -> list[RepositorySummary] | Response | str: ...
+
+
+def _dispatch_return_type(
+    response: Response, resource_type: ResourceType, return_type: ReturnType
+) -> Repository | list[RepositorySummary] | Response | str:
+    """Dispatch the response to the correct return type based on the provided return type and resource type.
+
+    Args:
+        response: The response object.
+        resource_type: The type of resource being processed.
+        return_type: The desired return type for the API resource.
+
+    Returns:
+        Depending on the return_type and resource_type, this can be a Repository object, a list of RepositorySummary
+            objects, an HTTP response, or the original XML.
+    """
+    if return_type == ReturnType.DATACLASS:
+        if resource_type == ResourceType.REPOSITORY_LIST:
+            return _parse_repositories_response(response)
+        if resource_type == ResourceType.REPOSITORY:
+            return _parse_repository_response(response)
+    if return_type == ReturnType.XML:
+        return response.text
+    return response
+
+
+def is_valid_return_type(return_type: Any) -> None:
+    """Validate if the given return type is valid.
+
+    Args:
+        return_type: The return type to validate.
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: If the given return type is not one of the allowed types.
+    """
+    allowed_types = [return_type.value for return_type in ReturnType]
+    if not isinstance(return_type, ReturnType):
+        raise ValueError(f"Invalid value for `return_type`: {return_type} is not one of {allowed_types}.")
+
+
 class RepositoryManager:
     """A manager for interacting with repositories in the re3data API.
 
@@ -59,28 +124,44 @@ class RepositoryManager:
     def __init__(self, client: Client) -> None:
         self._client = client
 
-    def list(self, return_type: str = ReturnType.xml.value) -> str | httpx.Response:
+    def list(self, return_type: ReturnType = ReturnType.DATACLASS) -> list[RepositorySummary] | Response | str:
         """List the metadata of all repositories in the re3data API.
 
         Args:
-            return_type: The type of response to expect. Defaults to "xml".
+            return_type: The desired return type for the API resource. Defaults to `ReturnType.DATACLASS`.
 
         Returns:
-            A string representation of the response (if `return_type` is "xml") or the full response object.
-        """
-        return self._client._request("repositories", return_type)
+            Depending on the `return_type`, this can be a list of RepositorySummary objects, an HTTP response,
+                or the original XML.
 
-    def get(self, repository_id: str, return_type: str = ReturnType.xml.value) -> str | httpx.Response:
+        Raises:
+            ValueError: If an invalid `return_type` is provided.
+            httpx.HTTPStatusError: If the server returned an error status code >= 500.
+        """
+        is_valid_return_type(return_type)
+        response = self._client._request(Endpoint.REPOSITORY_LIST.value)
+        return _dispatch_return_type(response, ResourceType.REPOSITORY_LIST, return_type)
+
+    def get(self, repository_id: str, return_type: ReturnType = ReturnType.DATACLASS) -> Repository | Response | str:
         """Get the metadata of a specific repository.
 
         Args:
             repository_id: The identifier of the repository to retrieve.
-            return_type: The type of response to expect. Defaults to "xml".
+            return_type: The desired return type for the API resource. Defaults to `ReturnType.DATACLASS`.
 
         Returns:
-            A string representation of the response (if `return_type` is "xml") or the full response object.
+            Depending on the `return_type`, this can be a Repository object, an HTTP response, or the original XML.
+
+        Raises:
+            ValueError: If an invalid `return_type` is provided.
+            httpx.HTTPStatusError: If the server returned an error status code >= 500.
+            RepositoryNotFoundError: If no repository with the given ID is found.
         """
-        return self._client._request(f"repository/{repository_id}", return_type)
+        is_valid_return_type(return_type)
+        response = self._client._request(Endpoint.REPOSITORY.value.format(repository_id=repository_id))
+        if response.status_code == httpx.codes.NOT_FOUND:
+            raise RepositoryNotFoundError(f"No repository with id '{repository_id}' available at {response.url}.")
+        return _dispatch_return_type(response, ResourceType.REPOSITORY, return_type)
 
 
 class BaseClient(ABC):
@@ -99,7 +180,7 @@ class BaseClient(ABC):
         )
 
     @abstractmethod
-    def _request(self, endpoint: str, return_type: str) -> str | httpx.Response:
+    def _request(self, path: str) -> Response:
         pass
 
 
@@ -113,15 +194,8 @@ class Client(BaseClient):
     Examples:
         >>> client = Client():
         >>> response = re3data.repositories.list()
-        >>> print(response)
-        <?xml version="1.0" encoding="UTF-8"?>
-        <list>
-        <repository>
-            <id>r3d100010468</id>
-            <doi>https://doi.org/10.17616/R3QP53</doi>
-            <name>Zenodo</name>
-            <link href="https://www.re3data.org/api/beta/repository/r3d100010468" rel="self" />
-        </repository>
+        >>> response
+        [RepositorySummary(id='r3d100010468', doi='https://doi.org/10.17616/R3QP53', name='Zenodo', link=Link(href='https://www.re3data.org/api/beta/repository/r3d100010468', rel='self'))]
         ... (remaining repositories truncated)
     """
 
@@ -131,27 +205,23 @@ class Client(BaseClient):
         super().__init__(httpx.Client)
         self._repository_manager: RepositoryManager = RepositoryManager(self)
 
-    def _request(self, endpoint: str, return_type: str) -> str | httpx.Response:
-        """Send a HTTP GET request to the specified endpoint.
+    def _request(self, path: str) -> Response:
+        """Send a HTTP GET request to the specified API endpoint.
 
         Args:
-            endpoint: The endpoint to send the request to.
-            return_type: The type of response to expect.
+            path: The path to send the request to.
 
         Returns:
-            A string representation of the response (if `return_type` is "xml") or the full response object.
+            The response object from the HTTP request.
 
         Raises:
-            httpx.RequestError: If the request fails or times out.
-            ValueError: If an invalid `return_type` is provided.
+            httpx.HTTPStatusError: If the server returned an error status code >= 500.
+            RepositoryNotFoundError: If the `repository_id` is not found.
         """
-        if return_type not in ALLOWED_RETURN_TYPES:
-            raise ValueError(f"Invalid `return_type`: {return_type}. Expected one of: {ALLOWED_RETURN_TYPES}")
-        response = self._client.get(endpoint)
-        response.raise_for_status()
-        if return_type == "xml":
-            return response.text
-        return response
+        http_response = self._client.get(path)
+        if http_response.is_server_error:
+            http_response.raise_for_status()
+        return _build_response(http_response)
 
     @property
     def repositories(self) -> RepositoryManager:

@@ -60,7 +60,15 @@ repos:
   hooks:
   - id: mdformat
     args: [--number, --wrap=120, --ignore-missing-references]
-    exclude: CHANGELOG.md|.changelog.md|docs/src/cli.md|docs/src/exceptions.md
+    exclude: |
+      (?x)^(
+        CHANGELOG.md|
+        .changelog.md|
+        docs/src/api.md|
+        docs/src/cli.md|
+        docs/src/exceptions.md|
+        docs/src/resources.md
+      )$
     additional_dependencies:
     - mdformat-mkdocs[recommended]>=v2.0.7
 
@@ -81,6 +89,7 @@ repos:
     - pytest>=8.2
     - respx>=0.21
     - typer>=0.12
+    - xsdata>=24.5
 
 - repo: https://github.com/scientific-python/cookie
   rev: 28d1a53da26f9daff6d9a49c50260421ad6d05e0  # frozen: 2024.04.23
@@ -92,7 +101,7 @@ repos:
   hooks:
   - id: typos
     args: [--force-exclude]
-    exclude: tests/conftest
+    exclude: src/re3data/_resources/repository.py|tests/conftest.py
 
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
   rev: b2b50f4d40c95b15478279a7a00553a1dc2925ef  # frozen: 2024.2
