@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING
 import httpx
 import pytest
 
-from re3data import Client
+from re3data import AsyncClient, Client
 
 if TYPE_CHECKING:
     from respx import MockRouter, Route
@@ -23,6 +23,11 @@ def vcr_config() -> dict[str, str]:
 @pytest.fixture(scope="session")
 def client() -> Client:
     return Client()
+
+
+@pytest.fixture(scope="session")
+def async_client() -> AsyncClient:
+    return AsyncClient()
 
 
 @pytest.fixture(scope="session")
@@ -257,4 +262,11 @@ def repository_get_xml() -> str:
 def mock_repository_get_route(respx_mock: MockRouter) -> Route:
     return respx_mock.get("https://www.re3data.org/api/beta/repository/r3d100010468").mock(
         return_value=httpx.Response(httpx.codes.OK, text=REPOSITORY_GET_XML)
+    )
+
+
+@pytest.fixture()
+def mock_server_error(respx_mock: MockRouter) -> Route:
+    return respx_mock.get("https://www.re3data.org/api/beta/repositories").mock(
+        return_value=httpx.Response(httpx.codes.INTERNAL_SERVER_ERROR)
     )

@@ -62,6 +62,7 @@ optional-dependencies.docs = [
 ]
 optional-dependencies.test = [
   "pytest~=8.2",
+  "pytest-asyncio~=0.23",
   "pytest-cov~=5.0",
   "pytest-mock~=3.14",
   "pytest-randomly~=3.15",
@@ -194,20 +195,16 @@ lint.ignore = [
 lint.per-file-ignores."src/re3data/__about__.py" = [
   "D100", # undocumented-public-module
 ]
-lint.per-file-ignores."src/re3data/_resources/*" = [
+lint.per-file-ignores."src/re3data/_resources/*.py" = [
   "D101",   # undocumented-public-class
   "D106",   # undocumented-public-nested-class
   "D205",   # blank-line-after-summary
   "D415",   # ends-in-punctuation
   "TCH002", # typing-only-third-party-import
 ]
-lint.per-file-ignores."tests/*" = [
-  "D100",    # undocumented-public-module
-  "D103",    # undocumented-public-function
+lint.per-file-ignores."tests/**.py" = [
+  "D",       # pydocstyle
   "PLR2004", # magic-value-comparison
-]
-lint.unfixable = [
-  "F401", # unused-import
 ]
 lint.isort.known-first-party = [
   "re3data",
@@ -232,6 +229,7 @@ addopts = [
   "--strict-markers",
   "--strict-config",
 ]
+asyncio_mode = "auto"
 filterwarnings = [
   "error",
 ]
@@ -253,7 +251,6 @@ omit = [
 [tool.coverage.report]
 exclude_also = [
   "if TYPE_CHECKING:",
-  "@abstractmethod",
   "@overload",
 ]
 fail_under = 90
@@ -277,6 +274,23 @@ warn_unreachable = true
 [tool.licensecheck] # Ref: https://github.com/FHPythonUtils/LicenseCheck/#example-1-pyprojecttoml
 using = "PEP631"
 format = "ansi"
+
+[tool.unasyncd] # Ref: https://github.com/provinzkraut/unasyncd?tab=readme-ov-file#configuration
+add_editors_note = true
+ruff_fix = true
+transform_docstrings = true
+
+[tool.unasyncd.files]
+"src/re3data/_client/_async.py" = "src/re3data/_client/_sync.py"
+"tests/integration/test_async_client.py" = "tests/integration/test_client.py"
+
+[tool.unasyncd.add_replacements]
+"AsyncClient" = "Client"
+"re3data.AsyncClient" = "re3data.Client"
+"async_client" = "client"
+"async_log_response" = "log_response"
+"httpx.AsyncClient" = "httpx.Client"
+"AsyncRepositoryManager" = "RepositoryManager"
 
 [tool.semantic_release] # Ref: https://python-semantic-release.readthedocs.io/en/latest/configuration.html#settings
 commit_author = "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
