@@ -22,16 +22,16 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
-    - name: Install uv
-      run: curl -LsSf https://astral.sh/uv/install.sh | sh
+    - name: Set up Python 3.10
+      uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
+      with:
+        python-version: '3.10'
+    - name: Install pre-requisites (e.g. hatch)
+      run: python -m pip install --require-hashes --requirement=requirements/ci
     - name: Upgrade requirements
-      run: >
-        uv pip compile
-        --upgrade
-        --generate-hashes
-        --python-version=3.10
-        --output-file=.github/requirements/ci.txt
-        .github/requirements/ci.in
+      run: |
+        hatch env run --env ci -- python --version
+        hatch env run --env docs -- python --version
       # Ref: https://github.com/peter-evans/create-pull-request
     - uses: peter-evans/create-pull-request@6d6857d36972b65feb161a90e484f2984215f83e # v6.0.5
       with:
@@ -39,14 +39,21 @@ jobs:
         branch: requirement-upgrades
         committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
         author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-        title: 'build(deps-dev): upgrade ci requirements'
-        commit-message: 'build(deps-dev): upgrade ci requirements'
+        title: 'build(deps-dev): upgrade ci and docs requirements'
+        commit-message: 'build(deps-dev): upgrade ci and docs requirements'
         body: |
-          Monthly scheduled CI requirements upgrade (`uv pip compile --upgrade`).
+          Monthly scheduled CI and docs requirements upgrade (`hatch-pip-compile --upgrade --all`).
+
+          ```
+          hatch-pip-compile: Running `hatch env run --env ci -- python --version`
+          hatch-pip-compile: Running `hatch env run --env docs -- python --version`
+          ```
 
           > [!NOTE]
           > Mark this PR as "ready for review" to trigger additional checks.
-        add-paths: .github/requirements/ci.txt
+        add-paths: |
+          /requirements/ci
+          /requirements/docs
         labels: |
           type: build
           deps: python
