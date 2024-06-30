@@ -122,6 +122,20 @@ cov-total = """
   python -c "import json;print(json.load(open('coverage.json'))['totals']['percent_covered_display'])"
 """
 
+[tool.hatch.envs.ci]
+dependencies = [
+  "build[uv]",
+  "hatch",
+  "pip",
+  "pipdeptree",
+]
+detached = true # ignore the project installation itself
+type = "pip-compile"
+pip-compile-hashes = true
+pip-compile-installer = "uv"
+pip-compile-resolver = "uv"
+lock-filename = "requirements/{env_name}" # no .txt suffix, otherwise Dependabot will update this file as well
+
 [tool.hatch.envs.docs]
 features = [
   "cli",
