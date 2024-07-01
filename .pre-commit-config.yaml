@@ -45,7 +45,7 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 42c9da3b3cbac316e81728c3bef37fe1c7457099  # frozen: 0.28.4
+  rev: 96ee1570b119e6337aafcc2f299bb0d902b68328  # frozen: 0.28.6
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
@@ -73,14 +73,14 @@ repos:
     - mdformat-mkdocs[recommended]>=v2.0.7
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: f42857794802b6a77b0e66f08803575aa80d3c8f  # frozen: v0.4.7
+  rev: 1dc9eb131c2ea4816c708e4d85820d2cc8542683  # frozen: v0.5.0
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: e5ea6670624c24f8321f6328ef3176dbba76db46  # frozen: v1.10.0
+  rev: 6f546f30c2b142ad5b3edcf20e3d27cf1789b932  # frozen: v1.10.1
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -97,7 +97,7 @@ repos:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: bc15d7754beed1901b9b1ed1413c72af82bcec2e  # frozen: v1.22.0
+  rev: b76c30806bd21902f2a626258adf6664aeec5a41  # frozen: v1.22.9
   hooks:
   - id: typos
     args: [--force-exclude]
