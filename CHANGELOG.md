@@ -5,7 +5,18 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
-## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.5.0...main)
+## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.6.0...main)
+
+## [0.6.0](https://github.com/afuetterer/python-re3data/compare/0.5.0...0.6.0) (2024-07-02)
+
+### Features
+
+- add async client (#139) ([`b0c4a48`](https://github.com/afuetterer/python-re3data/commit/b0c4a48b03bc42bec194f4b6c8aa4f1f54d75231))
+
+### Documentation
+
+- add installation guide (#129) ([`0de3b5e`](https://github.com/afuetterer/python-re3data/commit/0de3b5e2f93bf162f3c94b1b3eb18cf522962725))
+- enable permalinks for headings (#132) ([`89d0a3d`](https://github.com/afuetterer/python-re3data/commit/89d0a3d2434db5eab1323843a25d6fcb1f903703))
 
 ## [0.5.0](https://github.com/afuetterer/python-re3data/compare/0.4.0...0.5.0) (2024-06-05)
 
