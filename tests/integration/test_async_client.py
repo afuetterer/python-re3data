@@ -55,6 +55,24 @@ async def test_client_list_repositories_response(async_client: AsyncClient, mock
     assert response.status_code == httpx.codes.OK
 
 
+async def test_client_list_repositories_query_string(
+    async_client: AsyncClient, mock_repository_list_query_route: Route
+) -> None:
+    response = await async_client.repositories.list(query="biosharing")
+    assert isinstance(response, list)
+    repository = response[0]
+    assert isinstance(repository, RepositorySummary)
+    assert repository.id == "r3d100010142"
+
+
+async def test_client_list_repositories_query_string_returns_empty_list(
+    async_client: AsyncClient, mock_repository_list_query_empty_list_route: Route
+) -> None:
+    response = await async_client.repositories.list(query="XXX")
+    assert isinstance(response, list)
+    assert response == []
+
+
 async def test_client_get_single_repository_default_return_type(
     async_client: AsyncClient, mock_repository_get_route: Route, zenodo_id: str
 ) -> None:

@@ -69,6 +69,31 @@ def mock_repository_list_route(respx_mock: MockRouter, repository_list_xml: str)
     )
 
 
+@pytest.fixture()
+def mock_repository_list_query_route(respx_mock: MockRouter) -> Route:
+    query_result_xml = """<?xml version="1.0" encoding="UTF-8"?>
+        <list>
+            <repository>
+                <id>r3d100010142</id>
+                <doi>https://doi.org/10.17616/R3WS3X</doi>
+                <name>FAIRsharing</name>
+                <link href="https://www.re3data.org/api/beta/repository/r3d100010142" rel="self" />
+            </repository>
+        </list>
+    """
+    return respx_mock.get("https://www.re3data.org/api/beta/repositories?query=biosharing").mock(
+        return_value=httpx.Response(httpx.codes.OK, text=query_result_xml)
+    )
+
+
+@pytest.fixture()
+def mock_repository_list_query_empty_list_route(respx_mock: MockRouter) -> Route:
+    query_result_xml = '<?xml version="1.0" encoding="UTF-8"?><list></list>'
+    return respx_mock.get("https://www.re3data.org/api/beta/repositories?query=XXX").mock(
+        return_value=httpx.Response(httpx.codes.OK, text=query_result_xml)
+    )
+
+
 REPOSITORY_GET_XML: str = """<?xml version="1.0" encoding="utf-8"?>
 <!--re3data.org Schema for the Description of Research
 Data Repositories. Version 2.2, December 2014. doi:10.2312/re3.006-->

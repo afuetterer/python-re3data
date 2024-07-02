@@ -7,6 +7,7 @@
 import logging
 import sys
 import typing
+from typing import Annotated, Optional
 
 from rich.console import Console
 
@@ -70,9 +71,17 @@ def callback(
 
 
 @repositories_app.command("list")
-def list_repositories(return_type: ReturnType = ReturnType.DATACLASS) -> None:
+def list_repositories(
+    query: Annotated[
+        Optional[str],  # noqa: UP007
+        typer.Option(
+            help="A query to filter the results. If provided, only repositories matching the query will be returned."
+        ),
+    ] = None,
+    return_type: ReturnType = ReturnType.DATACLASS,
+) -> None:
     """List the metadata of all repositories in the re3data API."""
-    response = re3data.repositories.list(return_type)
+    response = re3data.repositories.list(query, return_type)
     console.print(response)
 
 

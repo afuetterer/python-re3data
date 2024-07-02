@@ -102,6 +102,18 @@ def test_repository_list_invalid_return_type(mock_repository_list_route: Route) 
     assert "Invalid value for '--return-type': 'json'" in result.output
 
 
+def test_repository_list_query(mock_repository_list_query_route: Route) -> None:
+    result = runner.invoke(app, ["repository", "list", "--query", "biosharing"])
+    assert result.exit_code == 0
+    assert "id='r3d100010142'" in result.output
+    assert "doi='https://doi.org/10.17616/R3WS3X'" in result.output
+
+
+def test_repository_list_query_returns_empty_list(mock_repository_list_query_empty_list_route: Route) -> None:
+    result = runner.invoke(app, ["repository", "list", "--query", "XXX"])
+    assert result.exit_code == 0
+
+
 def test_repository_get_without_repository_id(mock_repository_list_route: Route) -> None:
     result = runner.invoke(app, ["repository", "get"])
     assert result.exit_code == 2
