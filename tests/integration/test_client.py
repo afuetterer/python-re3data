@@ -55,6 +55,22 @@ def test_client_list_repositories_response(client: Client, mock_repository_list_
     assert response.status_code == httpx.codes.OK
 
 
+def test_client_list_repositories_query_string(client: Client, mock_repository_list_query_route: Route) -> None:
+    response = client.repositories.list(query="biosharing")
+    assert isinstance(response, list)
+    repository = response[0]
+    assert isinstance(repository, RepositorySummary)
+    assert repository.id == "r3d100010142"
+
+
+def test_client_list_repositories_query_string_returns_empty_list(
+    client: Client, mock_repository_list_query_empty_list_route: Route
+) -> None:
+    response = client.repositories.list(query="XXX")
+    assert isinstance(response, list)
+    assert response == []
+
+
 def test_client_get_single_repository_default_return_type(
     client: Client, mock_repository_get_route: Route, zenodo_id: str
 ) -> None:

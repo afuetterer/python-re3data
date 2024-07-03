@@ -54,6 +54,22 @@ def is_valid_return_type(return_type: Any) -> None:
         raise ValueError(f"Invalid value for `return_type`: {return_type} is not one of {allowed_types}.")
 
 
+def _build_query_params(query: str | None = None) -> dict[str, str]:
+    """Build query parameters based on the input query string.
+
+    Args:
+        query: The input query string. Defaults to None.
+
+    Returns:
+        A dictionary containing the query parameter(s). If no query is provided,
+            the function returns an empty dictionary.
+    """
+    query_params = {}
+    if query:
+        query_params["query"] = query
+    return query_params
+
+
 class BaseClient:
     """An abstract base class for clients that interact with the re3data API."""
 
