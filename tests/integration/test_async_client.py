@@ -49,6 +49,14 @@ async def test_client_list_repositories_xml(async_client: AsyncClient, mock_repo
     assert "<repository>" in response
 
 
+async def test_client_list_repositories_dict(async_client: AsyncClient, mock_repository_list_route: Route) -> None:
+    response = await async_client.repositories.list(return_type=ReturnType.DICT)
+    assert isinstance(response, list)
+    repository = response[0]
+    assert isinstance(repository, dict)
+    assert repository["id"] == "r3d100010371"
+
+
 async def test_client_list_repositories_response(async_client: AsyncClient, mock_repository_list_route: Route) -> None:
     response = await async_client.repositories.list(return_type=ReturnType.RESPONSE)
     assert isinstance(response, Response)
@@ -91,6 +99,14 @@ async def test_client_get_single_repository_xml(
     assert '<?xml version="1.0" encoding="utf-8"?>' in response
     assert "<r3d:repository>" in response
     assert "<r3d:re3data.orgIdentifier>r3d100010468</r3d:re3data.orgIdentifier>" in response
+
+
+async def test_client_get_single_repository_dict(
+    async_client: AsyncClient, mock_repository_get_route: Route, zenodo_id: str
+) -> None:
+    response = await async_client.repositories.get(zenodo_id, return_type=ReturnType.DICT)
+    assert isinstance(response, dict)
+    assert response["re3data.orgIdentifier"] == zenodo_id
 
 
 async def test_client_get_single_repository_response(
