@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Literal, overload
+from typing import TYPE_CHECKING, Any, Literal, overload
 
 import httpx
 
@@ -21,6 +21,7 @@ from re3data._client.base import (
 )
 from re3data._exceptions import RepositoryNotFoundError
 from re3data._response import Response, _build_response, _parse_repositories_response, _parse_repository_response
+from re3data._serializer import _to_dict
 
 if TYPE_CHECKING:
     from re3data._resources import Repository, RepositorySummary
@@ -48,16 +49,16 @@ def log_response(response: httpx.Response) -> None:
 @overload
 def _dispatch_return_type(
     response: Response, resource_type: Literal[ResourceType.REPOSITORY], return_type: ReturnType
-) -> Repository | Response | str: ...
+) -> Repository | Response | dict[str, Any] | str: ...
 @overload
 def _dispatch_return_type(
     response: Response, resource_type: Literal[ResourceType.REPOSITORY_LIST], return_type: ReturnType
-) -> list[RepositorySummary] | Response | str: ...
+) -> list[RepositorySummary] | Response | dict[str, Any] | str: ...
 
 
 def _dispatch_return_type(
     response: Response, resource_type: ResourceType, return_type: ReturnType
-) -> Repository | list[RepositorySummary] | Response | str:
+) -> Repository | list[RepositorySummary] | Response | dict[str, Any] | str:
     """Dispatch the response to the correct return type based on the provided return type and resource type.
 
     Args:
@@ -67,16 +68,22 @@ def _dispatch_return_type(
 
     Returns:
         Depending on the return_type and resource_type, this can be a Repository object, a list of RepositorySummary
-            objects, an HTTP response, or the original XML.
+            objects, an HTTP response, a dictionary representation or the original XML.
     """
-    if return_type == ReturnType.DATACLASS:
-        if resource_type == ResourceType.REPOSITORY_LIST:
-            return _parse_repositories_response(response)
-        if resource_type == ResourceType.REPOSITORY:
-            return _parse_repository_response(response)
+    if return_type == ReturnType.RESPONSE:
+        return response
     if return_type == ReturnType.XML:
         return response.text
-    return response
+
+    parsed: Repository | list[RepositorySummary]
+    if resource_type == ResourceType.REPOSITORY_LIST:
+        parsed = _parse_repositories_response(response)
+    if resource_type == ResourceType.REPOSITORY:
+        parsed = _parse_repository_response(response)
+
+    if return_type == ReturnType.DATACLASS:
+        return parsed
+    return _to_dict(parsed)
 
 
 class RepositoryManager:
@@ -91,7 +98,7 @@ class RepositoryManager:
 
     def list(
         self, query: str | None = None, return_type: ReturnType = ReturnType.DATACLASS
-    ) -> list[RepositorySummary] | Response | str:
+    ) -> list[RepositorySummary] | Response | dict[str, Any] | str:
         """List the metadata of all repositories in the re3data API.
 
         Args:
@@ -101,7 +108,7 @@ class RepositoryManager:
 
         Returns:
             Depending on the `return_type`, this can be a list of RepositorySummary objects, an HTTP response,
-                or the original XML.
+                a dictionary representation or the original XML.
 
         Raises:
             ValueError: If an invalid `return_type` is provided.
@@ -112,7 +119,9 @@ class RepositoryManager:
         response = self._client._request(Endpoint.REPOSITORY_LIST.value, query_params)
         return _dispatch_return_type(response, ResourceType.REPOSITORY_LIST, return_type)
 
-    def get(self, repository_id: str, return_type: ReturnType = ReturnType.DATACLASS) -> Repository | Response | str:
+    def get(
+        self, repository_id: str, return_type: ReturnType = ReturnType.DATACLASS
+    ) -> Repository | Response | dict[str, Any] | str:
         """Get the metadata of a specific repository.
 
         Args:
@@ -120,7 +129,8 @@ class RepositoryManager:
             return_type: The desired return type for the API resource. Defaults to `ReturnType.DATACLASS`.
 
         Returns:
-            Depending on the `return_type`, this can be a Repository object, an HTTP response, or the original XML.
+            Depending on the `return_type`, this can be a Repository object, an HTTP response,
+                a dictionary representation or the original XML.
 
         Raises:
             ValueError: If an invalid `return_type` is provided.
