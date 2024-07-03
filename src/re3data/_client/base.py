@@ -33,6 +33,7 @@ class ResourceType(str, Enum):
 
 class ReturnType(str, Enum):
     DATACLASS = "dataclass"
+    DICT = "dict"
     RESPONSE = "response"
     XML = "xml"
 
