@@ -88,6 +88,13 @@ def test_repository_list_xml(mock_repository_list_route: Route) -> None:
     assert "<doi>https://doi.org/10.17616/R3P594</doi>" in result.output
 
 
+def test_repository_list_json(mock_repository_list_route: Route) -> None:
+    result = runner.invoke(app, ["repository", "list", "--return-type", "json"])
+    assert result.exit_code == 0
+    assert '"id": "r3d100010371",' in result.output
+    assert '"doi": "https://doi.org/10.17616/R3P594",' in result.output
+
+
 def test_repository_list_response(mock_repository_list_route: Route) -> None:
     result = runner.invoke(app, ["repository", "list", "--return-type", "response"])
     assert result.exit_code == 0
@@ -103,10 +110,10 @@ def test_repository_list_dict(mock_repository_list_route: Route) -> None:
 
 
 def test_repository_list_invalid_return_type(mock_repository_list_route: Route) -> None:
-    result = runner.invoke(app, ["repository", "list", "--return-type", "json"])
+    result = runner.invoke(app, ["repository", "list", "--return-type", "excel"])
     assert result.exit_code == 2
     assert "Error" in result.output
-    assert "Invalid value for '--return-type': 'json'" in result.output
+    assert "Invalid value for '--return-type': 'excel'" in result.output
 
 
 def test_repository_list_query(mock_repository_list_query_route: Route) -> None:
@@ -150,6 +157,13 @@ def test_repository_get_with_repository_id_xml(mock_repository_get_route: Route,
     assert "<r3d:re3data.orgIdentifier>r3d100010468" in result.output
 
 
+def test_repository_get_with_repository_id_json(mock_repository_get_route: Route, zenodo_id: str) -> None:
+    result = runner.invoke(app, ["repository", "get", zenodo_id, "--return-type", "json"])
+    assert result.exit_code == 0
+    assert "{" in result.output
+    assert '"re3data.orgIdentifier": "r3d100010468",' in result.output
+
+
 def test_repository_get_with_repository_id_dict(mock_repository_get_route: Route, zenodo_id: str) -> None:
     result = runner.invoke(app, ["repository", "get", zenodo_id, "--return-type", "dict"])
     assert result.exit_code == 0
@@ -165,10 +179,10 @@ def test_repository_get_with_repository_id_response(mock_repository_get_route: R
 
 
 def test_repository_get_with_repository_id_invalid_return_type(zenodo_id: str) -> None:
-    result = runner.invoke(app, ["repository", "get", zenodo_id, "--return-type", "json"])
+    result = runner.invoke(app, ["repository", "get", zenodo_id, "--return-type", "excel"])
     assert result.exit_code == 2
     assert "Error" in result.output
-    assert "Invalid value for '--return-type': 'json'" in result.output
+    assert "Invalid value for '--return-type': 'excel'" in result.output
 
 
 @pytest.mark.default_cassette("repository.yaml")

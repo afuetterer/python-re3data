@@ -49,6 +49,13 @@ def test_client_list_repositories_xml(client: Client, mock_repository_list_route
     assert "<repository>" in response
 
 
+def test_client_list_repositories_json(client: Client, mock_repository_list_route: Route) -> None:
+    response = client.repositories.list(return_type=ReturnType.JSON)
+    assert isinstance(response, str)
+    assert '"id": "r3d100010371",' in response
+    assert '"doi": "https://doi.org/10.17616/R3P594",' in response
+
+
 def test_client_list_repositories_dict(client: Client, mock_repository_list_route: Route) -> None:
     response = client.repositories.list(return_type=ReturnType.DICT)
     assert isinstance(response, list)
@@ -95,6 +102,13 @@ def test_client_get_single_repository_xml(client: Client, mock_repository_get_ro
     assert '<?xml version="1.0" encoding="utf-8"?>' in response
     assert "<r3d:repository>" in response
     assert "<r3d:re3data.orgIdentifier>r3d100010468</r3d:re3data.orgIdentifier>" in response
+
+
+def test_client_get_single_repository_json(client: Client, mock_repository_get_route: Route, zenodo_id: str) -> None:
+    response = client.repositories.get(zenodo_id, return_type=ReturnType.JSON)
+    assert isinstance(response, str)
+    assert "{" in response
+    assert '"re3data.orgIdentifier": "r3d100010468",' in response
 
 
 def test_client_get_single_repository_dict(client: Client, mock_repository_get_route: Route, zenodo_id: str) -> None:

@@ -2,16 +2,21 @@
 #
 # SPDX-License-Identifier: MIT
 
-"""The base module provides base class for clients to interact with the re3data API."""
+"""The base module provides a base class for clients to interact with the re3data API."""
 
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any
+from typing import TYPE_CHECKING, Any, Literal, overload
 
 import httpx
 
 from re3data import __version__
+from re3data._response import Response, _parse_repositories_response, _parse_repository_response
+from re3data._serializer import _to_dict, _to_json
+
+if TYPE_CHECKING:
+    from re3data._resources import Repository, RepositorySummary
 
 BASE_URL: str = "https://www.re3data.org/api/beta/"
 DEFAULT_HEADERS: dict[str, str] = {
@@ -34,6 +39,7 @@ class ResourceType(str, Enum):
 class ReturnType(str, Enum):
     DATACLASS = "dataclass"
     DICT = "dict"
+    JSON = "json"
     RESPONSE = "response"
     XML = "xml"
 
@@ -71,8 +77,50 @@ def _build_query_params(query: str | None = None) -> dict[str, str]:
     return query_params
 
 
+@overload
+def _dispatch_return_type(
+    response: Response, resource_type: Literal[ResourceType.REPOSITORY], return_type: ReturnType
+) -> Repository | Response | dict[str, Any] | str: ...
+@overload
+def _dispatch_return_type(
+    response: Response, resource_type: Literal[ResourceType.REPOSITORY_LIST], return_type: ReturnType
+) -> list[RepositorySummary] | Response | dict[str, Any] | str: ...
+
+
+def _dispatch_return_type(
+    response: Response, resource_type: ResourceType, return_type: ReturnType
+) -> Repository | list[RepositorySummary] | Response | dict[str, Any] | str:
+    """Dispatch the response to the correct return type based on the provided return type and resource type.
+
+    Args:
+        response: The response object.
+        resource_type: The type of resource being processed.
+        return_type: The desired return type for the API resource.
+
+    Returns:
+        Depending on the return_type and resource_type, this can be a Repository object, a list of RepositorySummary
+            objects, an HTTP response, a dictionary representation or the original XML.
+    """
+    if return_type == ReturnType.RESPONSE:
+        return response
+    if return_type == ReturnType.XML:
+        return response.text
+
+    parsed: Repository | list[RepositorySummary]
+    if resource_type == ResourceType.REPOSITORY_LIST:
+        parsed = _parse_repositories_response(response)
+    if resource_type == ResourceType.REPOSITORY:
+        parsed = _parse_repository_response(response)
+    if return_type == ReturnType.DATACLASS:
+        return parsed
+
+    if return_type == ReturnType.JSON:
+        return _to_json(parsed)
+    return _to_dict(parsed)
+
+
 class BaseClient:
-    """An abstract base class for clients that interact with the re3data API."""
+    """A base class for clients that interact with the re3data API."""
 
     def __init__(
         self,
