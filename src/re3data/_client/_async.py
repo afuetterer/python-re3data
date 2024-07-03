@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Any, Literal, overload
+from typing import TYPE_CHECKING, Any
 
 import httpx
 
@@ -15,11 +15,11 @@ from re3data._client.base import (
     ResourceType,
     ReturnType,
     _build_query_params,
+    _dispatch_return_type,
     is_valid_return_type,
 )
 from re3data._exceptions import RepositoryNotFoundError
-from re3data._response import Response, _build_response, _parse_repositories_response, _parse_repository_response
-from re3data._serializer import _to_dict
+from re3data._response import Response, _build_response
 
 if TYPE_CHECKING:
     from re3data._resources import Repository, RepositorySummary
@@ -42,46 +42,6 @@ async def async_log_response(response: httpx.Response) -> None:
     logger.debug(
         "[http] Response: %s %s - Status %s", response.request.method, response.request.url, response.status_code
     )
-
-
-@overload
-def _dispatch_return_type(
-    response: Response, resource_type: Literal[ResourceType.REPOSITORY], return_type: ReturnType
-) -> Repository | Response | dict[str, Any] | str: ...
-@overload
-def _dispatch_return_type(
-    response: Response, resource_type: Literal[ResourceType.REPOSITORY_LIST], return_type: ReturnType
-) -> list[RepositorySummary] | Response | dict[str, Any] | str: ...
-
-
-def _dispatch_return_type(
-    response: Response, resource_type: ResourceType, return_type: ReturnType
-) -> Repository | list[RepositorySummary] | Response | dict[str, Any] | str:
-    """Dispatch the response to the correct return type based on the provided return type and resource type.
-
-    Args:
-        response: The response object.
-        resource_type: The type of resource being processed.
-        return_type: The desired return type for the API resource.
-
-    Returns:
-        Depending on the return_type and resource_type, this can be a Repository object, a list of RepositorySummary
-            objects, an HTTP response, a dictionary representation or the original XML.
-    """
-    if return_type == ReturnType.RESPONSE:
-        return response
-    if return_type == ReturnType.XML:
-        return response.text
-
-    parsed: Repository | list[RepositorySummary]
-    if resource_type == ResourceType.REPOSITORY_LIST:
-        parsed = _parse_repositories_response(response)
-    if resource_type == ResourceType.REPOSITORY:
-        parsed = _parse_repository_response(response)
-
-    if return_type == ReturnType.DATACLASS:
-        return parsed
-    return _to_dict(parsed)
 
 
 class AsyncRepositoryManager:
