@@ -128,7 +128,6 @@ dependencies = [
   "build[uv]",
   "hatch",
   "pip",
-  "pipdeptree",
 ]
 detached = true # ignore the project installation itself
 type = "pip-compile"

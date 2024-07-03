@@ -84,8 +84,8 @@ jobs:
           echo -e "### ✓ All dependencies installed successfully\n\n"
           echo '<details><summary>Installed Python packages (dependency tree)</summary>'
           echo -e "\n\`\`\`console"
-          echo "$ python -m pipdeptree --packages=python-re3data"
-          python -m pipdeptree --packages=python-re3data
+          echo "$ uv pip tree --package=python-re3data"
+          uv pip tree --package=python-re3data
           echo -e "\`\`\`\n</details>"
           echo '<details><summary>Outdated Python packages</summary>'
           echo -e "\n\`\`\`console"
