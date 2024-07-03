@@ -5,7 +5,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
-## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.7.0...main)
+## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.8.0...main)
+
+## [0.8.0](https://github.com/afuetterer/python-re3data/compare/0.7.0...0.8.0) (2024-07-03)
+
+### Features
+
+- add return_type json (#156) ([`f948d6b`](https://github.com/afuetterer/python-re3data/commit/f948d6bef533314327394dbaa250a8518af6b248))
+- add return_type dict (#153) ([`5894329`](https://github.com/afuetterer/python-re3data/commit/5894329ed52fb014ca4d08a0941e71a66146d446))
 
 ## [0.7.0](https://github.com/afuetterer/python-re3data/compare/0.6.0...0.7.0) (2024-07-03)
 
