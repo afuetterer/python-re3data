@@ -6,8 +6,8 @@
 
 Functions:
     _build_response: Build a response object from an HTTP response.
-    _parse_repository_response:
-    _parse_repositories_response:
+    _parse_repository_response: Parse the response from the re3data API into a Repository object.
+    _parse_repositories_response: Parse the response from the re3data API into a list of RepositorySummary objects.
 
 Classes:
     Response: A response received from the re3data API, encapsulating the HTTP response.
