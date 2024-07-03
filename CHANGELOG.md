@@ -5,7 +5,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
-## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.6.0...main)
+## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.7.0...main)
+
+## [0.7.0](https://github.com/afuetterer/python-re3data/compare/0.6.0...0.7.0) (2024-07-03)
+
+### Features
+
+- add repository filtering based on query string (#152) ([`713d4d1`](https://github.com/afuetterer/python-re3data/commit/713d4d1cd581426a95fd8d6a84f5fa4f4fff1564))
 
 ## [0.6.0](https://github.com/afuetterer/python-re3data/compare/0.5.0...0.6.0) (2024-07-02)
 
