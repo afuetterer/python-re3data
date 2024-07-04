@@ -15,6 +15,7 @@ watch:
 
 nav:
 - Home: index.md
+- Features: features.md
 - Getting Started:
   - Installation: install.md
 - Reference:
@@ -76,6 +77,8 @@ markdown_extensions:
 - pymdownx.inlinehilite
 - pymdownx.snippets
 - pymdownx.superfences
+- pymdownx.tasklist:
+    custom_checkbox: true
 - toc:
     permalink: true
 
