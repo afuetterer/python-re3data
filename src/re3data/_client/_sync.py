@@ -57,14 +57,18 @@ class RepositoryManager:
         self._client = client
 
     def list(
-        self, query: str | None = None, return_type: ReturnType = ReturnType.DATACLASS
-    ) -> list[RepositorySummary] | Response | dict[str, Any] | str:
+        self,
+        query: str | None = None,
+        return_type: ReturnType = ReturnType.DATACLASS,
+        count: bool = False,
+    ) -> list[RepositorySummary] | Response | dict[str, Any] | str | int:
         """List the metadata of all repositories in the re3data API.
 
         Args:
             query: A query string to filter the results. If provided, only repositories matching the query
                 will be returned.
             return_type: The desired return type for the API resource. Defaults to `ReturnType.DATACLASS`.
+            count: Whether to return the total number of matching items instead of a list of repositories.
 
         Returns:
             Depending on the `return_type`, this can be a list of RepositorySummary objects, an HTTP response,
@@ -77,7 +81,7 @@ class RepositoryManager:
         is_valid_return_type(return_type)
         query_params = _build_query_params(query)
         response = self._client._request(Endpoint.REPOSITORY_LIST.value, query_params)
-        return _dispatch_return_type(response, ResourceType.REPOSITORY_LIST, return_type)
+        return _dispatch_return_type(response, ResourceType.REPOSITORY_LIST, return_type, count)
 
     def get(
         self, repository_id: str, return_type: ReturnType = ReturnType.DATACLASS
