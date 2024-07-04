@@ -79,9 +79,10 @@ def list_repositories(
         ),
     ] = None,
     return_type: ReturnType = ReturnType.DATACLASS,
+    count: bool = False,
 ) -> None:
     """List the metadata of all repositories in the re3data API."""
-    response = re3data.repositories.list(query, return_type)
+    response = re3data.repositories.list(query, return_type, count)
     console.print(response)
 
 

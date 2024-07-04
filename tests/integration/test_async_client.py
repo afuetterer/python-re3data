@@ -88,6 +88,20 @@ async def test_client_list_repositories_query_string_returns_empty_list(
     assert response == []
 
 
+async def test_client_list_repositories_count(async_client: AsyncClient, mock_repository_list_route: Route) -> None:
+    response = await async_client.repositories.list(count=True)
+    assert isinstance(response, int)
+    assert response == 3
+
+
+async def test_client_list_repositories_count_empty_list(
+    async_client: AsyncClient, mock_repository_list_query_empty_list_route: Route
+) -> None:
+    response = await async_client.repositories.list(query="XXX", count=True)
+    assert isinstance(response, int)
+    assert response == 0
+
+
 async def test_client_get_single_repository_default_return_type(
     async_client: AsyncClient, mock_repository_get_route: Route, zenodo_id: str
 ) -> None:
