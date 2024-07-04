@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING, Any, Literal, overload
 import httpx
 
 from re3data import __version__
-from re3data._response import Response, _parse_repositories_response, _parse_repository_response
+from re3data._response import Response, _count_repositories, _parse_repositories_response, _parse_repository_response
 from re3data._serializer import _to_dict, _to_json
 
 if TYPE_CHECKING:
@@ -79,28 +79,35 @@ def _build_query_params(query: str | None = None) -> dict[str, str]:
 
 @overload
 def _dispatch_return_type(
-    response: Response, resource_type: Literal[ResourceType.REPOSITORY], return_type: ReturnType
+    response: Response, resource_type: Literal[ResourceType.REPOSITORY], return_type: ReturnType, count: bool = False
 ) -> Repository | Response | dict[str, Any] | str: ...
 @overload
 def _dispatch_return_type(
-    response: Response, resource_type: Literal[ResourceType.REPOSITORY_LIST], return_type: ReturnType
-) -> list[RepositorySummary] | Response | dict[str, Any] | str: ...
+    response: Response,
+    resource_type: Literal[ResourceType.REPOSITORY_LIST],
+    return_type: ReturnType,
+    count: bool = False,
+) -> list[RepositorySummary] | Response | dict[str, Any] | str | int: ...
 
 
 def _dispatch_return_type(
-    response: Response, resource_type: ResourceType, return_type: ReturnType
-) -> Repository | list[RepositorySummary] | Response | dict[str, Any] | str:
+    response: Response, resource_type: ResourceType, return_type: ReturnType, count: bool = False
+) -> Repository | list[RepositorySummary] | Response | dict[str, Any] | str | int:
     """Dispatch the response to the correct return type based on the provided return type and resource type.
 
     Args:
         response: The response object.
         resource_type: The type of resource being processed.
         return_type: The desired return type for the API resource.
+        count: Whether to return the total number of matching items instead of a list of repositories.
 
     Returns:
         Depending on the return_type and resource_type, this can be a Repository object, a list of RepositorySummary
             objects, an HTTP response, a dictionary representation or the original XML.
     """
+    if resource_type == ResourceType.REPOSITORY_LIST and count:
+        return _count_repositories(response.text)
+
     if return_type == ReturnType.RESPONSE:
         return response
     if return_type == ReturnType.XML:

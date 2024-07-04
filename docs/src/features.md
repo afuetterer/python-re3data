@@ -8,7 +8,7 @@ Some features listed here, loosely correspond to the features of the endpoints d
 - [x] retrieve metadata about all repositories
 - [x] retrieve a single repository by its identifier
 - [x] search for repositories with a query string
-- [ ] get total count of retrieved repositories
+- [x] get total count of retrieved repositories
 - [ ] filter and retrieve repositories
 
 ## Return Types

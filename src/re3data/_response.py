@@ -71,6 +71,18 @@ def _parse_repositories_response(response: Response) -> list[RepositorySummary]:
     return PARSER.from_string(response.text, RepositoryList).repository
 
 
+def _count_repositories(text: str) -> int:
+    """Count the number of repository tags in the given text.
+
+    Args:
+        text: The input text to search for repository tags.
+
+    Returns:
+        The number of "<repository>" tags found in the input text.
+    """
+    return text.count("<repository>")
+
+
 @dataclass(slots=True)
 class Response:
     """A response received from the re3data API, encapsulating the HTTP response.
