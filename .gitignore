@@ -86,3 +86,6 @@ cython_debug/
 
 # ruff
 .ruff_cache
+
+# unasyncd
+.unasyncd_cache
