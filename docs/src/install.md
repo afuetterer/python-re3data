@@ -127,7 +127,7 @@ Install with `python -m pip install "python-re3data[cli]"`.
 
 | Package                                    | Version | Description                                                                                 |
 | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------------- |
-| [typer](https://github.com/tiangolo/typer) | >= 0.12 | a popular library for building command-line interfaces, powers the user-friendly interface. |
+| [typer](https://github.com/tiangolo/typer) | >= 0.12 | A popular library for building command-line interfaces, powers the user-friendly interface. |
 
 <!---
 This installation guide is adapted from these sources:
