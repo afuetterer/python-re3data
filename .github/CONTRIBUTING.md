@@ -33,7 +33,7 @@ docstrings, or even on the web in blog posts, articles, and such.
 
 ### Submit Feedback
 
-The best way to send feedback is to file an issue at https://github.com/afuetterer/python-re3data/issues.
+The best way to send feedback is to file an issue at <https://github.com/afuetterer/python-re3data/issues>.
 
 If you are proposing a feature:
 
@@ -91,7 +91,7 @@ Here's how to set up `python-re3data` for local development.
     $ hatch run cov
     ```
 
-6. Commit your changes and push your branch to GitHub::
+6. Commit your changes and push your branch to GitHub:
 
     ```console
     $ git add .
