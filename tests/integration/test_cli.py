@@ -16,6 +16,8 @@ from re3data import __version__
 from re3data._cli import app
 
 if TYPE_CHECKING:
+    from pathlib import Path
+
     from respx import Route
 
 runner = CliRunner()
@@ -126,6 +128,47 @@ def test_repository_list_query(mock_repository_list_query_route: Route) -> None:
 def test_repository_list_query_returns_empty_list(mock_repository_list_query_empty_list_route: Route) -> None:
     result = runner.invoke(app, ["repository", "list", "--query", "XXX"])
     assert result.exit_code == 0
+
+
+def test_repository_list_with_valid_outfile(
+    mock_repository_list_route: Route, repository_list_xml: str, tmp_path: Path
+) -> None:
+    outfile = tmp_path / "list.xml"
+    result = runner.invoke(app, ["repository", "list", "--return-type", "xml", "--outfile", str(outfile)])
+    assert result.exit_code == 0
+    file_content = outfile.read_text()
+    assert repository_list_xml in file_content
+
+
+def test_repository_list_with_dir_as_outfile(mock_repository_list_route: Route, tmp_path: Path) -> None:
+    outfile = tmp_path
+    result = runner.invoke(app, ["repository", "list", "--outfile", str(outfile)])
+    assert result.exit_code == 2
+    assert "Error" in result.output
+    assert "Invalid value for '--outfile':" in result.output
+
+
+def test_repository_list_with_existing_outfile_overwrite_yes(
+    mock_repository_list_route: Route, repository_list_xml: str, tmp_path: Path
+) -> None:
+    outfile = tmp_path / "list.xml"
+    outfile.write_text("some-content")
+    result = runner.invoke(app, ["repository", "list", "--return-type", "xml", "--outfile", str(outfile)], input="y")
+    assert result.exit_code == 0
+    file_content = outfile.read_text()
+    assert repository_list_xml in file_content
+
+
+def test_repository_list_with_existing_outfile_overwrite_no(
+    mock_repository_list_route: Route, repository_list_xml: str, tmp_path: Path
+) -> None:
+    outfile = tmp_path / "list.xml"
+    outfile.write_text("some-content")
+    result = runner.invoke(app, ["repository", "list", "--return-type", "xml", "--outfile", str(outfile)], input="N")
+    assert result.exit_code == 0
+    file_content = outfile.read_text()
+    assert "some-content" in file_content
+    assert repository_list_xml not in file_content
 
 
 def test_repository_get_without_repository_id(mock_repository_list_route: Route) -> None:
