@@ -46,6 +46,8 @@ Repository(re3data_org_identifier='r3d100010468', repository_name=RepositoryName
         schema
     - response: Returns a Python object representing the API response
     - original XML: Returns the raw XML response from the API
+    - JSON: Returns a JSON representation of the API response
+    - dictionary: Returns a dictionary representation of the API response
 
 ## Requirements
 
