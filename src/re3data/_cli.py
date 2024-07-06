@@ -6,8 +6,8 @@
 
 import logging
 import sys
-import typing
-from typing import Annotated, Optional
+from pathlib import Path
+from typing import Annotated, Any, Optional
 
 from rich.console import Console
 
@@ -54,9 +54,27 @@ def _version_callback(show_version: bool) -> None:
         raise typer.Exit(code=0)
 
 
+def _write_to_file(response: Any, outfile: Path | None) -> None:
+    """Write the given response to the specified file.
+
+    Args:
+        response: The response to be written.
+        outfile: The path to the output file. If None, no file will be written.
+
+    Returns:
+        None
+    """
+    if outfile and outfile.exists():
+        overwrite = typer.confirm(f"{outfile} already exists. Do you want to overwrite it?")
+        if not overwrite:
+            return
+    if outfile:
+        outfile.write_text(str(response))
+
+
 @app.callback(context_settings=CONTEXT_SETTINGS)
 def callback(
-    version: typing.Annotated[
+    version: Annotated[
         bool,
         typer.Option(
             "--version",
@@ -73,25 +91,46 @@ def callback(
 @repositories_app.command("list")
 def list_repositories(
     query: Annotated[
-        Optional[str],  # noqa: UP007
+        Optional[str],  # noqa: UP007 - typer does not support "str | None"
         typer.Option(
             help="A query to filter the results. If provided, only repositories matching the query will be returned."
         ),
     ] = None,
     return_type: ReturnType = ReturnType.DATACLASS,
     count: bool = False,
+    outfile: Annotated[
+        Optional[Path],  # noqa: UP007 - typer does not support "Path | None"
+        typer.Option(
+            file_okay=True,
+            dir_okay=False,
+            writable=True,
+        ),
+    ] = None,
 ) -> None:
     """List the metadata of all repositories in the re3data API."""
     response = re3data.repositories.list(query, return_type, count)
+    _write_to_file(response, outfile)
     console.print(response)
 
 
 @repositories_app.command("get")
-def get_repository(repository_id: str, return_type: ReturnType = ReturnType.DATACLASS) -> None:
+def get_repository(
+    repository_id: str,
+    return_type: ReturnType = ReturnType.DATACLASS,
+    outfile: Annotated[
+        Optional[Path],  # noqa: UP007 - typer does not support "Path | None"
+        typer.Option(
+            file_okay=True,
+            dir_okay=False,
+            writable=True,
+        ),
+    ] = None,
+) -> None:
     """Get the metadata of a specific repository."""
     try:
         response = re3data.repositories.get(repository_id, return_type)
         console.print(response)
+        _write_to_file(response, outfile)
     except RepositoryNotFoundError as error:
         print_error(str(error))
         raise typer.Exit(code=1) from error
