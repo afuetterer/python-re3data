@@ -1,0 +1,5 @@
+/* Ref: https://mkdocstrings.github.io/recipes/#prevent-selection-of-prompts-and-output-in-python-code-blocks */
+
+.language-pycon .gp, .language-pycon .go { /* Generic.Prompt, Generic.Output */
+  user-select: none;
+}
