@@ -49,9 +49,12 @@ dependencies = [
 optional-dependencies.cli = [
   "typer>=0.12",
 ]
+optional-dependencies.csv = [
+  "pandas>=2",
+]
 optional-dependencies.dev = [
   "pre-commit-uv~=4.1",
-  "python-re3data[cli]",
+  "python-re3data[cli,csv]",
 ]
 optional-dependencies.docs = [
   "mike~=2.1",
