@@ -13,7 +13,7 @@ import httpx
 
 from re3data import __version__
 from re3data._response import Response, _count_repositories, _parse_repositories_response, _parse_repository_response
-from re3data._serializer import _to_dict, _to_json
+from re3data._serializer import _to_csv, _to_dataframe, _to_dict, _to_json
 
 if TYPE_CHECKING:
     from re3data._resources import Repository, RepositorySummary
@@ -37,7 +37,9 @@ class ResourceType(str, Enum):
 
 
 class ReturnType(str, Enum):
+    CSV = "csv"
     DATACLASS = "dataclass"
+    DATAFRAME = "dataframe"
     DICT = "dict"
     JSON = "json"
     RESPONSE = "response"
@@ -105,14 +107,15 @@ def _dispatch_return_type(
         Depending on the return_type and resource_type, this can be a Repository object, a list of RepositorySummary
             objects, an HTTP response, a dictionary representation or the original XML.
     """
+    # return the count of repositories, the response or the original xml before parsing the response
     if resource_type == ResourceType.REPOSITORY_LIST and count:
         return _count_repositories(response.text)
-
     if return_type == ReturnType.RESPONSE:
         return response
     if return_type == ReturnType.XML:
         return response.text
 
+    # all subsequent return types rely on parsing the response first
     parsed: Repository | list[RepositorySummary]
     if resource_type == ResourceType.REPOSITORY_LIST:
         parsed = _parse_repositories_response(response)
@@ -121,9 +124,16 @@ def _dispatch_return_type(
     if return_type == ReturnType.DATACLASS:
         return parsed
 
+    # JSON and dictionary
     if return_type == ReturnType.JSON:
         return _to_json(parsed)
-    return _to_dict(parsed)
+    if return_type == ReturnType.DICT:
+        return _to_dict(parsed)
+
+    # tabular representations: DataFrame and CSV
+    if return_type == ReturnType.DATAFRAME:
+        return _to_dataframe(parsed)
+    return _to_csv(parsed)
 
 
 class BaseClient:
