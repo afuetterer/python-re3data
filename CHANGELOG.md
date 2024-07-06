@@ -5,7 +5,19 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
-## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.8.0...main)
+## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.9.0...main)
+
+## [0.9.0](https://github.com/afuetterer/python-re3data/compare/0.8.0...0.9.0) (2024-07-06)
+
+### Features
+
+- **cli:** add --outfile option for saving results to disk (#166) ([`1e689e8`](https://github.com/afuetterer/python-re3data/commit/1e689e850b6f5c117887eb1938b1a336422e5418))
+- **client:** add repository counting (#158) ([`c1cba53`](https://github.com/afuetterer/python-re3data/commit/c1cba53a408505c673de2aa8b4f6caddcb91cadd))
+
+### Documentation
+
+- **readme:** update key features in readme (#165) ([`2396cf5`](https://github.com/afuetterer/python-re3data/commit/2396cf59b1f2d62e917e9b335d8596aa4d3b38d6))
+- add features page (#157) ([`2348b01`](https://github.com/afuetterer/python-re3data/commit/2348b013ad16cacd8a85b72d9f6d488df1ab7f7e))
 
 ## [0.8.0](https://github.com/afuetterer/python-re3data/compare/0.7.0...0.8.0) (2024-07-03)
 
