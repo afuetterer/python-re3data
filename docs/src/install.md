@@ -129,6 +129,14 @@ Install with `python -m pip install "python-re3data[cli]"`.
 | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------------- |
 | [typer](https://github.com/tiangolo/typer) | >= 0.12 | A popular library for building command-line interfaces, powers the user-friendly interface. |
 
+#### CSV
+
+Install with `python -m pip install "python-re3data[csv]"`.
+
+| Package                                        | Version | Description                                                                                                              |
+| ---------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| [pandas](https://github.com/pandas-dev/pandas) | >= 2.0  | A powerful and flexible data analysis library, enables generation of DataFrames and CSV files from parsed XML responses. |
+
 <!---
 This installation guide is adapted from these sources:
 - "pandas" Installation, https://pandas.pydata.org/docs/getting_started/install.html (BSD-3-Clause license)

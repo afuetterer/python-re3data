@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING
 
 import httpx
 import pytest
+from pandas import DataFrame
 
 from re3data import RepositoryNotFoundError, Response, ReturnType
 from re3data._resources import Repository, RepositoryName, RepositorySummary
@@ -62,6 +63,21 @@ def test_client_list_repositories_dict(client: Client, mock_repository_list_rout
     repository = response[0]
     assert isinstance(repository, dict)
     assert repository["id"] == "r3d100010371"
+
+
+def test_client_list_repositories_csv(client: Client, mock_repository_list_route: Route) -> None:
+    response = client.repositories.list(return_type=ReturnType.CSV)
+    assert isinstance(response, str)
+    assert response.startswith("id,doi,name,")
+    assert "r3d100010371" in response
+    assert "https://doi.org/10.17616/R3P594" in response
+
+
+def test_client_list_repositories_dataframe(client: Client, mock_repository_list_route: Route) -> None:
+    response = client.repositories.list(return_type=ReturnType.DATAFRAME)
+    assert isinstance(response, DataFrame)
+    assert response.shape == (3, 5)
+    assert response["id"].loc[0] == "r3d100010371"
 
 
 def test_client_list_repositories_response(client: Client, mock_repository_list_route: Route) -> None:
@@ -129,6 +145,22 @@ def test_client_get_single_repository_dict(client: Client, mock_repository_get_r
     response = client.repositories.get(zenodo_id, return_type=ReturnType.DICT)
     assert isinstance(response, dict)
     assert response["re3data.orgIdentifier"] == zenodo_id
+
+
+def test_client_get_single_repository_csv(client: Client, mock_repository_get_route: Route, zenodo_id: str) -> None:
+    response = client.repositories.get(zenodo_id, return_type=ReturnType.CSV)
+    assert isinstance(response, str)
+    assert response.startswith("re3data.orgIdentifier,additionalName,repositoryURL,")
+    assert "r3d100010468" in response
+
+
+def test_client_get_single_repository_dataframe(
+    client: Client, mock_repository_get_route: Route, zenodo_id: str
+) -> None:
+    response = client.repositories.get(zenodo_id, return_type=ReturnType.DATAFRAME)
+    assert isinstance(response, DataFrame)
+    assert response.shape == (1, 43)
+    assert response["re3data.orgIdentifier"].loc[0] == "r3d100010468"
 
 
 def test_client_get_single_repository_response(

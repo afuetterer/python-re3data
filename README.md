@@ -45,9 +45,11 @@ Repository(re3data_org_identifier='r3d100010468', repository_name=RepositoryName
     - dataclass (default): Returns a Python dataclass object, allowing convenient access to the element of the re3data
         schema
     - response: Returns a Python object representing the API response
-    - original XML: Returns the raw XML response from the API
-    - JSON: Returns a JSON representation of the API response
+    - original XML (str): Returns the raw XML response from the API
+    - JSON (str): Returns a JSON representation of the API response
     - dictionary: Returns a dictionary representation of the API response
+    - csv (str): Returns a CSV representation of the API response
+    - dataframe: Returns a pandas.DataFrame representation of the API response
 
 ## Requirements
 
@@ -61,6 +63,8 @@ Repository(re3data_org_identifier='r3d100010468', repository_name=RepositoryName
     schemas, simplifies processing of API responses.
 - **Optional CLI**: [typer](https://github.com/tiangolo/typer), a popular library for building command-line interfaces,
     powers the user-friendly interface.
+- **Optional DataFrame/CSV**: [pandas](https://github.com/pandas-dev/pandas), a powerful and flexible data analysis
+    library, enables generation of DataFrames and CSV files from parsed XML responses.
 
 ## Installation
 
