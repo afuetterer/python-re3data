@@ -6,7 +6,7 @@
 
 # base
 # ----------------------------
-FROM python:3.12.4-slim@sha256:da2d7af143dab7cd5b0d5a5c9545fe14e67fc24c394fcf1cf15e8ea16cbd8637 as base
+FROM python:3.12.4-slim@sha256:da2d7af143dab7cd5b0d5a5c9545fe14e67fc24c394fcf1cf15e8ea16cbd8637 AS base
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -17,7 +17,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 # build stage
 # ----------------------------
-FROM base as build
+FROM base AS build
 
 ENV BUILD_VERSION=1.2.1
 
@@ -33,7 +33,7 @@ RUN python -m build --installer=uv --wheel
 
 # runtime stage
 # ----------------------------
-FROM base as runtime
+FROM base AS runtime
 
 ARG VERSION
 
