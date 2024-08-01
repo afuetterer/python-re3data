@@ -19,7 +19,7 @@ jobs:
       id-token: write
     steps:
     - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-    - uses: hynek/build-and-inspect-python-package@b4fc3f6ba2b3da04f09659be99e2a29fb6146a61 # v2.6.0
+    - uses: hynek/build-and-inspect-python-package@2dbbf2b252d3a3c7cec7a810e3ed5983bd17b13a # v2.8.0
       with:
         attest-build-provenance-github: 'true'
   upload:
@@ -32,12 +32,12 @@ jobs:
       contents: write
     steps:
     - name: Download package built by build job
-      uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
       with:
         name: Packages
         path: dist
     - name: Publish package distributions to GitHub Releases
-      uses: softprops/action-gh-release@a74c6b72af54cfa997e81df42d94703d6313a2d0 # v2.0.6
+      uses: softprops/action-gh-release@c062e08bd532815e2082a85e87e3ef29c3e6d191 # v2.0.8
       with:
         files: dist/*
   publish:
@@ -50,7 +50,7 @@ jobs:
       id-token: write
     steps:
     - name: Download package built by build job
-      uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
       with:
         name: Packages
         path: dist
@@ -68,9 +68,9 @@ jobs:
     env:
       IMAGE_NAME: ${{ github.repository }}
     steps:
-    - uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3.3.0
+    - uses: docker/setup-buildx-action@988b5a0280414f521da01fcc63a27aeeb4b104db # v3.6.1
     - name: Login to GitHub Container Registry
-      uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3.2.0
+      uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
@@ -87,7 +87,7 @@ jobs:
           type=pep440,pattern={{major}}.{{minor}}
     - name: Build and push image to registry
       # Ref: https://github.com/docker/build-push-action?tab=readme-ov-file#customizing
-      uses: docker/build-push-action@15560696de535e4014efeff63c48f16952e52dd1 # v6.2.0
+      uses: docker/build-push-action@5176d81f87c23d6fc96624dfdbcd9f3830bbe445 # v6.5.0
       with:
         push: true
         build-args: VERSION=${{ github.event.release.name }}
