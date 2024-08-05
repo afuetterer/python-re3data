@@ -40,19 +40,19 @@ repos:
     args: [--pytest-test-first]
 
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: bdf9bad34ed8102dee37a1fabb11ebc40d51063f  # frozen: v2.13.0
+  rev: a6273196190bb0f68caf1dc68073cf62c719f725  # frozen: v2.14.0
   hooks:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 96ee1570b119e6337aafcc2f299bb0d902b68328  # frozen: 0.28.6
+  rev: e2dde74d0702d15f4f43e4f4fb93e301b4bc1e30  # frozen: 0.29.1
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 795e21618889d155bc2f5d50519571419bfecb79  # frozen: 2.1.3
+  rev: 605ba23143facfe85233309cc9826b5b3d0fc528  # frozen: 2.2.1
   hooks:
   - id: pyproject-fmt
 
@@ -81,14 +81,14 @@ repos:
     - ruff>=0.5.0
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 1dc9eb131c2ea4816c708e4d85820d2cc8542683  # frozen: v0.5.0
+  rev: 8b5112a3b2ad121439a2092f8ff548c0d80f2514  # frozen: v0.6.1
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: 6f546f30c2b142ad5b3edcf20e3d27cf1789b932  # frozen: v1.10.1
+  rev: a22ad011a66f01f475842c80a05243a33679422d  # frozen: v1.11.1
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -105,7 +105,7 @@ repos:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: b76c30806bd21902f2a626258adf6664aeec5a41  # frozen: v1.22.9
+  rev: cc99b94246254c1b3dfa6ea6111aa212b814a486  # frozen: v1.23.6
   hooks:
   - id: typos
     args: [--force-exclude]
@@ -117,7 +117,7 @@ repos:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: 4efeb931d635ed3e57749de4326b752b345c8372  # frozen: v3.2.0
+  rev: 8dc49e5ea0cab89785161620aa22a26f263661ca  # frozen: v3.4.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
