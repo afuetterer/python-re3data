@@ -8,12 +8,12 @@ CONTEXT = XmlContext()
 PARSER = XmlParser(context=CONTEXT)
 
 
-@pytest.fixture()
+@pytest.fixture
 def repository_list(repository_list_xml: str) -> RepositoryList:
     return PARSER.from_string(repository_list_xml, RepositoryList)
 
 
-@pytest.fixture()
+@pytest.fixture
 def repository_summary(repository_list: RepositoryList) -> RepositorySummary:
     return repository_list.repository[0]
 

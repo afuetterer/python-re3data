@@ -140,7 +140,7 @@ def test_client_get_single_repository_response(
 
 
 @pytest.mark.default_cassette("repository.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_client_get_invalid_repository_id(client: Client) -> None:
     with pytest.raises(RepositoryNotFoundError):
         client.repositories.get("XXX")
