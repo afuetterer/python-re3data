@@ -277,6 +277,7 @@ format = "ansi"
 [tool.unasyncd] # Ref: https://github.com/provinzkraut/unasyncd?tab=readme-ov-file#configuration
 add_editors_note = true
 ruff_fix = true
+ruff_format = true
 transform_docstrings = true
 
 [tool.unasyncd.files]
