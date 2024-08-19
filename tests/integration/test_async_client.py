@@ -148,7 +148,7 @@ async def test_client_get_single_repository_response(
 
 
 @pytest.mark.default_cassette("repository.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 async def test_client_get_invalid_repository_id(async_client: AsyncClient) -> None:
     with pytest.raises(RepositoryNotFoundError):
         await async_client.repositories.get("XXX")

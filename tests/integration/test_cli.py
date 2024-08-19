@@ -229,7 +229,7 @@ def test_repository_get_with_repository_id_invalid_return_type(zenodo_id: str) -
 
 
 @pytest.mark.default_cassette("repository.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_repository_get_with_invalid_repository_id() -> None:
     result = runner.invoke(app, ["repository", "get", "XXX"])
     assert result.exit_code == 1

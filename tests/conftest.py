@@ -62,14 +62,14 @@ def repository_list_xml() -> str:
         """
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_repository_list_route(respx_mock: MockRouter, repository_list_xml: str) -> Route:
     return respx_mock.get("https://www.re3data.org/api/beta/repositories").mock(
         return_value=httpx.Response(httpx.codes.OK, text=repository_list_xml)
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_repository_list_query_route(respx_mock: MockRouter) -> Route:
     query_result_xml = """<?xml version="1.0" encoding="UTF-8"?>
         <list>
@@ -86,7 +86,7 @@ def mock_repository_list_query_route(respx_mock: MockRouter) -> Route:
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_repository_list_query_empty_list_route(respx_mock: MockRouter) -> Route:
     query_result_xml = '<?xml version="1.0" encoding="UTF-8"?><list></list>'
     return respx_mock.get("https://www.re3data.org/api/beta/repositories?query=XXX").mock(
@@ -283,14 +283,14 @@ def repository_get_xml() -> str:
     return REPOSITORY_GET_XML
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_repository_get_route(respx_mock: MockRouter) -> Route:
     return respx_mock.get("https://www.re3data.org/api/beta/repository/r3d100010468").mock(
         return_value=httpx.Response(httpx.codes.OK, text=REPOSITORY_GET_XML)
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_server_error(respx_mock: MockRouter) -> Route:
     return respx_mock.get("https://www.re3data.org/api/beta/repositories").mock(
         return_value=httpx.Response(httpx.codes.INTERNAL_SERVER_ERROR)
