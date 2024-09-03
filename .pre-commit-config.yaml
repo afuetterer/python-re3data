@@ -45,7 +45,7 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: e2dde74d0702d15f4f43e4f4fb93e301b4bc1e30  # frozen: 0.29.1
+  rev: 5c70e3d884fdbe99af42f2714a444e39f321498d  # frozen: 0.29.2
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
@@ -80,14 +80,14 @@ repos:
     - ruff==0.6.1
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 8b5112a3b2ad121439a2092f8ff548c0d80f2514  # frozen: v0.6.1
+  rev: f1ebc5730d98440041cc43e4d69829ad598ae1e7  # frozen: v0.6.3
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: a22ad011a66f01f475842c80a05243a33679422d  # frozen: v1.11.1
+  rev: d4911cfb7f1010759fde68da196036feeb25b99d  # frozen: v1.11.2
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -99,19 +99,19 @@ repos:
     - xsdata>=24.5
 
 - repo: https://github.com/scientific-python/cookie
-  rev: 28d1a53da26f9daff6d9a49c50260421ad6d05e0  # frozen: 2024.04.23
+  rev: 35368e874265d105e1ca3355df7ef51bbca8eba6  # frozen: 2024.08.19
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: cc99b94246254c1b3dfa6ea6111aa212b814a486  # frozen: v1.23.6
+  rev: d460cbe687712dc14ede616b9eb7cdca08f6fdcd  # frozen: typos-dict-v0.11.27
   hooks:
   - id: typos
     args: [--force-exclude]
     exclude: src/re3data/_resources/repository.py|tests/conftest.py
 
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
-  rev: b2b50f4d40c95b15478279a7a00553a1dc2925ef  # frozen: 2024.2
+  rev: ce61579e4b9bb83d0697f78997a400d7a2554a4f  # frozen: 2024.3
   hooks:
   - id: licensecheck
 
