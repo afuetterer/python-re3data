@@ -16,10 +16,10 @@ Functions:
 
 import logging
 import sys
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 try:
-    import pandas
+    from pandas import json_normalize
 
     PANDAS_INSTALLED = True
 except ImportError:
@@ -30,6 +30,9 @@ from xsdata.formats.dataclass.serializers import DictEncoder, JsonSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from re3data._resources import Repository, RepositorySummary
+
+if TYPE_CHECKING:
+    from pandas import DataFrame
 
 logger = logging.getLogger(__name__)
 CONFIG = SerializerConfig(indent="  ")
@@ -65,7 +68,7 @@ def _to_json(parsed: Repository | list[RepositorySummary]) -> str:
     return JSON_SERIALIZER.render(parsed)
 
 
-def _to_dataframe(parsed: Repository | list[RepositorySummary]) -> pandas.DataFrame:
+def _to_dataframe(parsed: Repository | list[RepositorySummary]) -> DataFrame:
     """Serialize parsed data into a DataFrame.
 
     Args:
@@ -76,7 +79,7 @@ def _to_dataframe(parsed: Repository | list[RepositorySummary]) -> pandas.DataFr
         A DataFrame representation of the input data.
     """
     if PANDAS_INSTALLED:
-        return pandas.json_normalize(_to_dict(parsed))
+        return json_normalize(_to_dict(parsed))
     logger.error("`pandas` is missing. Please run 'pip install python-re3data[csv]'.")
     sys.exit(1)
 
