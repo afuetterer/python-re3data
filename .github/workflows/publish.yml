@@ -55,7 +55,7 @@ jobs:
         name: Packages
         path: dist
     - name: Publish package to PyPI
-      uses: pypa/gh-action-pypi-publish@ec4db0b4ddc65acdf4bff5fa45ac92d78b56bdf0 # v1.9.0
+      uses: pypa/gh-action-pypi-publish@8a08d616893759ef8e1aa1f2785787c0b97e20d6 # v1.10.0
   docker:
     name: Publish Docker image to ghcr.io
     # disables this workflow from running in a repository that is not part of the indicated organization/user
@@ -87,7 +87,7 @@ jobs:
           type=pep440,pattern={{major}}.{{minor}}
     - name: Build and push image to registry
       # Ref: https://github.com/docker/build-push-action?tab=readme-ov-file#customizing
-      uses: docker/build-push-action@5176d81f87c23d6fc96624dfdbcd9f3830bbe445 # v6.5.0
+      uses: docker/build-push-action@5cd11c3a4ced054e52742c5fd54dca954e0edd85 # v6.7.0
       with:
         push: true
         build-args: VERSION=${{ github.event.release.name }}
