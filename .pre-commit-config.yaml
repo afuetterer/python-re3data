@@ -24,7 +24,7 @@ repos:
   - id: check-hooks-apply
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: 2c9f875913ee60ca25ce70243dc24d5b6415598c  # frozen: v4.6.0
+  rev: cef0300fd0fc4d2a87a85fa2093c6b283ea36f4b  # frozen: v5.0.0
   hooks:
   - id: check-merge-conflict
   - id: check-case-conflict
@@ -45,18 +45,18 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 5c70e3d884fdbe99af42f2714a444e39f321498d  # frozen: 0.29.2
+  rev: 37cd56d9d154dfb0648eaee8efc1040512700c47  # frozen: 0.29.4
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 605ba23143facfe85233309cc9826b5b3d0fc528  # frozen: 2.2.1
+  rev: 6b2f3b33754de7a442043dc312fc5a0e473086d2  # frozen: v2.5.0
   hooks:
   - id: pyproject-fmt
 
 - repo: https://github.com/executablebooks/mdformat
-  rev: 08fba30538869a440b5059de90af03e3502e35fb  # frozen: 0.7.17
+  rev: 86542e37a3a40974eb812b16b076220fe9bb4278  # frozen: 0.7.18
   hooks:
   - id: mdformat
     args: [--number, --wrap=120, --ignore-missing-references]
@@ -80,14 +80,14 @@ repos:
     - ruff==0.6.1
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: f1ebc5730d98440041cc43e4d69829ad598ae1e7  # frozen: v0.6.3
+  rev: 6a19e69c83fd6e3a3ffdd5e32a40e35c37b02218  # frozen: v0.7.3
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: d4911cfb7f1010759fde68da196036feeb25b99d  # frozen: v1.11.2
+  rev: f56614daa94d5cd733d3b7004c5df9caad267b4a  # frozen: v1.13.0
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -104,7 +104,7 @@ repos:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: d460cbe687712dc14ede616b9eb7cdca08f6fdcd  # frozen: typos-dict-v0.11.27
+  rev: 1f45ba1bc5bf72a7cef6368fb404d276ab13820a  # frozen: typos-dict-v0.11.35
   hooks:
   - id: typos
     args: [--force-exclude]
@@ -116,7 +116,7 @@ repos:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: 8dc49e5ea0cab89785161620aa22a26f263661ca  # frozen: v3.4.0
+  rev: 48af87c8983cb0f5ba7693448da007b731196715  # frozen: v3.6.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
