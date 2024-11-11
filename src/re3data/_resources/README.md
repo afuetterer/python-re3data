@@ -87,9 +87,7 @@ For instance, a repository with an "updated" value of `""` led to `ConverterWarn
 fully adhere to the schema's expectations.
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<size updated=""/>
-
+<size updated="" />
 ```
 
 ```console
