@@ -92,7 +92,7 @@ def _dispatch_return_type(
 ) -> list[RepositorySummary] | Response | dict[str, Any] | str | int: ...
 
 
-def _dispatch_return_type(
+def _dispatch_return_type(  # noqa: PLR0911
     response: Response, resource_type: ResourceType, return_type: ReturnType, count: bool = False
 ) -> Repository | list[RepositorySummary] | Response | dict[str, Any] | str | int:
     """Dispatch the response to the correct return type based on the provided return type and resource type.

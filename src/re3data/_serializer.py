@@ -31,10 +31,10 @@ from xsdata.formats.dataclass.context import XmlContext
 from xsdata.formats.dataclass.serializers import DictEncoder, JsonSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
-from re3data._resources import Repository, RepositorySummary
-
 if TYPE_CHECKING:
     from pandas import DataFrame
+
+    from re3data._resources import Repository, RepositorySummary
 
 logger = logging.getLogger(__name__)
 CONFIG = SerializerConfig(indent="  ")
