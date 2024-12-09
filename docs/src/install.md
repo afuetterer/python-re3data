@@ -114,10 +114,10 @@ python -m pip install .
 
 `python-re3data` requires the following dependencies:
 
-| Package                                   | Version | Description                                                                                                    |
-| ----------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
-| [httpx](https://github.com/encode/httpx)  | >= 0.27 | A modern and efficient HTTP client library, handles all API interactions.                                      |
-| [xsdata](https://github.com/tefra/xsdata) | >= 24.5 | A powerful tool for generating Python dataclasses from XML    schemas, simplifies processing of API responses. |
+| Package                                   | Version | Description                                                                                                 |
+| ----------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------- |
+| [httpx](https://github.com/encode/httpx)  | >= 0.27 | A modern and efficient HTTP client library, handles all API interactions.                                   |
+| [xsdata](https://github.com/tefra/xsdata) | >= 24.5 | A powerful tool for generating Python dataclasses from XML schemas, simplifies processing of API responses. |
 
 ### Optional dependencies
 

@@ -45,7 +45,7 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 37cd56d9d154dfb0648eaee8efc1040512700c47  # frozen: 0.29.4
+  rev: cb3c2be894b151dff143b1baf6acbd55f2b7faed  # frozen: 0.30.0
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
@@ -56,7 +56,7 @@ repos:
   - id: pyproject-fmt
 
 - repo: https://github.com/executablebooks/mdformat
-  rev: 86542e37a3a40974eb812b16b076220fe9bb4278  # frozen: 0.7.18
+  rev: 00812cd1850e41aae5c0916645b4b7404f538e8c  # frozen: 0.7.19
   hooks:
   - id: mdformat
     args: [--number, --wrap=120, --ignore-missing-references]
@@ -80,7 +80,7 @@ repos:
     - ruff==0.6.1
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 6a19e69c83fd6e3a3ffdd5e32a40e35c37b02218  # frozen: v0.7.3
+  rev: 8b76f04e7e5a9cd259e9d1db7799599355f97cdf  # frozen: v0.8.2
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
@@ -105,7 +105,7 @@ repos:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: 1f45ba1bc5bf72a7cef6368fb404d276ab13820a  # frozen: typos-dict-v0.11.35
+  rev: 1ea1ce4bc91a240102189742ddac7480304b52b1  # frozen: typos-dict-v0.11.37
   hooks:
   - id: typos
     args: [--force-exclude]
