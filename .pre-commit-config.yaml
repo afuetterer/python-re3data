@@ -92,6 +92,7 @@ repos:
   - id: mypy
     args: [--config-file=pyproject.toml]
     additional_dependencies:
+    - orjson # Ref: https://github.com/python/mypy/blob/v1.13.0/CHANGELOG.md#improved-performance
     - httpx>=0.27
     - pytest>=8.2
     - respx>=0.21
