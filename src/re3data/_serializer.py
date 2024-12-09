@@ -14,6 +14,8 @@ Functions:
     _to_csv: Serialize parsed data into a CSV string.
 """
 
+from __future__ import annotations
+
 import logging
 import sys
 from typing import TYPE_CHECKING, Any
