@@ -33,7 +33,7 @@ jobs:
         fetch-depth: 0 # get all commits and tags
         token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
     - name: Create semantic release
-      uses: python-semantic-release/python-semantic-release@825655a47c9f7496f99ab144d28c424d40333a8a # v9.14.0
+      uses: python-semantic-release/python-semantic-release@a3233795eb26b6d5167192ffd4550947d764a9b0 # v9.15.1
       with:
         # allows for python-semantic-release to push to protected main branch
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
