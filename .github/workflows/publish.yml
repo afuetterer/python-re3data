@@ -14,14 +14,9 @@ jobs:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
     runs-on: ubuntu-24.04
-    permissions:
-      attestations: write
-      id-token: write
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - uses: hynek/build-and-inspect-python-package@f01e4d047aadcc0c054c95ec9900da3ec3fc7a0f # v2.10.0
-      with:
-        attest-build-provenance-github: 'true'
   upload:
     name: Upload package distributions to GitHub Releases
     # disables this workflow from running in a repository that is not part of the indicated organization/user
@@ -56,6 +51,9 @@ jobs:
         path: dist
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@15c56dba361d8335944d31a2ecd17d700fc7bcbc # v1.12.2
+      with:
+        attestations: true
+
   docker:
     name: Publish Docker image to ghcr.io
     # disables this workflow from running in a repository that is not part of the indicated organization/user
