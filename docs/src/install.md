@@ -40,7 +40,7 @@ For more details, see [Optional Dependencies](#optional-dependencies).
     Install the project and its dependencies:
 
     ```bash
-    uv pip install python-re3data
+    uv add python-re3data
     ```
 
 ## Pulling the Docker Image
