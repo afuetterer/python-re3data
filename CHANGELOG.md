@@ -5,14 +5,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
-## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.9.0...main)
+## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.10.0...main)
+
+## [0.10.0](https://github.com/afuetterer/python-re3data/compare/0.9.0...0.10.0) (2024-12-11)
+
+### Documentation
+
+- update uv installation instructions (#227) ([`d83fe84`](https://github.com/afuetterer/python-re3data/commit/d83fe8488568ab2632ecde299da9447d680d2bee))
 
 ## [0.9.0](https://github.com/afuetterer/python-re3data/compare/0.8.0...0.9.0) (2024-07-06)
-
-### Features
-
-- **cli:** add --outfile option for saving results to disk (#166) ([`1e689e8`](https://github.com/afuetterer/python-re3data/commit/1e689e850b6f5c117887eb1938b1a336422e5418))
-- **client:** add repository counting (#158) ([`c1cba53`](https://github.com/afuetterer/python-re3data/commit/c1cba53a408505c673de2aa8b4f6caddcb91cadd))
 
 ### Documentation
 
@@ -21,22 +22,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [0.8.0](https://github.com/afuetterer/python-re3data/compare/0.7.0...0.8.0) (2024-07-03)
 
-### Features
-
-- add return_type json (#156) ([`f948d6b`](https://github.com/afuetterer/python-re3data/commit/f948d6bef533314327394dbaa250a8518af6b248))
-- add return_type dict (#153) ([`5894329`](https://github.com/afuetterer/python-re3data/commit/5894329ed52fb014ca4d08a0941e71a66146d446))
-
 ## [0.7.0](https://github.com/afuetterer/python-re3data/compare/0.6.0...0.7.0) (2024-07-03)
 
-### Features
-
-- add repository filtering based on query string (#152) ([`713d4d1`](https://github.com/afuetterer/python-re3data/commit/713d4d1cd581426a95fd8d6a84f5fa4f4fff1564))
-
 ## [0.6.0](https://github.com/afuetterer/python-re3data/compare/0.5.0...0.6.0) (2024-07-02)
-
-### Features
-
-- add async client (#139) ([`b0c4a48`](https://github.com/afuetterer/python-re3data/commit/b0c4a48b03bc42bec194f4b6c8aa4f1f54d75231))
 
 ### Documentation
 
@@ -45,34 +33,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [0.5.0](https://github.com/afuetterer/python-re3data/compare/0.4.0...0.5.0) (2024-06-05)
 
-### Breaking Changes
-
-- set up resources (#109) ([`0d766d2`](https://github.com/afuetterer/python-re3data/commit/0d766d24f46d6ec9182ac89a743ed5fa88b6a274))
-
-### Features
-
-- **cli:** add print_error function to highlight errors in console (#123) ([`f242b10`](https://github.com/afuetterer/python-re3data/commit/f242b1050ab4d6c8b34874e10e170463a59cab10))
-- add cli parameters for return_type selection (#113) ([`15668bc`](https://github.com/afuetterer/python-re3data/commit/15668bc833cc147b4c30fc0a096526ef0be8cb46))
-- set up custom exceptions (#108) ([`a2fa099`](https://github.com/afuetterer/python-re3data/commit/a2fa099f41114ed50f8a9a64a7530cbe23d65a79))
-
-### Code Refactoring
-
-- **cli:** use rich.console instead of rich.print (#122) ([`a4efea0`](https://github.com/afuetterer/python-re3data/commit/a4efea0d222779642e440a6b486f17235856e721))
-- add is_eager argument to version_callback (#106) ([`eab6579`](https://github.com/afuetterer/python-re3data/commit/eab6579d3205e98b0bba4a70e3666008ade60795))
-
-### Testing
-
-- add respx mock route for /repository{id} endpoint (#114) ([`070bbf6`](https://github.com/afuetterer/python-re3data/commit/070bbf67f219a5deb04b3fbaf41ac0845553c76e))
-
 ## [0.4.0](https://github.com/afuetterer/python-re3data/compare/0.3.0...0.4.0) (2024-05-28)
-
-### Features
-
-- set up dockerfile (#87) ([`75d85b5`](https://github.com/afuetterer/python-re3data/commit/75d85b5ef08b6ffbda6baddd87da005d1f0481d7))
-
-### Code Refactoring
-
-- **client:** move guard clause to top of _request method (#78) ([`f3eef8b`](https://github.com/afuetterer/python-re3data/commit/f3eef8b7b4316c45a56481e68e1683855c116e35))
 
 ### Documentation
 
@@ -82,24 +43,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [0.3.0](https://github.com/afuetterer/python-re3data/compare/0.2.0...0.3.0) (2024-05-26)
 
-### Features
-
-- **cli:** set up repository list and get commands (#76) ([`44987e6`](https://github.com/afuetterer/python-re3data/commit/44987e6ba20f51181dbea2c2d3794a3a96ddf6a5))
-
-### Testing
-
-- add respx mock route for /repositories endpoint (#75) ([`59f7d58`](https://github.com/afuetterer/python-re3data/commit/59f7d58e65d91575c571e6bbea51957900424fdc))
-- set up zenodo_id fixture for re-use (#72) ([`e926c07`](https://github.com/afuetterer/python-re3data/commit/e926c07419f2720d7d3f9c97f01285e52a52863e))
-
 ### Documentation
 
 - add doi to citation.cff and badge to readme (#66) ([`2fde7ee`](https://github.com/afuetterer/python-re3data/commit/2fde7ee3e2afa7c1dbbd44bf26c8e918d6e79396))
 
 ## [0.2.0](https://github.com/afuetterer/python-re3data/compare/0.1.0...0.2.0) (2024-05-23)
-
-### Features
-
-- set up client (#64) ([`62300bc`](https://github.com/afuetterer/python-re3data/commit/62300bcf2fa2dd7f1a4c8bbaf7b7ae6bab4e9e77))
 
 ### Documentation
 
@@ -110,10 +58,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - **readme:** add pypi badges (#37) ([`f4b31a9`](https://github.com/afuetterer/python-re3data/commit/f4b31a92c2c2cc9db6c7ee484abf3e8ba6a02860))
 
 ## 0.1.0 (2024-05-20)
-
-### Features
-
-- add initial cli (#32) ([`0b5b2c4`](https://github.com/afuetterer/python-re3data/commit/0b5b2c4a855656196d0c502de93752c780be6c40))
 
 ### Documentation
 
