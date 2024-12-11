@@ -22,8 +22,9 @@ from re3data._exceptions import RepositoryNotFoundError
 from re3data._response import Response, _build_response
 
 if TYPE_CHECKING:
-    from re3data._resources import Repository, RepositorySummary
+    from pandas import DataFrame
 
+    from re3data._resources import Repository, RepositorySummary
 logger = logging.getLogger(__name__)
 
 
@@ -59,7 +60,7 @@ class AsyncRepositoryManager:
         query: str | None = None,
         return_type: ReturnType = ReturnType.DATACLASS,
         count: bool = False,
-    ) -> list[RepositorySummary] | Response | dict[str, Any] | str | int:
+    ) -> list[RepositorySummary] | Response | dict[str, Any] | DataFrame | str | int:
         """List the metadata of all repositories in the re3data API.
 
         Args:
@@ -83,7 +84,7 @@ class AsyncRepositoryManager:
 
     async def get(
         self, repository_id: str, return_type: ReturnType = ReturnType.DATACLASS
-    ) -> Repository | Response | dict[str, Any] | str:
+    ) -> Repository | Response | dict[str, Any] | DataFrame | str:
         """Get the metadata of a specific repository.
 
         Args:
