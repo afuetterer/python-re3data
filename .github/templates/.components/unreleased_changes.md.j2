@@ -1,0 +1,18 @@
+{#
+
+This template is adapted from:
+"python-semantic-release" (MIT License)
+https://github.com/python-semantic-release/python-semantic-release/blob/v9.17.0/src/semantic_release/data/templates/angular/md/.components/unreleased_changes.md.j2
+
+#}{#
+
+We just display a comparison url from the last release to the main branch, e.g.
+
+## [Unreleased](https://github.com/afuetterer/python-re3data/compare/0.10.0...main)
+
+#}{%  set version_tag = releases[0].version.as_tag()
+%}{%  set version_comparison_url = version_tag | compare_url("main")
+-%}
+## [Unreleased]({{ version_comparison_url }})
+{{    "\n"
+}}

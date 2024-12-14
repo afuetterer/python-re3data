@@ -1,0 +1,27 @@
+{#
+
+This template is adapted from:
+"python-semantic-release" (MIT License)
+https://github.com/python-semantic-release/python-semantic-release/blob/v9.17.0/src/semantic_release/data/templates/angular/md/.components/versioned_changes.md.j2
+
+#}{#
+## vX.X.X (YYYY-MMM-DD)
+
+#}{%  set curr_release_index = releases.index(release)
+%}{%  set prev_release_index = curr_release_index + 1
+%}{%  if 'compare_url' is filter and prev_release_index < releases | length
+%}{%    set prev_version_tag = releases[prev_release_index].version.as_tag()
+%}{%    set new_version_tag = release.version.as_tag()
+%}{%    set version_comparison_url = prev_version_tag | compare_url(new_version_tag)
+%}{%  endif
+-%}
+{{
+      "## [%s](%s) (%s)" | format(
+        release.version.as_tag(),
+        version_comparison_url,
+        release.tagged_date.strftime("%Y-%m-%d"),
+      )
+}}{%  set commit_objects = release["elements"]
+%}
+{%  include "changes.md.j2"
+-%}
