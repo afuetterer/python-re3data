@@ -11,6 +11,7 @@ python -m pip install python-re3data
 This will automatically install compatible versions of all dependencies, including `httpx` and `xsdata`.
 
 !!! note
+
     It is highly recommended creating a virtual environment before installing the project. This will help keep your
     dependencies isolated and prevent conflicts with other projects. You can use `venv` to create and manage virtual
     environments.
@@ -29,6 +30,7 @@ For more details, see [Optional Dependencies](#optional-dependencies).
 - Python 3.10 or higher installed on your machine
 
 !!! tip "Alternative: Use uv instead of pip"
+
     [uv](https://github.com/astral-sh/uv)[^1] is a fast Python package installer and resolver, written in Rust.
 
     Create a virtual environment in the current directory:
@@ -52,6 +54,7 @@ docker pull ghcr.io/afuetterer/python-re3data:latest
 ```
 
 !!! note
+
     The optional `[cli]` dependency group is pre-installed in the Docker image and the `re3data` executable is provided as
     an entry point.
 
@@ -63,6 +66,7 @@ $ docker run --rm afuetterer/python-re3data --version
 ```
 
 !!! tip "Alternative: Use Podman instead of Docker"
+
     [Podman](https://podman.io/) is an open-source containerization platform that allows you to create, run, and manage
     Linux containers.
 
