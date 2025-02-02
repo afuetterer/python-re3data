@@ -20,8 +20,8 @@ The return types are based on the original XML responses from the API, with addi
 - [x] Response object
 - [x] Dictionary
 - [x] JSON (str)
-- [ ] CSV (str)
-- [ ] Pandas DataFrame
+- [x] CSV (str)
+- [x] Pandas DataFrame
 
 <!---
 This features page is adapted from:
