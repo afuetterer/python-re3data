@@ -45,6 +45,14 @@ For more details, see [Optional Dependencies](#optional-dependencies).
     uv add python-re3data
     ```
 
+    Alternatively you can use [uvx](https://docs.astral.sh/uv/guides/tools/#running-tools) to invoke the CLI without
+    installing it.
+
+    ```bash
+    $ uvx --from "python-re3data[cli]" re3data --version
+    0.10.0
+    ```
+
 ## Pulling the Docker Image
 
 Pull the official image from [GHCR](https://github.com/afuetterer/python-re3data/pkgs/container/python-re3data):
