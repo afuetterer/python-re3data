@@ -1,0 +1,15 @@
+{# Ref: https://github.com/python-semantic-release/python-semantic-release/issues/1122#issuecomment-2542518505
+
+The types in the section header order corresponds to the ones defined in
+PSR's angular commit parser:
+https://github.com/python-semantic-release/python-semantic-release/blob/7b3f71697ccfbaef884e1e754b6364e974b134cf/src/semantic_release/commit_parser/angular.py#L46
+
+#}
+{% set section_heading_order = [
+    "features",
+    "bug fixes",
+    "performance improvements",
+    "refactoring",
+    "testing",
+    "documentation",
+] %}

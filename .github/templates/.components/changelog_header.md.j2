@@ -1,0 +1,20 @@
+{#
+
+This template is adapted from:
+"python-semantic-release" (MIT License)
+https://github.com/python-semantic-release/python-semantic-release/blob/v9.17.0/src/semantic_release/data/templates/angular/md/.components/changelog_header.md.j2
+
+#}
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
+[conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
+{%    if ctx.changelog_mode == "update"
+%}{#  # IMPORTANT: add insertion flag for next version update
+#}{{
+        insertion_flag ~ "\n"
+
+}}{%  endif
+%}

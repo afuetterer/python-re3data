@@ -304,13 +304,17 @@ tag_format = "{version}"
 version_variables = [
   "src/re3data/__about__.py:__version__",
 ]
-build_command = """
+build_command = '''
 sed -i "s/^version: .*/version: $NEW_VERSION/" CITATION.cff
 sed -i "s/^date-released: .*/date-released: $(date "+%Y-%m-%d")/" CITATION.cff
-git add CITATION.cff
-"""
+sed -i "s|/compare/[0-9]*\.[0-9]*\.[0-9]*...main|/compare/$NEW_VERSION...main|" CHANGELOG.md
+git add CHANGELOG.md CITATION.cff
+'''
+changelog.mode = "update"
+changelog.insertion_flag = "<!-- releases -->"
 changelog.template_dir = ".github/templates"
-changelog.environment.keep_trailing_newline = true
+changelog.exclude_commit_patterns = [ "^build", "^chore", "^style", "^ci" ]
+changelog.environment.keep_trailing_newline = false
 
 [tool.typos] # Ref: https://github.com/crate-ci/typos/blob/master/docs/reference.md
 # add "spellchecker:disable-line" to ignore specific lines
