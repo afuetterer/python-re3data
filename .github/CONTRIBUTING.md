@@ -45,18 +45,10 @@ If you are proposing a feature:
 
 Ready to contribute?
 
-You need Python >= 3.10 and [hatch](https://github.com/pypa/hatch). You can install it globally with
-[pipx](https://github.com/pypa/pipx):
-
-```console
-$ pipx install hatch
-```
-
-or locally with (this will install it in the local virtual environment):
-
-```console
-$ python -m pip install hatch
-```
+You need Python >= 3.10 and [uv](https://github.com/astral-sh/uv). Please refer to the
+[installation instructions](https://docs.astral.sh/uv/getting-started/installation/) in the `uv` documentation. For
+convenience in running project tasks, we recommend using the `just` command runner. See the documentation for
+[installation instructions](https://github.com/casey/just#installation).
 
 Here's how to set up `python-re3data` for local development.
 
@@ -68,12 +60,12 @@ Here's how to set up `python-re3data` for local development.
     $ git clone git@github.com:username/python-re3data.git
     ```
 
-3. Install your local copy into a virtual environment. Assuming you have hatch installed, this is how you set up your
+3. Install your local copy into a virtual environment. Assuming you have `uv` installed, this is how you set up your
     fork for local development:
 
     ```console
     $ cd python-re3data
-    $ hatch shell
+    $ uv sync --frozen
     ```
 
 4. Create a branch for local development:
@@ -84,11 +76,11 @@ Here's how to set up `python-re3data` for local development.
 
     Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass pre-commit and the tests:
+5. When you're done making changes, check that your changes pass `pre-commit` and the tests:
 
     ```console
-    $ hatch run check
-    $ hatch run cov
+    $ just check
+    $ just cov
     ```
 
 6. Commit your changes and push your branch to GitHub:
