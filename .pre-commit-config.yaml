@@ -45,7 +45,7 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: cb3c2be894b151dff143b1baf6acbd55f2b7faed  # frozen: 0.30.0
+  rev: a20fe80ebdd4aec6791598c9ff559985580f91ea  # frozen: 0.31.1
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
@@ -56,7 +56,7 @@ repos:
   - id: pyproject-fmt
 
 - repo: https://github.com/executablebooks/mdformat
-  rev: 00812cd1850e41aae5c0916645b4b7404f538e8c  # frozen: 0.7.19
+  rev: ff29be1a1ba8029d9375882aa2c812b62112a593  # frozen: 0.7.22
   hooks:
   - id: mdformat
     args: [--number, --wrap=120, --ignore-missing-references]
@@ -80,14 +80,14 @@ repos:
     - ruff==0.6.1
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 8b76f04e7e5a9cd259e9d1db7799599355f97cdf  # frozen: v0.8.2
+  rev: 871f3bcae4fe473cd7109c3a068db975dc035e3b  # frozen: v0.9.4
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: f56614daa94d5cd733d3b7004c5df9caad267b4a  # frozen: v1.13.0
+  rev: bbc3dc1f890007061f18f17e2334f216ea9e5df7  # frozen: v1.14.1
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -101,12 +101,12 @@ repos:
     - xsdata>=24.5
 
 - repo: https://github.com/scientific-python/cookie
-  rev: 35368e874265d105e1ca3355df7ef51bbca8eba6  # frozen: 2024.08.19
+  rev: f801700e5a8beb2f42e63d752d7116aa4dbaa0f1  # frozen: 2025.01.22
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: 1ea1ce4bc91a240102189742ddac7480304b52b1  # frozen: typos-dict-v0.11.37
+  rev: e59f226fadcb05a1440bd8b35ee994a9d21bf03b  # frozen: typos-dict-v0.12.4
   hooks:
   - id: typos
     args: [--force-exclude]
@@ -118,7 +118,7 @@ repos:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: 48af87c8983cb0f5ba7693448da007b731196715  # frozen: v3.6.0
+  rev: 4394e2e7ab54549ad3f61cd32ae044710f885d12  # frozen: v4.0.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
