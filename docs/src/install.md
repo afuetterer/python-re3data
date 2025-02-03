@@ -149,6 +149,10 @@ Install with `python -m pip install "python-re3data[csv]"`.
 | ---------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
 | [pandas](https://github.com/pandas-dev/pandas) | >= 2.0  | A powerful and flexible data analysis library, enables generation of DataFrames and CSV files from parsed XML responses. |
 
+#### All
+
+Install all available optional dependencies from above, with `python -m pip install "python-re3data[all]"`.
+
 <!---
 This installation guide is adapted from these sources:
 - "pandas" Installation, https://pandas.pydata.org/docs/getting_started/install.html (BSD-3-Clause license)
