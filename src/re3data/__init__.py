@@ -4,7 +4,10 @@
 
 """python-re3data."""
 
-from re3data.__about__ import __version__
+from importlib.metadata import version
+
+__version__: str = version("python-re3data")
+
 from re3data._client import AsyncClient, Client, ReturnType
 from re3data._exceptions import Re3dataError, RepositoryNotFoundError
 from re3data._resources import Re3Data, Repository, RepositoryList, RepositorySummary
