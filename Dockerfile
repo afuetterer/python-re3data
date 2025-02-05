@@ -19,7 +19,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # ----------------------------
 FROM base AS build
 
-ENV BUILD_VERSION=1.2.1
+ENV BUILD_VERSION=1.2.2
 
 WORKDIR /app
 
