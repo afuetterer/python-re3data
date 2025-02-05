@@ -8,6 +8,9 @@ on:
 # Set permissions at the job level.
 permissions: {}
 
+env:
+  UV_FROZEN: true # do not update the lockfile during `uv sync` and `uv run` commands
+
 jobs:
   build:
     name: Build the package
@@ -17,6 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - uses: hynek/build-and-inspect-python-package@b5076c307dc91924a82ad150cdd1533b444d3310 # v2.12.0
+
   upload:
     name: Upload package distributions to GitHub Releases
     # disables this workflow from running in a repository that is not part of the indicated organization/user
@@ -35,6 +39,7 @@ jobs:
       uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
       with:
         files: dist/*
+
   publish:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
@@ -95,3 +100,28 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         # Ref: https://docs.docker.com/build/attestations/slsa-provenance/
         provenance: false
+
+  docs:
+    # disables this workflow from running in a repository that is not part of the indicated organization/user
+    if: github.repository_owner == 'afuetterer'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+    - name: Set up just
+      uses: extractions/setup-just@v2
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      with:
+        fetch-depth: 0 # fetch all commits and branches
+    - name: Set up uv
+      uses: astral-sh/setup-uv@4db96194c378173c656ce18a155ffc14a9fc4355 # v5.2.2
+      with:
+        python-version: '3.13'
+        enable-cache: true
+        prune-cache: false
+        cache-suffix: docs
+    - run: just sync-docs
+    - run: just docs-deploy
+      env:
+        GIT_COMMITTER_NAME: github-actions[bot]
+        GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com

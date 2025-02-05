@@ -9,6 +9,7 @@ permissions: {}
 env:
   PYTHONUNBUFFERED: 1
   FORCE_COLOR: 1
+  UV_FROZEN: true # do not update the lockfile during `uv sync` and `uv run` commands
 
 jobs:
   test:
@@ -18,23 +19,26 @@ jobs:
       matrix:
         python-version: ['3.10', '3.12', '3.13']
     steps:
+    - name: Set up just
+      uses: extractions/setup-just@v2
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0
+    - name: Set up uv
+      uses: astral-sh/setup-uv@4db96194c378173c656ce18a155ffc14a9fc4355 # v5.2.2
       with:
         python-version: ${{ matrix.python-version }}
-        cache: pip
-    - name: Install pre-requisites (e.g. hatch)
-      run: python -m pip install --require-hashes --requirement=requirements/ci
+        enable-cache: true
+        prune-cache: false
+    - name: Install project, including dev dependencies
+      run: just sync
     - name: Run test suite
-      run: hatch run cov
+      run: just cov
       env:
         TERM: dumb # keep rich from printing escape sequences, which made testing CLI outputs messy
     - name: Generate coverage report
       run: |
         export TOTAL_COV=$(hatch run cov-total)
         echo "TOTAL_COV=$TOTAL_COV" >> $GITHUB_ENV
-        hatch run cov-report-markdown
+        just cov-report-markdown
         echo "### Total coverage: ${TOTAL_COV}%" >> $GITHUB_STEP_SUMMARY
         cat coverage.md >> $GITHUB_STEP_SUMMARY
       if: matrix.python-version == '3.13'
@@ -66,17 +70,18 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
+    - name: Set up just
+      uses: extractions/setup-just@v2
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-    - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0
+    - name: Set up uv
+      uses: astral-sh/setup-uv@4db96194c378173c656ce18a155ffc14a9fc4355 # v5.2.2
       with:
         python-version: '3.13'
-        cache: pip
-    - run: python -Im pip install --editable .[dev]
+        enable-cache: true
+        prune-cache: false
+    - run: just sync
     - run: python -Ic 'import re3data; print(re3data.__version__)'
     - run: re3data --version
-    - name: Set up pipdeptree
-      if: matrix.os == 'ubuntu-latest'
-      run: python -m pip install --require-hashes --requirement=requirements/ci
     - name: Write info to step summary
       if: matrix.os == 'ubuntu-latest'
       run: |
@@ -84,13 +89,13 @@ jobs:
           echo -e "### ✓ All dependencies installed successfully\n\n"
           echo '<details><summary>Installed Python packages (dependency tree)</summary>'
           echo -e "\n\`\`\`console"
-          echo "$ uv pip tree --package=python-re3data"
-          uv pip tree --package=python-re3data
+          echo "$ uv tree --no-group={dev,test}"
+          uv tree --no-group={dev,test}
           echo -e "\`\`\`\n</details>"
           echo '<details><summary>Outdated Python packages</summary>'
           echo -e "\n\`\`\`console"
-          echo "$ python -m pip list --outdated"
-          python -m pip list --outdated
+          echo "$ uv pip list --outdated"
+          uv pip list --outdated
           echo -e "\`\`\`\n</details>"
         } >> $GITHUB_STEP_SUMMARY
 
@@ -107,11 +112,14 @@ jobs:
     env:
       NO_COLOR: 1
     steps:
+    - name: Set up just
+      uses: extractions/setup-just@v2
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-    - uses: astral-sh/setup-uv@4db96194c378173c656ce18a155ffc14a9fc4355 # v5.2.2
+    - name: Set up uv
+      uses: astral-sh/setup-uv@4db96194c378173c656ce18a155ffc14a9fc4355 # v5.2.2
     - name: Get package version
       id: package-version
-      run: echo "version=$(uvx hatch version)" >> $GITHUB_OUTPUT
+      run: echo "version=$(just project-version)" >> $GITHUB_OUTPUT
     - uses: docker/setup-buildx-action@6524bf65af31da8d45b59e8c27de4bd072b392f5 # v3.8.0
     - name: Build and push
       uses: docker/build-push-action@ca877d9245402d1537745e0e356eab47c3520991 # v6.13.0

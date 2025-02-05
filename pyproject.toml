@@ -53,33 +53,36 @@ optional-dependencies.cli = [
 optional-dependencies.csv = [
   "pandas>=2",
 ]
-optional-dependencies.dev = [
-  "pre-commit-uv~=4.1",
-  "python-re3data[all]",
-]
-optional-dependencies.docs = [
-  "mike~=2.1",
-  "mkdocs~=1.6",
-  "mkdocs-include-markdown-plugin~=7.0",
-  "mkdocs-material~=9.5",
-  "mkdocs-minify-plugin~=0.7",
-  "mkdocstrings[python]~=0.25",
-]
-optional-dependencies.test = [
-  "pytest~=8.2",
-  "pytest-asyncio~=0.23",
-  "pytest-cov~=6.0",
-  "pytest-mock~=3.14",
-  "pytest-randomly~=3.15",
-  "pytest-recording~=0.13",
-  "pytest-xdist~=3.6",
-  "respx~=0.22",
-]
 urls.Changelog = "https://github.com/afuetterer/python-re3data/blob/main/CHANGELOG.md"
 urls.Documentation = "https://afuetterer.github.io/python-re3data"
 urls.Issues = "https://github.com/afuetterer/python-re3data/issues"
 urls.Repository = "https://github.com/afuetterer/python-re3data.git"
 scripts.re3data = "re3data.__main__:app"
+
+[dependency-groups]
+dev = [
+  "pre-commit-uv",
+  "python-re3data[all]",
+  "toml-cli",
+]
+test = [
+  "pytest",
+  "pytest-asyncio",
+  "pytest-cov",
+  "pytest-mock",
+  "pytest-randomly",
+  "pytest-recording",
+  "pytest-xdist",
+  "respx",
+]
+docs = [
+  "mike",
+  "mkdocs",
+  "mkdocs-include-markdown-plugin",
+  "mkdocs-material",
+  "mkdocs-minify-plugin",
+  "mkdocstrings[python]",
+]
 
 [tool.hatch.build.targets.sdist]
 only-include = [
@@ -95,66 +98,6 @@ only-packages = true
 packages = [
   "src/re3data",
 ]
-
-[tool.hatch.env]
-requires = [
-  "hatch-pip-compile",
-]
-
-[tool.hatch.envs.default]
-installer = "uv"
-features = [
-  "dev",
-  "test",
-]
-post-install-commands = [
-  "pre-commit install",
-]
-[tool.hatch.envs.default.scripts]
-check = [
-  "lint",
-  "typecheck",
-]
-lint = "SKIP=mypy pre-commit run --all-files --color=always --show-diff-on-failure"
-typecheck = "pre-commit run --all-files --color=always --show-diff-on-failure mypy"
-test = "pytest {args:tests}"
-cov = "pytest --cov {args:src}"
-cov-report-markdown = "python -m coverage report --format=markdown {args:>coverage.md}"
-cov-total = """
-  python -m coverage json --quiet
-  python -c "import json;print(json.load(open('coverage.json'))['totals']['percent_covered_display'])"
-"""
-
-[tool.hatch.envs.ci]
-dependencies = [
-  "build[uv]",
-  "hatch",
-  "pip",
-]
-detached = true # ignore the project installation itself
-type = "pip-compile"
-pip-compile-hashes = true
-pip-compile-installer = "uv"
-pip-compile-resolver = "uv"
-lock-filename = "requirements/{env_name}" # no .txt suffix, otherwise Dependabot will update this file as well
-
-[tool.hatch.envs.docs]
-features = [
-  "cli",
-  "docs",
-]
-template = "docs"
-type = "pip-compile"
-pip-compile-hashes = true
-pip-compile-installer = "uv"
-pip-compile-resolver = "uv"
-lock-filename = "requirements/{env_name}" # no .txt suffix, otherwise Dependabot will update this file as well
-
-[tool.hatch.envs.docs.scripts]
-cli = "typer src/re3data/_cli.py utils docs --name=re3data --title='Command Line Interface' --output docs/src/cli.md"
-build = "mkdocs build --config-file=docs/mkdocs.yml"
-serve = "mkdocs serve --verbose --config-file=docs/mkdocs.yml"
-deploy = "mike deploy --push --update-aliases $(hatch version) latest --config-file=docs/mkdocs.yml"
 
 [tool.ruff] # Ref: https://docs.astral.sh/ruff/configuration/
 line-length = 120
@@ -216,6 +159,7 @@ ignore = [
   "PC160", # codespell
   "PC170", # pygrep hooks
   "PC180", # prettier
+  "PY007", # supports an easy task runner - we use "just"
   "RTD",   # read the docs
 ]
 
@@ -267,6 +211,9 @@ enable_error_code = [
   "truthy-bool",
 ]
 warn_unreachable = true
+
+[tool.uv]
+default-groups = [ "dev", "test" ]
 
 [tool.licensecheck] # Ref: https://github.com/FHPythonUtils/LicenseCheck/#example-1-pyprojecttoml
 using = "PEP631"
