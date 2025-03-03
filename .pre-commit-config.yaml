@@ -45,13 +45,13 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: a20fe80ebdd4aec6791598c9ff559985580f91ea  # frozen: 0.31.1
+  rev: 828a213a1dd17aa9862aab706e3162c13281ff93  # frozen: 0.31.2
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 6b2f3b33754de7a442043dc312fc5a0e473086d2  # frozen: v2.5.0
+  rev: 57b6ff7bf72affdd12c7f3fd6de761ba18a33b3a  # frozen: v2.5.1
   hooks:
   - id: pyproject-fmt
 
@@ -80,14 +80,14 @@ repos:
     - ruff==0.6.1
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 871f3bcae4fe473cd7109c3a068db975dc035e3b  # frozen: v0.9.4
+  rev: 2c8dce6094fa2b4b668e74f694ca63ceffd38614  # frozen: v0.9.9
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: bbc3dc1f890007061f18f17e2334f216ea9e5df7  # frozen: v1.14.1
+  rev: f40886d54c729f533f864ed6ce584e920feb0af7  # frozen: v1.15.0
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -106,7 +106,7 @@ repos:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: e59f226fadcb05a1440bd8b35ee994a9d21bf03b  # frozen: typos-dict-v0.12.4
+  rev: 9a11895dc3c5e1f4123ec841d08182d704593f6d  # frozen: v1.30.0
   hooks:
   - id: typos
     args: [--force-exclude]
