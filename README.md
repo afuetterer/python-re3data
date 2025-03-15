@@ -7,7 +7,6 @@
 
 | __CI__      | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow]                                                                                      |
 | :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| __Docs__    | [![docs][docs-badge]][docs-workflow]                                                                                                                                                                                                                                           |
 | __Package__ | [![pypi-status][status-badge]][pypi-url] [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
 | __Meta__    | [![doi][doi-badge]][doi-url] [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![uv][uv-badge]][uv] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license-url]                                                                     |
 
@@ -108,9 +107,7 @@ There are a couple of similar projects available on GitHub, e.g. via the topic
 [codeql-badge]: https://github.com/afuetterer/python-re3data/actions/workflows/codeql.yml/badge.svg
 [codeql-workflow]: https://github.com/afuetterer/python-re3data/actions/workflows/codeql.yml
 [coverage-badge]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/afuetterer/adc66df152c473c1aa136557ee8181ca/raw/coverage-badge.json
-[docs-badge]: https://github.com/afuetterer/python-re3data/actions/workflows/docs.yml/badge.svg
 [docs-url]: https://afuetterer.github.io/python-re3data
-[docs-workflow]: https://github.com/afuetterer/python-re3data/actions/workflows/docs.yml
 [doi-badge]: https://zenodo.org/badge/DOI/10.5281/zenodo.11264510.svg
 [doi-url]: https://doi.org/10.5281/zenodo.11264510
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
