@@ -6,10 +6,10 @@ _default:
     @just --list --unsorted
 
 sync:
-    uv sync --frozen
+    uv sync --locked
 
 sync-docs:
-    uv sync --frozen --group=docs
+    uv sync --locked --group=docs
 
 @project-version:
     uv run toml get --toml-path pyproject.toml project.version

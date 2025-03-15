@@ -65,7 +65,7 @@ Here's how to set up `python-re3data` for local development.
 
     ```console
     $ cd python-re3data
-    $ uv sync --frozen
+    $ uv sync --locked
     ```
 
 4. Create a branch for local development:

@@ -9,7 +9,7 @@ permissions: {}
 env:
   PYTHONUNBUFFERED: 1
   FORCE_COLOR: 1
-  UV_FROZEN: true # do not update the lockfile during `uv sync` and `uv run` commands
+  UV_LOCKED: true # do not update the lockfile during `uv sync` and `uv run` commands
 
 jobs:
   test:
