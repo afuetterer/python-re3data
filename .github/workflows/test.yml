@@ -34,6 +34,9 @@ jobs:
       run: just cov
       env:
         TERM: dumb # keep rich from printing escape sequences, which made testing CLI outputs messy
+    - name: Run e2e tests
+      run: just e2e-test
+      if: matrix.python-version == '3.13'
     - name: Generate coverage report
       run: |
         export TOTAL_COV=$(hatch run cov-total)

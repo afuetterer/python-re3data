@@ -32,6 +32,10 @@ test:
     uv run pytest tests
 
 [group('test')]
+e2e-test:
+    uv run pytest -m e2e
+
+[group('test')]
 cov:
     uv run pytest --cov=src
 

@@ -170,6 +170,7 @@ addopts = [
   "--showlocals",
   "--strict-markers",
   "--strict-config",
+  "-m not e2e",       # default behaviour: do not run e2e tests
 ]
 asyncio_mode = "auto"
 filterwarnings = [
@@ -178,6 +179,9 @@ filterwarnings = [
 log_cli_level = "INFO"
 xfail_strict = true
 testpaths = "tests"
+markers = [
+  "e2e: marks tests as end-to-end tests, requesting the live api",
+]
 
 [tool.coverage.run] # Ref: https://coverage.readthedocs.io/en/latest/config.html
 branch = true
