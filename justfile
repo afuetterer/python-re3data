@@ -2,14 +2,16 @@
 # Ref: https://just.systems/man/en/
 # ------------------------------------------------------------------------------
 
+export UV_LOCKED := "true"
+
 _default:
     @just --list --unsorted
 
 sync:
-    uv sync --locked
+    uv sync
 
 sync-docs:
-    uv sync --locked --group=docs
+    uv sync --group=docs
 
 @project-version:
     uv run toml get --toml-path pyproject.toml project.version
