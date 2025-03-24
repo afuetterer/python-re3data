@@ -1,7 +1,11 @@
 name: Test
 
 on:
+  schedule:
+  # run once a month at midnight of the first day of the month
+  - cron: 0 0 1 * *
   workflow_call:
+  workflow_dispatch: # run manually from actions tab
 
 # Set permissions at the job level.
 permissions: {}
@@ -34,6 +38,9 @@ jobs:
       run: just cov
       env:
         TERM: dumb # keep rich from printing escape sequences, which made testing CLI outputs messy
+    - name: Run e2e tests
+      run: just e2e-test
+      if: matrix.python-version == '3.13'
     - name: Generate coverage report
       run: |
         export TOTAL_COV=$(hatch run cov-total)
