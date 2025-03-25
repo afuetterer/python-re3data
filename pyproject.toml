@@ -173,6 +173,7 @@ addopts = [
   "-m not e2e",       # default behaviour: do not run e2e tests
 ]
 asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
 filterwarnings = [
   "error",
 ]
