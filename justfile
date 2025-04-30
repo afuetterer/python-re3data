@@ -14,7 +14,7 @@ sync-docs:
     uv sync --group=docs
 
 @project-version:
-    uv run toml get --toml-path pyproject.toml project.version
+    uv version | awk '{print $2}'
 
 pre-commit := "pre-commit run --all-files --color=always --show-diff-on-failure"
 
