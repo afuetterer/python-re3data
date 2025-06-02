@@ -51,7 +51,7 @@ repos:
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 57b6ff7bf72affdd12c7f3fd6de761ba18a33b3a  # frozen: v2.5.1
+  rev: 8184a5b72f4a8fcd003b041ecb04c41a9f34fd2b  # frozen: v2.6.0
   hooks:
   - id: pyproject-fmt
 
@@ -80,14 +80,14 @@ repos:
     - ruff==0.6.1
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: e84319e627902e1b348574ecf3238dc511933dc7  # frozen: v0.11.7
+  rev: d19233b89771be2d89273f163f5edc5a39bbc34a  # frozen: v0.11.12
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: f40886d54c729f533f864ed6ce584e920feb0af7  # frozen: v1.15.0
+  rev: 7010b10a09f65cd60a23c207349b539aa36dbec1  # frozen: v1.16.0
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -101,12 +101,12 @@ repos:
     - xsdata>=24.5
 
 - repo: https://github.com/scientific-python/cookie
-  rev: f801700e5a8beb2f42e63d752d7116aa4dbaa0f1  # frozen: 2025.01.22
+  rev: 47e01d1d4f95523dd730fda8f8657e1233a12de7  # frozen: 2025.05.02
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: 15ff058881549e16b0edb975a9b0b0d0cccd612c  # frozen: v1
+  rev: 09ff140a597dff1bd317c87564989d22a8f97bdb  # frozen: v1
   hooks:
   - id: typos
     args: [--force-exclude]
@@ -118,7 +118,7 @@ repos:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: fa1915d04e129bcd0dccabf6aca53cdc19787ab4  # frozen: v4.1.0
+  rev: 7c1022b54dcb1d1911e6c885089940e8499f0253  # frozen: v4.2.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
