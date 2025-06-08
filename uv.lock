@@ -1617,14 +1617,14 @@ wheels = [
 
 [[package]]
 name = "xsdata"
-version = "24.12"
+version = "25.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/29/82/c2b73724bdd31f81e263e1f87e4b9bd70703dd4282ce44ffe1978cda541b/xsdata-24.12.tar.gz", hash = "sha256:67c16c032bbde82c064f6c28cdf6b4f8adcbd0498e2668a346ff8e52a3a200b4", size = 343596, upload-time = "2024-12-22T07:25:19.352Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/22/b0/6229c0ff37be887059a709f45e22165b30c2c34bca00c035c12cd76eef3b/xsdata-25.4.tar.gz", hash = "sha256:eb3427e5d9e436b5408a9f6fdae3a7bc0c8b4edfbd22eb878acb29eb3685ed62", size = 345056, upload-time = "2025-04-13T07:07:08.179Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0c/e5/70026869f5ab3c6be413ab5a978849cfe2037f2e82bd1da8550c7627caa3/xsdata-24.12-py3-none-any.whl", hash = "sha256:2656cfa7240d215a4f2ff30abeebee9afad1e72b805f3ed29ded518a7d3785ee", size = 232617, upload-time = "2024-12-22T07:25:16.665Z" },
+    { url = "https://files.pythonhosted.org/packages/11/cb/8e8f6bf0b08d650173a0d7b3282155588aa8f22d38850773a66208a0e868/xsdata-25.4-py3-none-any.whl", hash = "sha256:7a318961d3596dc25e08b1f02478bde5f63d3dcbc2b1e12382f1648371b91ccd", size = 234490, upload-time = "2025-04-13T07:07:06.739Z" },
 ]
 
 [[package]]
