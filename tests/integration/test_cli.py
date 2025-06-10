@@ -28,7 +28,7 @@ VERSION_OPTION_NAMES = ("-V", "--version")
 
 def test_no_args_displays_help() -> None:
     result = runner.invoke(app)
-    assert result.exit_code == 0
+    assert result.exit_code == 2
     assert "Usage" in result.output
     assert "Options" in result.output
     assert "Show this message and exit" in result.output
@@ -61,7 +61,7 @@ def test_typer_missing_message(caplog: pytest.LogCaptureFixture) -> None:
 
 def test_repository_no_args_displays_help() -> None:
     result = runner.invoke(app, ["repository"])
-    assert result.exit_code == 0
+    assert result.exit_code == 2
     assert "Usage" in result.output
     assert "Options" in result.output
 
