@@ -7,7 +7,7 @@
 import logging
 import sys
 from pathlib import Path
-from typing import Annotated, Any, Optional
+from typing import Annotated, Any
 
 from rich.console import Console
 
@@ -91,7 +91,7 @@ def callback(
 @repositories_app.command("list")
 def list_repositories(
     query: Annotated[
-        Optional[str],  # noqa: UP007 - typer does not support "str | None"
+        str | None,
         typer.Option(
             help="A query to filter the results. If provided, only repositories matching the query will be returned."
         ),
@@ -99,7 +99,7 @@ def list_repositories(
     return_type: ReturnType = ReturnType.DATACLASS,
     count: bool = False,
     outfile: Annotated[
-        Optional[Path],  # noqa: UP007 - typer does not support "Path | None"
+        Path | None,
         typer.Option(
             file_okay=True,
             dir_okay=False,
@@ -118,7 +118,7 @@ def get_repository(
     repository_id: str,
     return_type: ReturnType = ReturnType.DATACLASS,
     outfile: Annotated[
-        Optional[Path],  # noqa: UP007 - typer does not support "Path | None"
+        Path | None,
         typer.Option(
             file_okay=True,
             dir_okay=False,
