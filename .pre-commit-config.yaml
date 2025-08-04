@@ -39,19 +39,19 @@ repos:
     args: [--pytest-test-first]
 
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: a6273196190bb0f68caf1dc68073cf62c719f725  # frozen: v2.14.0
+  rev: 19b28a9f0a0102b30776f054bea4176e7af50dbe  # frozen: v2.15.0
   hooks:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 06e4cc849d03f3a59ca223a4046f4bb5bb2aba6d  # frozen: 0.33.0
+  rev: 54da05914997e6b04e4db33ed6757d744984c68b  # frozen: 0.33.2
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 57b6ff7bf72affdd12c7f3fd6de761ba18a33b3a  # frozen: v2.5.1
+  rev: 8184a5b72f4a8fcd003b041ecb04c41a9f34fd2b  # frozen: v2.6.0
   hooks:
   - id: pyproject-fmt
 
@@ -80,14 +80,14 @@ repos:
     - ruff==0.6.1
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: e84319e627902e1b348574ecf3238dc511933dc7  # frozen: v0.11.7
+  rev: 4cbc74d53fe5634e58e0e65db7d28939c9cec3f7  # frozen: v0.12.7
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: f40886d54c729f533f864ed6ce584e920feb0af7  # frozen: v1.15.0
+  rev: 412de98d50e846f31ea6f4b0ad036f2c24a7a024  # frozen: v1.17.1
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -101,12 +101,12 @@ repos:
     - xsdata>=24.5
 
 - repo: https://github.com/scientific-python/cookie
-  rev: f801700e5a8beb2f42e63d752d7116aa4dbaa0f1  # frozen: 2025.01.22
+  rev: 47e01d1d4f95523dd730fda8f8657e1233a12de7  # frozen: 2025.05.02
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: 15ff058881549e16b0edb975a9b0b0d0cccd612c  # frozen: v1
+  rev: 8d96c408b0dca5cc2e5b125482e8aabe5473e153  # frozen: v1
   hooks:
   - id: typos
     args: [--force-exclude]
@@ -118,7 +118,7 @@ repos:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: fa1915d04e129bcd0dccabf6aca53cdc19787ab4  # frozen: v4.1.0
+  rev: 7c1022b54dcb1d1911e6c885089940e8499f0253  # frozen: v4.2.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
