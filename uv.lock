@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version >= '3.12' and platform_python_implementation == 'PyPy'",
@@ -1617,14 +1617,14 @@ wheels = [
 
 [[package]]
 name = "xsdata"
-version = "24.12"
+version = "26.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/29/82/c2b73724bdd31f81e263e1f87e4b9bd70703dd4282ce44ffe1978cda541b/xsdata-24.12.tar.gz", hash = "sha256:67c16c032bbde82c064f6c28cdf6b4f8adcbd0498e2668a346ff8e52a3a200b4", size = 343596, upload-time = "2024-12-22T07:25:19.352Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/24/9f/c1b0fa54f2b3f43989015668daddd8bd50d3bf3461ba8b79fdeb8000b27d/xsdata-26.1.tar.gz", hash = "sha256:dcae2c0e5f329f1b4e09a2d148c96941c9556616bb5e3418970a63c5eb2cd831", size = 348523, upload-time = "2026-01-19T19:03:54.347Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0c/e5/70026869f5ab3c6be413ab5a978849cfe2037f2e82bd1da8550c7627caa3/xsdata-24.12-py3-none-any.whl", hash = "sha256:2656cfa7240d215a4f2ff30abeebee9afad1e72b805f3ed29ded518a7d3785ee", size = 232617, upload-time = "2024-12-22T07:25:16.665Z" },
+    { url = "https://files.pythonhosted.org/packages/7b/48/37775c15adba3070f0af934a6617696a608a75f2e01be37a454e298cf32c/xsdata-26.1-py3-none-any.whl", hash = "sha256:aa02adf1b75668e7b685f4de3c4507e4aa31af3f2e2210fd45aa2f0e4a637a99", size = 235422, upload-time = "2026-01-19T19:03:52.684Z" },
 ]
 
 [[package]]
