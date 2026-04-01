@@ -18,8 +18,8 @@ jobs:
     if: github.repository_owner == 'afuetterer'
     runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-    - uses: hynek/build-and-inspect-python-package@b5076c307dc91924a82ad150cdd1533b444d3310 # v2.12.0
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+    - uses: hynek/build-and-inspect-python-package@fe0a0fb1925ca263d076ca4f2c13e93a6e92a33e # v2.17.0
 
   upload:
     name: Upload package distributions to GitHub Releases
@@ -31,12 +31,12 @@ jobs:
       contents: write
     steps:
     - name: Download package built by build job
-      uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806 # v4.1.9
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
       with:
         name: Packages
         path: dist
     - name: Publish package distributions to GitHub Releases
-      uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
+      uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2.6.1
       with:
         files: dist/*
 
@@ -50,12 +50,12 @@ jobs:
       id-token: write
     steps:
     - name: Download package built by build job
-      uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806 # v4.1.9
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
       with:
         name: Packages
         path: dist
     - name: Publish package to PyPI
-      uses: pypa/gh-action-pypi-publish@76f52bc884231f62b9a034ebfe128415bbaabdfc # v1.12.4
+      uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
       with:
         attestations: true
 
@@ -71,9 +71,9 @@ jobs:
     env:
       IMAGE_NAME: ${{ github.repository }}
     steps:
-    - uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2 # v3.10.0
+    - uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
     - name: Login to GitHub Container Registry
-      uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
+      uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
@@ -81,7 +81,7 @@ jobs:
     - name: Generate Docker image metadata
       id: meta
       # Ref: https://github.com/docker/metadata-action?tab=readme-ov-file#customizing
-      uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804 # v5.7.0
+      uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf # v6.0.0
       with:
         images: ghcr.io/${{ env.IMAGE_NAME }}
         flavor: latest=true
@@ -90,7 +90,7 @@ jobs:
           type=pep440,pattern={{major}}.{{minor}}
     - name: Build and push image to registry
       # Ref: https://github.com/docker/build-push-action?tab=readme-ov-file#customizing
-      uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6.15.0
+      uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7.0.0
       with:
         push: true
         build-args: VERSION=${{ github.event.release.name }}
@@ -109,12 +109,12 @@ jobs:
       contents: write
     steps:
     - name: Set up just
-      uses: extractions/setup-just@e33e0265a09d6d736e2ee1e0eb685ef1de4669ff # v3
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      uses: extractions/setup-just@f8a3cce218d9f83db3a2ecd90e41ac3de6cdfd9b # v3
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       with:
         fetch-depth: 0 # fetch all commits and branches
     - name: Set up uv
-      uses: astral-sh/setup-uv@f94ec6bedd8674c4426838e6b50417d36b6ab231 # v5.3.1
+      uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57 # v8.0.0
       with:
         python-version: '3.13'
         enable-cache: true
