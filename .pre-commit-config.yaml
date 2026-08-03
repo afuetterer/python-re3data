@@ -24,7 +24,7 @@ repos:
   - id: check-hooks-apply
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: cef0300fd0fc4d2a87a85fa2093c6b283ea36f4b  # frozen: v5.0.0
+  rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
   hooks:
   - id: check-merge-conflict
   - id: check-case-conflict
@@ -39,24 +39,24 @@ repos:
     args: [--pytest-test-first]
 
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: a6273196190bb0f68caf1dc68073cf62c719f725  # frozen: v2.14.0
+  rev: 4380fbb73a154b5f5624794c1c78d9719ccc860f  # frozen: v2.16.0
   hooks:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 06e4cc849d03f3a59ca223a4046f4bb5bb2aba6d  # frozen: 0.33.0
+  rev: 1a4bb160cab6417b3045e1b37b6b72449243e658  # frozen: 0.37.4
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 57b6ff7bf72affdd12c7f3fd6de761ba18a33b3a  # frozen: v2.5.1
+  rev: d600c142bb19f521ae6a6a345f94a2efd7937759  # frozen: v2.26.0
   hooks:
   - id: pyproject-fmt
 
 - repo: https://github.com/executablebooks/mdformat
-  rev: ff29be1a1ba8029d9375882aa2c812b62112a593  # frozen: 0.7.22
+  rev: 2d496dbc18e31b83a1596685347ffe0b6041daf0  # frozen: 1.0.0
   hooks:
   - id: mdformat
     args: [--number, --wrap=120, --ignore-missing-references]
@@ -73,21 +73,21 @@ repos:
     - mdformat-mkdocs[recommended]>=v2.0.7
 
 - repo: https://github.com/provinzkraut/unasyncd
-  rev: 572842a04440d45bd7d6bee5a6a4d006891d8c66  # frozen: v0.8.1
+  rev: b776e25a7e51956c222d676c0cc6acd36bf75396  # frozen: v0.10.1
   hooks:
   - id: unasyncd
     additional_dependencies:
     - ruff==0.6.1
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: e84319e627902e1b348574ecf3238dc511933dc7  # frozen: v0.11.7
+  rev: 39d9ac5938dadb73df0564a45f163e25ff9fa6e2  # frozen: v0.16.1
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: f40886d54c729f533f864ed6ce584e920feb0af7  # frozen: v1.15.0
+  rev: 41e691678310dfd3833f7ab4e180ddb014310356  # frozen: v2.3.0
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -101,24 +101,24 @@ repos:
     - xsdata>=24.5
 
 - repo: https://github.com/scientific-python/cookie
-  rev: f801700e5a8beb2f42e63d752d7116aa4dbaa0f1  # frozen: 2025.01.22
+  rev: 8f0581cc50b14023b14a9c77e9b358738ba637e7  # frozen: 2026.06.18
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: 15ff058881549e16b0edb975a9b0b0d0cccd612c  # frozen: v1
+  rev: 12ffd4a04b4893ab75db66a59aaad2d996c3e982  # frozen: v1
   hooks:
   - id: typos
     args: [--force-exclude]
     exclude: src/re3data/_resources/repository.py|tests/conftest.py
 
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
-  rev: 1396d3408d6c08cad89229fa30ef17a35e35d5c4  # frozen: 2025.1.0
+  rev: 21abbebb654a297a8e7b62ddebe7a77504171386  # frozen: 2026.0.8
   hooks:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: fa1915d04e129bcd0dccabf6aca53cdc19787ab4  # frozen: v4.1.0
+  rev: 3db014c16a9d31997ab8c07a4d61fcce936c8f0d  # frozen: v4.4.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
