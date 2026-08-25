@@ -6,7 +6,7 @@ updates:
 - package-ecosystem: docker
   directory: /
   schedule:
-    interval: quarterly
+    interval: yearly
   commit-message:
     prefix: build
     include: scope
@@ -16,7 +16,7 @@ updates:
 - package-ecosystem: github-actions
   directory: /
   schedule:
-    interval: quarterly
+    interval: semiannually
   commit-message:
     prefix: ci
   labels:
