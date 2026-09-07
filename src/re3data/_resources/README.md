@@ -25,7 +25,7 @@ Here's an example:
 >>> repository_summary = re3data.repositories.list()[0]
 >>> repository_summary.link.href
 'https://www.re3data.org/api/beta/repository/r3d100010468'
->>> repository_summary.href # for convenience
+>>> repository_summary.href  # for convenience
 'https://www.re3data.org/api/beta/repository/r3d100010468'
 ```
 
@@ -48,7 +48,7 @@ Here's an example:
 >>> repository = re3data.repositories.get("r3d100010468")
 >>> repository.re3data_org_identifier
 'r3d100010468'
->>> repository.id # for convenience
+>>> repository.id  # for convenience
 'r3d100010468'
 ```
 

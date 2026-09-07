@@ -16,14 +16,14 @@ class Link:
     class Meta:
         name = "link"
 
-    href: None | str = field(
+    href: str | None = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
         },
     )
-    rel: None | str = field(
+    rel: str | None = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -37,28 +37,28 @@ class RepositorySummary(LinkMixin):
     class Meta:
         name = "repository"
 
-    id: None | str = field(
+    id: str | None = field(
         default=None,
         metadata={
             "type": "Element",
             "required": True,
         },
     )
-    doi: None | str = field(
+    doi: str | None = field(
         default=None,
         metadata={
             "type": "Element",
             "required": True,
         },
     )
-    name: None | str = field(
+    name: str | None = field(
         default=None,
         metadata={
             "type": "Element",
             "required": True,
         },
     )
-    link: None | Link = field(
+    link: Link | None = field(
         default=None,
         metadata={
             "type": "Element",
