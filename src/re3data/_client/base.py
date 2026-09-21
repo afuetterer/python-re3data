@@ -143,7 +143,7 @@ class BaseClient:
 
     def __init__(
         self,
-        client: type[httpx.Client] | type[httpx.AsyncClient],
+        client: type[httpx.Client | httpx.AsyncClient],
     ) -> None:
         self._client = client(
             base_url=BASE_URL,
