@@ -1304,7 +1304,7 @@ class DataUploadLicense:
     class Meta:
         global_type = False
 
-    data_upload_license_name: None | str = field(
+    data_upload_license_name: str | None = field(
         default=None,
         metadata={
             "name": "dataUploadLicenseName",
@@ -1313,7 +1313,7 @@ class DataUploadLicense:
             "required": True,
         },
     )
-    data_upload_license_url: None | str = field(
+    data_upload_license_url: str | None = field(
         default=None,
         metadata={
             "name": "dataUploadLicenseURL",
@@ -1338,7 +1338,7 @@ class Policy:
     class Meta:
         global_type = False
 
-    policy_name: None | str = field(
+    policy_name: str | None = field(
         default=None,
         metadata={
             "name": "policyName",
@@ -1347,7 +1347,7 @@ class Policy:
             "required": True,
         },
     )
-    policy_url: None | str = field(
+    policy_url: str | None = field(
         default=None,
         metadata={
             "name": "policyURL",
@@ -1377,7 +1377,7 @@ class Size:
     # Note: Unfortunately, we had to add `str` type manually due to inconsistencies between the API data and
     # the XSD schema. This led to numerous `ConverterWarnings`. Ideally, the data would conform to the schema,
     # but until then, this workaround helps maintain compatibility.
-    updated: None | XmlPeriod | XmlDate | str = field(
+    updated: XmlPeriod | XmlDate | str | None = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -1835,7 +1835,7 @@ class AdditionalName:
             "required": True,
         },
     )
-    language: None | Languages = field(
+    language: Languages | None = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -1860,7 +1860,7 @@ class Api:
             "required": True,
         },
     )
-    api_type: None | ApiTypes = field(
+    api_type: ApiTypes | None = field(
         default=None,
         metadata={
             "name": "apiType",
@@ -1880,13 +1880,13 @@ class ContentType:
     class Meta:
         global_type = False
 
-    value: None | ContentTypeText = field(
+    value: ContentTypeText | None = field(
         default=None,
         metadata={
             "required": True,
         },
     )
-    content_type_scheme: None | ContentTypeScheme = field(
+    content_type_scheme: ContentTypeScheme | None = field(
         default=None,
         metadata={
             "name": "contentTypeScheme",
@@ -1907,7 +1907,7 @@ class DataAccess:
     class Meta:
         global_type = False
 
-    data_access_type: None | DataAccessTypes = field(
+    data_access_type: DataAccessTypes | None = field(
         default=None,
         metadata={
             "name": "dataAccessType",
@@ -1936,7 +1936,7 @@ class DataLicense:
     class Meta:
         global_type = False
 
-    data_license_name: None | DataLicenseNames = field(
+    data_license_name: DataLicenseNames | None = field(
         default=None,
         metadata={
             "name": "dataLicenseName",
@@ -1945,7 +1945,7 @@ class DataLicense:
             "required": True,
         },
     )
-    data_license_url: None | str = field(
+    data_license_url: str | None = field(
         default=None,
         metadata={
             "name": "dataLicenseURL",
@@ -1967,7 +1967,7 @@ class DataUpload:
     class Meta:
         global_type = False
 
-    data_upload_type: None | AccessTypes = field(
+    data_upload_type: AccessTypes | None = field(
         default=None,
         metadata={
             "name": "dataUploadType",
@@ -1997,7 +1997,7 @@ class DatabaseAccess:
     class Meta:
         global_type = False
 
-    database_access_type: None | AccessTypes = field(
+    database_access_type: AccessTypes | None = field(
         default=None,
         metadata={
             "name": "databaseAccessType",
@@ -2026,7 +2026,7 @@ class DatabaseLicense:
     class Meta:
         global_type = False
 
-    database_license_name: None | DatabaseLicenseNames = field(
+    database_license_name: DatabaseLicenseNames | None = field(
         default=None,
         metadata={
             "name": "databaseLicenseName",
@@ -2035,7 +2035,7 @@ class DatabaseLicense:
             "required": True,
         },
     )
-    database_license_url: None | str = field(
+    database_license_url: str | None = field(
         default=None,
         metadata={
             "name": "databaseLicenseURL",
@@ -2063,7 +2063,7 @@ class Description:
             "max_length": 1000,
         },
     )
-    language: None | Languages = field(
+    language: Languages | None = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -2088,7 +2088,7 @@ class InstitutionAdditionalName:
             "required": True,
         },
     )
-    language: None | Languages = field(
+    language: Languages | None = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -2113,7 +2113,7 @@ class InstitutionName:
             "required": True,
         },
     )
-    language: None | Languages = field(
+    language: Languages | None = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -2132,13 +2132,13 @@ class MetadataStandardName:
     class Meta:
         global_type = False
 
-    value: None | MetadataStandardDccnames = field(
+    value: MetadataStandardDccnames | None = field(
         default=None,
         metadata={
             "required": True,
         },
     )
-    metadata_standard_scheme: None | MetadataStandardScheme = field(
+    metadata_standard_scheme: MetadataStandardScheme | None = field(
         default=None,
         metadata={
             "name": "metadataStandardScheme",
@@ -2164,7 +2164,7 @@ class RepositoryName:
             "required": True,
         },
     )
-    language: None | Languages = field(
+    language: Languages | None = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -2182,7 +2182,7 @@ class Software:
     class Meta:
         global_type = False
 
-    software_name: None | SoftwareNames = field(
+    software_name: SoftwareNames | None = field(
         default=None,
         metadata={
             "name": "softwareName",
@@ -2204,13 +2204,13 @@ class Subject:
     class Meta:
         global_type = False
 
-    value: None | SubjectText = field(
+    value: SubjectText | None = field(
         default=None,
         metadata={
             "required": True,
         },
     )
-    subject_scheme: None | SubjectScheme = field(
+    subject_scheme: SubjectScheme | None = field(
         default=None,
         metadata={
             "name": "subjectScheme",
@@ -2236,7 +2236,7 @@ class Syndication:
             "required": True,
         },
     )
-    syndication_type: None | SyndicationTypes = field(
+    syndication_type: SyndicationTypes | None = field(
         default=None,
         metadata={
             "name": "syndicationType",
@@ -2265,7 +2265,7 @@ class Institution:
     class Meta:
         global_type = False
 
-    institution_name: None | InstitutionName = field(
+    institution_name: InstitutionName | None = field(
         default=None,
         metadata={
             "name": "institutionName",
@@ -2282,7 +2282,7 @@ class Institution:
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    institution_country: None | Countries = field(
+    institution_country: Countries | None = field(
         default=None,
         metadata={
             "name": "institutionCountry",
@@ -2299,7 +2299,7 @@ class Institution:
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    institution_type: None | InstitutionTypes = field(
+    institution_type: InstitutionTypes | None = field(
         default=None,
         metadata={
             "name": "institutionType",
@@ -2307,7 +2307,7 @@ class Institution:
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    institution_url: None | str = field(
+    institution_url: str | None = field(
         default=None,
         metadata={
             "name": "institutionURL",
@@ -2324,7 +2324,7 @@ class Institution:
         },
     )
     # Note: Unfortunately, we had to add `str` type manually.
-    responsibility_start_date: None | XmlPeriod | XmlDate | str = field(
+    responsibility_start_date: XmlPeriod | XmlDate | str | None = field(
         default=None,
         metadata={
             "name": "responsibilityStartDate",
@@ -2335,7 +2335,7 @@ class Institution:
         },
     )
     # Note: Unfortunately, we had to add `str` type manually.
-    responsibility_end_date: None | XmlPeriod | XmlDate | str = field(
+    responsibility_end_date: XmlPeriod | XmlDate | str | None = field(
         default=None,
         metadata={
             "name": "responsibilityEndDate",
@@ -2365,7 +2365,7 @@ class MetadataStandard:
     class Meta:
         global_type = False
 
-    metadata_standard_name: None | MetadataStandardName = field(
+    metadata_standard_name: MetadataStandardName | None = field(
         default=None,
         metadata={
             "name": "metadataStandardName",
@@ -2374,7 +2374,7 @@ class MetadataStandard:
             "required": True,
         },
     )
-    metadata_standard_url: None | MetadataStandardDccurls = field(
+    metadata_standard_url: MetadataStandardDccurls | None = field(
         default=None,
         metadata={
             "name": "metadataStandardURL",
@@ -2441,7 +2441,7 @@ class Repository(IdMixin):
     class Meta:
         global_type = False
 
-    re3data_org_identifier: None | str = field(
+    re3data_org_identifier: str | None = field(
         default=None,
         metadata={
             "name": "re3data.orgIdentifier",
@@ -2450,7 +2450,7 @@ class Repository(IdMixin):
             "required": True,
         },
     )
-    repository_name: None | RepositoryName = field(
+    repository_name: RepositoryName | None = field(
         default=None,
         metadata={
             "name": "repositoryName",
@@ -2467,7 +2467,7 @@ class Repository(IdMixin):
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    repository_url: None | str = field(
+    repository_url: str | None = field(
         default=None,
         metadata={
             "name": "repositoryURL",
@@ -2484,7 +2484,7 @@ class Repository(IdMixin):
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    description: None | Description = field(
+    description: Description | None = field(
         default=None,
         metadata={
             "type": "Element",
@@ -2508,7 +2508,7 @@ class Repository(IdMixin):
             "min_occurs": 1,
         },
     )
-    size: None | Size = field(
+    size: Size | None = field(
         default=None,
         metadata={
             "type": "Element",
@@ -2516,7 +2516,7 @@ class Repository(IdMixin):
         },
     )
     # Note: Unfortunately, we had to add `str` type manually.
-    start_date: None | XmlPeriod | XmlDate | str = field(
+    start_date: XmlPeriod | XmlDate | str | None = field(
         default=None,
         metadata={
             "name": "startDate",
@@ -2527,7 +2527,7 @@ class Repository(IdMixin):
         },
     )
     # Note: Unfortunately, we had to add `str` type manually.
-    end_date: None | XmlPeriod | XmlDate | str = field(
+    end_date: XmlPeriod | XmlDate | str | None = field(
         default=None,
         metadata={
             "name": "endDate",
@@ -2554,7 +2554,7 @@ class Repository(IdMixin):
             "min_occurs": 1,
         },
     )
-    mission_statement_url: None | str = field(
+    mission_statement_url: str | None = field(
         default=None,
         metadata={
             "name": "missionStatementURL",
@@ -2602,7 +2602,7 @@ class Repository(IdMixin):
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    database_access: None | DatabaseAccess = field(
+    database_access: DatabaseAccess | None = field(
         default=None,
         metadata={
             "name": "databaseAccess",
@@ -2661,7 +2661,7 @@ class Repository(IdMixin):
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    versioning: None | Yesno = field(
+    versioning: Yesno | None = field(
         default=None,
         metadata={
             "type": "Element",
@@ -2684,7 +2684,7 @@ class Repository(IdMixin):
             "min_occurs": 1,
         },
     )
-    citation_guideline_url: None | str = field(
+    citation_guideline_url: str | None = field(
         default=None,
         metadata={
             "name": "citationGuidelineURL",
@@ -2700,7 +2700,7 @@ class Repository(IdMixin):
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    enhanced_publication: None | Yesnoun = field(
+    enhanced_publication: Yesnoun | None = field(
         default=None,
         metadata={
             "name": "enhancedPublication",
@@ -2708,7 +2708,7 @@ class Repository(IdMixin):
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    quality_management: None | Yesnoun = field(
+    quality_management: Yesnoun | None = field(
         default=None,
         metadata={
             "name": "qualityManagement",
@@ -2738,14 +2738,14 @@ class Repository(IdMixin):
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    remarks: None | str = field(
+    remarks: str | None = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.re3data.org/schema/2-2",
         },
     )
-    entry_date: None | XmlPeriod | XmlDate = field(
+    entry_date: XmlPeriod | XmlDate | None = field(
         default=None,
         metadata={
             "name": "entryDate",
@@ -2756,7 +2756,7 @@ class Repository(IdMixin):
             "max_inclusive": XmlDate(2999, 12, 31),
         },
     )
-    last_update: None | XmlPeriod | XmlDate = field(
+    last_update: XmlPeriod | XmlDate | None = field(
         default=None,
         metadata={
             "name": "lastUpdate",
